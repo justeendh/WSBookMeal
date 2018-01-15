@@ -1,0 +1,92 @@
+﻿@using BookMeal.Models;
+@model List<BILL_MEAL>
+@{ 
+    Guid? BillID = (Guid?)ViewBag.BillID;
+    Guid? ParentBill = (Guid?)ViewBag.ParentBill;
+    var lstBillTach = ViewBag.lstBillTach as List<BILL_TACH>;
+    var lstChildHoaDon = ViewBag.lstChildHoaDon as List<HOA_DON>;
+}
+@if (Model.Count == 0)
+{
+    <div class="data-empty text-center" style="border: 10px solid #fafafa;margin-left: -15px;margin-right: -15px;">
+        <h4>Vui lòng chọn món</h4>
+    </div>
+}
+<div class="row">
+    @foreach (var itemMeal in Model)
+            {
+        <div class="meal-item col-xs-12 col-sm-6 col-md-6">
+            <div class="pull-right quantity-meal text-right">
+                <div style="margin-bottom: 5px;">
+                    <h3 style="margin: 0;">
+                        <strong class="text-danger">@itemMeal.SO_LUONG_MON.Value.ToString("0") @itemMeal.MON_HANG.DON_VI_TINH</strong> 
+                    </h3>
+                </div>
+                <div  class="meal-status">
+                    @if (itemMeal.COOK_VA_MIXE != null && itemMeal.COOK_VA_MIXE.Value)
+                    {
+                        <strong><span>ĐÃ PHỤC VỤ</span></strong>
+                    }
+                    else
+                    {
+                        <strong><span>ĐANG YÊU CẦU</span></strong>
+                    }
+                </div>
+                @if ((lstBillTach != null && lstBillTach.Count > 0) || ParentBill != null)
+                {
+                <div style="margin-top: 5px; display: none;">
+                    <div class="dropdown">
+                      <button class="btn btn-warning btn-lg" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dLabel" style="left: auto; right: 0; min-width: unset;">
+                          
+                          @if (ParentBill != null)
+                          {
+                             <li>
+                                <a style="padding: 12px 15px; text-align: left;" onclick="return confirm('Bạn chắc chắn chuyển món @itemMeal.MON_HANG.TEN_MON_HANG đến BILL CHÍNH');"
+                                 href="@Url.Action("movetobill", "home", Request.QueryString.ToRouteValues(new { billid = BillID, keybillmeal = itemMeal.KEY_BILL_MEAL, targetbill = ParentBill, parent= ParentBill, childBill = true }))">
+                                    <h4 style="margin: 0; display: inline;">
+                                        <strong><i class="fa fa-arrow-right"></i> BILL CHÍNH</strong>
+                                    </h4>
+                                 </a>
+                            </li>
+                          }
+                          @if (lstChildHoaDon != null)
+                          {
+                              foreach (var itemBillMove in lstChildHoaDon)
+                              {
+                                  if (itemBillMove.KEY_HOA_DON == BillID) { continue; }
+                                  var ItemBillTach = lstBillTach.FirstOrDefault(a => a.KEY_BILL_TACH == itemBillMove.KEY_HOA_DON);
+                                    <li>
+                                        <a style="padding: 12px 15px; text-align: left;"  onclick="return confirm('Bạn chắc chắn chuyển món @itemMeal.MON_HANG.TEN_MON_HANG đến BILL PHỤ @ItemBillTach.COD_BILL_TACH.Value.ToString("00")');"
+                                           href="@Url.Action("movetobill", "home", Request.QueryString.ToRouteValues(new { billid = BillID, keybillmeal = itemMeal.KEY_BILL_MEAL, targetbill = itemBillMove.KEY_HOA_DON }))">
+                                            <h4 style="margin: 0; display: inline;">
+                                                <strong><i class="fa fa-arrow-right"></i> BILL PHỤ <span class="text-danger">@ItemBillTach.COD_BILL_TACH.Value.ToString("00")</span></strong>
+                                            </h4>
+                                        </a>
+                                    </li>
+                            }
+                          }
+                      </ul>
+                    </div>
+                </div>
+                }
+            </div>
+            <div>
+                <div  style="margin-right: 50px;">
+                    <h3 style="margin: 0;">
+                        <strong>@itemMeal.MON_HANG.TEN_MON_HANG</strong>
+                    </h3>
+                </div>
+                <div class="text-nowrap">@itemMeal.DON_GIA_MON.Value.ToString("###,###,###,##0")/@itemMeal.MON_HANG.DON_VI_TINH</div>
+                @if (string.IsNullOrEmpty(itemMeal.NOT_COOK_MIX))
+                { <div class="label label-success" style="font-style: italic;">Bình thường</div>}
+                else
+                { <div  class="label label-success" style="font-style: italic;">@itemMeal.NOT_COOK_MIX</div>}
+            </div>
+
+            <div style="clear: both;"></div>
+        </div>
+    }
+</div>

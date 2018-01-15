@@ -1,0 +1,246 @@
+﻿@using BookMeal.Models;
+@using WiseOffice;
+@using System.Text.RegularExpressions;
+@model List<MON_HANG>
+@{ 
+    List<BILL_MEAL> lstMonSelected = ViewBag.MonSelected as List<BILL_MEAL>;
+    Guid KeyBanMam = (Guid)ViewBag.KeyBanMam;
+
+    Regex re = new Regex("[!#$%&'()*+,./:;<=>?@[\\]^`{|}~]");
+}
+@if (Model.Count == 0)
+{
+    <div class="data-empty text-center" style="border: 10px solid #fafafa;margin-left: -15px;margin-right: -15px;">
+        <h4>Không có món nào được chọn</h4>
+    </div>
+}
+<div class="row">
+    @foreach (var itemMonHang in Model)
+    {
+
+        var SumSoLuong = lstMonSelected.Where(a => a.KEY_MON_HANG == itemMonHang.KEY_MON_HANG).Sum(a => a.SO_LUONG_MON);
+        if (SumSoLuong != null && SumSoLuong > 0)
+        {
+            <div class="meal-item col-xs-12 col-sm-12 col-md-12">
+                <div class="pull-right">
+                    <div class="btn-group">
+
+                        <div class="btn btn-lg btn-success" data-toggle="modal" data-target="#modal_updatemon_@itemMonHang.KEY_MON_HANG">
+                            <i class="fa fa-pencil"></i>
+                            <strong>
+                                @{
+                                    if (SumSoLuong != null)
+                                    { <span>@SumSoLuong.Value.ToString("0")</span> }
+                                    else
+                                    { <span>0</span> }
+                                }
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div style="margin-right: 50px;"><h3 style="margin: 0;"><strong>@itemMonHang.TEN_MON_HANG</strong></h3></div>
+                    <div class="text-nowrap">@itemMonHang.DON_GIA_MUC1.Value.ToString("###,###,###,##0")/@itemMonHang.DON_VI_TINH</div>
+                </div>
+
+                <div id="modal_updatemon_@itemMonHang.KEY_MON_HANG" class="modal modal_updatemon" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+
+                            <div class="modal-body">
+                                <h3 class="text-center" style="margin-bottom: 15px;"><strong>Sửa món @itemMonHang.TEN_MON_HANG.ToUpper()</strong></h3>
+                                <div class="container">
+                                    <div class="row">
+                                        @{
+                                            var ThisMonSelecteds = lstMonSelected.FirstOrDefault(a => a.KEY_MON_HANG == itemMonHang.KEY_MON_HANG && string.IsNullOrEmpty(a.NOT_COOK_MIX) && (a.COOK_VA_MIXE == null || !a.COOK_VA_MIXE.Value));
+                                            var lstThisMonSelectedWidthNote = lstMonSelected.Where(a => a.KEY_MON_HANG == itemMonHang.KEY_MON_HANG && !string.IsNullOrEmpty(a.NOT_COOK_MIX) && (a.COOK_VA_MIXE == null || !a.COOK_VA_MIXE.Value)).ToList();
+                                            if (ThisMonSelecteds != null)
+                                            {
+                                                <div class="meal-item col-xs-12 col-sm-12 col-md-12">
+                                                    <div class="pull-right">
+                                                        <div class="btn-group">
+                                                            <button style="display: none;" type="button" class="btn btn-lg btn-warning" data-toggle="collapse" data-target="#collapseNote_@itemMonHang.KEY_MON_HANG"
+                                                                    aria-expanded="false" aria-controls="collapseNote_@itemMonHang.KEY_MON_HANG">
+                                                                <i class="fa fa-arrow-circle-down"></i>
+                                                            </button>
+                                                            @if (ThisMonSelecteds.COOK_VA_MIXE == null || !ThisMonSelecteds.COOK_VA_MIXE.Value)
+                                                            {
+                                                            <button type="button" class="btn btn-lg btn-danger" onclick="MinusMonHang('@itemMonHang.KEY_MON_HANG', 'nonote', '#MonHang_nonote_@itemMonHang.KEY_MON_HANG');"><i class="fa fa-minus"></i></button>
+                                                            }
+                                                            <span class="btn btn-lg btn-default" id="MonHang_nonote_@itemMonHang.KEY_MON_HANG">
+                                                            @{
+                                                                <span>@ThisMonSelecteds.SO_LUONG_MON.Value.ToString("0")</span>
+                                                            }
+                                                            </span>
+                                                            @if (ThisMonSelecteds.COOK_VA_MIXE == null || !ThisMonSelecteds.COOK_VA_MIXE.Value)
+                                                            {
+                                                            <button type="button" class="btn btn-lg btn-success" onclick="AddMonHang('@itemMonHang.KEY_MON_HANG', 'nonote', '#MonHang_nonote_@itemMonHang.KEY_MON_HANG');"><i class="fa fa-plus"></i></button>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div  style="margin-right: 50px;"><h3 style="margin: 0;"><strong>@itemMonHang.TEN_MON_HANG</strong></h3></div>
+                                                        <div class="label label-success" style="font-style: italic;">Bình thường</div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="collapse" id="collapseNote_@itemMonHang.KEY_MON_HANG" style="margin-top: 10px;">
+                                                        <div>
+                                                            <div class="form-group">
+                                                                <div class="form-group">
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control" placeholder="Ghi chú.." value=""
+                                                                               id="noteEdit_@itemMonHang.KEY_MON_HANG"
+                                                                               style="height: 45px; padding: 10px 12px; border: 2px solid #468847;background-color: #e2ffe3;" />
+                                                                        <div class="input-group-btn">
+                                                                            <button class="btn btn-success" type="button" data-inputval="noteEdit_@itemMonHang.KEY_MON_HANG" style="padding: 11px 12px;">
+                                                                                <i class="fa fa-save"></i> Lưu
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+
+                                            if (lstThisMonSelectedWidthNote != null)
+                                            {
+                                                var lstNoteQuantity = lstThisMonSelectedWidthNote.GroupBy(p => p.KEY_MON_HANG,
+                                                    p => new BILL_MEAL_GROUP_NOTE_ITEM { NOT_COOK_MIX = p.NOT_COOK_MIX, SO_LUONG_MON = p.SO_LUONG_MON.Value, COOK_VA_MIXE = p.COOK_VA_MIXE.Value },
+                                                    (key, g) => new BILL_MEAL_GROUP_NOTE { KEY_MON_HANG = key.Value, LIST_NOTE_QUANTITY = g.ToList() }).ToList();
+                                                if (ThisMonSelecteds == null && lstNoteQuantity != null && lstNoteQuantity.Count == 0)
+                                                {
+                                                    <div class="data-empty text-center" style="border: 10px solid #fafafa;">
+                                                        <h4>Không có món nào được chọn hoặc các món đã được phục vụ</h4>
+                                                    </div>
+                                                }
+                                                if (lstNoteQuantity != null && lstNoteQuantity.Count > 0)
+                                                {
+                                                    foreach (var ItemNoteQuantity in lstNoteQuantity[0].LIST_NOTE_QUANTITY)
+                                                    {
+                                                        <div class="meal-item col-xs-12 col-sm-12 col-md-12">
+                                                            <div class="pull-right">
+                                                                <div class="btn-group">
+                                                                    @if (!ItemNoteQuantity.NOT_COOK_MIX.ToLower().Contains(("Món từ Combo").ToLower()))
+                                                                    {
+
+                                                                        <button  style="display: none;" type="button" class="btn btn-lg btn-warning" data-toggle="collapse" data-target="#collapseNote_@re.Replace(clsSecuritys.Encrypt(ItemNoteQuantity.NOT_COOK_MIX, "", true), "--")_@itemMonHang.KEY_MON_HANG"
+                                                                                aria-expanded="false" aria-controls="collapseNote_@re.Replace(clsSecuritys.Encrypt(ItemNoteQuantity.NOT_COOK_MIX, "", true), "--")_@itemMonHang.KEY_MON_HANG">
+                                                                            <i class="fa fa-arrow-circle-down"></i>
+                                                                        </button>
+                                                                        if (ItemNoteQuantity.COOK_VA_MIXE == null || !ItemNoteQuantity.COOK_VA_MIXE.Value)
+                                                                        {
+                                                                        <button type="button" class="btn btn-lg btn-danger" onclick="MinusMonHang('@itemMonHang.KEY_MON_HANG','@clsSecuritys.Encrypt(ItemNoteQuantity.NOT_COOK_MIX, "", true)', '#MonHang_@re.Replace(clsSecuritys.Encrypt(ItemNoteQuantity.NOT_COOK_MIX, "", true), "--")_@itemMonHang.KEY_MON_HANG');"><i class="fa fa-minus"></i></button>
+                                                                        }
+                                                                    }
+                                                                    <span class="btn btn-lg btn-default">
+                                                                        @{
+                                                                            <span id="MonHang_@re.Replace(clsSecuritys.Encrypt(ItemNoteQuantity.NOT_COOK_MIX, "", true), "--")_@itemMonHang.KEY_MON_HANG">
+                                                                                @ItemNoteQuantity.SO_LUONG_MON.ToString("0")
+                                                                            </span>
+                                                                        }
+                                                                    </span>
+                                                                    @if (!ItemNoteQuantity.NOT_COOK_MIX.ToLower().Contains(("Món từ Combo").ToLower()))
+                                                                    {
+                                                                        if (ItemNoteQuantity.COOK_VA_MIXE == null || !ItemNoteQuantity.COOK_VA_MIXE.Value)
+                                                                        {
+                                                                        <button type="button" class="btn btn-lg btn-success" onclick="AddMonHang('@itemMonHang.KEY_MON_HANG', '@clsSecuritys.Encrypt(ItemNoteQuantity.NOT_COOK_MIX, "", true)', '#MonHang_@re.Replace(clsSecuritys.Encrypt(ItemNoteQuantity.NOT_COOK_MIX, "", true), "--")_@itemMonHang.KEY_MON_HANG');"><i class="fa fa-plus"></i></button>
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div style="margin-right: 50px;"><h3 style="margin: 0;"><strong>@itemMonHang.TEN_MON_HANG</strong></h3></div>
+                                                                <div class="label label-success" style="font-style: italic;">@ItemNoteQuantity.NOT_COOK_MIX</div>
+                                                            </div>
+
+                                                            <div class="clearfix"></div>
+                                                            <div class="collapse" id="collapseNote_@re.Replace(clsSecuritys.Encrypt(ItemNoteQuantity.NOT_COOK_MIX, "", true), "--")_@itemMonHang.KEY_MON_HANG" style="margin-top: 10px;">
+                                                                <div>
+                                                                    <div class="form-group">
+                                                                        <div class="form-group">
+                                                                            <div class="input-group">
+                                                                                <input type="text" class="form-control" placeholder="Note" value="@ItemNoteQuantity.NOT_COOK_MIX"
+                                                                                        id="noteEdit_@re.Replace(clsSecuritys.Encrypt(ItemNoteQuantity.NOT_COOK_MIX, "", true), "--")_@itemMonHang.KEY_MON_HANG"
+                                                                                        style="height: 45px; padding: 10px 12px; border: 2px solid #468847;background-color: #e2ffe3;" />
+                                                                                <div class="input-group-btn">
+                                                                                    <button class="btn btn-success" type="button" data-inputval="noteEdit_@re.Replace(clsSecuritys.Encrypt(ItemNoteQuantity.NOT_COOK_MIX, "", true), "--")_@itemMonHang.KEY_MON_HANG" style="padding: 11px 12px;">
+                                                                                        <i class="fa fa-save"></i> Lưu
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                    </div>
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal">
+                                        <i class="fa fa-check"></i> Xong
+                                    </button>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            </div>
+
+        }
+    }
+</div>
+
+<script>
+
+    function AddQuantityMonHang(targetupdate) {
+        var value = $(targetupdate).val();
+        $(targetupdate).val(parseInt(value) + 1);
+    }
+
+    function MinusQuantityMonHang(targetupdate)
+    {
+        var value = $(targetupdate).val();
+        if (parseInt(value) > 1) $(targetupdate).val(parseInt(value) - 1);
+    }
+
+    function AddMonHang(keymonhang, KeyNote, targetupdate) {
+        $.post("/home/addmonhang", { tableid: "@KeyBanMam", keymonhang: keymonhang, KeyNote: KeyNote}, function (data, status) {
+            if (data.success)
+            {
+                $(targetupdate).text(data.quantity);
+            }
+        });
+    }
+
+    function MinusMonHang(keymonhang, KeyNote, targetupdate)
+    {
+        $.post("/home/minusmonhang", { tableid: "@KeyBanMam", keymonhang: keymonhang, KeyNote: KeyNote}, function (data, status) {
+            if (data.success)
+            {
+                $(targetupdate).text(data.quantity);
+            }
+        });
+    }
+
+    function OnSuccessaddbillmealitem(data)
+    {
+        if (data.success) $(".modal_addmon").modal("hide");
+        else alert("Đã có lỗi xảy ra khi thêm món. Vui lòng thử lại sau");
+    }
+
+    $('.modal_addmon').on('hidden.bs.modal', function () {
+        LoadItemInGroup($("#CurrentNhomSelected").val());
+        Loadlistmonhang_bookselected();
+    })
+
+    $('.modal_updatemon').on('hidden.bs.modal', function () {
+        Loadlistmonhang_bookselected();
+    })
+</script>

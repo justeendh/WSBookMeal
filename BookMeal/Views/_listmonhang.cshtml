@@ -1,0 +1,120 @@
+﻿@using BookMeal.Models;
+@using WiseOffice;
+@using System.Text.RegularExpressions;
+@model List<MON_HANG>
+@{ 
+    List<BILL_MEAL> lstMonSelected = ViewBag.MonSelected as List<BILL_MEAL>;
+    Guid KeyBanMam = (Guid)ViewBag.KeyBanMam;
+
+    Regex re = new Regex("[!#$%&'()*+,./:;<=>?@[\\]^`{|}~]");
+}
+@if (Model.Count == 0)
+{
+    <div class="data-empty text-center" style="border: 10px solid #fafafa;margin-left: -15px;margin-right: -15px;">
+        <h4>Không có món</h4>
+    </div>
+}
+<div class="row">
+    @foreach (var itemMonHang in Model)
+    {
+        <div class="meal-item col-xs-12 col-sm-12 col-md-12">
+            <div class="pull-right">
+                <div class="btn-group">  
+                    <div class="btn btn-lg btn-success" data-toggle="modal" data-target="#modal_addmon_@itemMonHang.KEY_MON_HANG">
+                        <i class="fa fa-plus"></i>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="margin-right: 50px;"><h3 style="margin: 0;"><strong>@itemMonHang.TEN_MON_HANG</strong></h3></div>
+                <div class="text-nowrap">@itemMonHang.DON_GIA_MUC1.Value.ToString("###,###,###,##0")/@itemMonHang.DON_VI_TINH</div>
+            </div>
+
+
+            <div id="modal_addmon_@itemMonHang.KEY_MON_HANG" class="modal modal_addmon" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+
+                        @using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "post", Url = "/home/addbillmealitem", OnSuccess = "OnSuccessaddbillmealitem" }))
+                        {
+                            <div class="modal-body">
+                                <h3 class="text-center" style="margin-bottom: 15px;"><strong>Thêm món @itemMonHang.TEN_MON_HANG.ToUpper()</strong></h3>
+                                <input type="hidden" name="KeyMonHang" value="@itemMonHang.KEY_MON_HANG" />
+                                <input type="hidden" name="KeyBanMam" value="@KeyBanMam" />
+                                <div class="form-group text-center">
+                                    <div class="input-group" >
+                                        <div class="input-group-btn">
+                                            <button  style="font-size: 37px; height: auto; font-weight: bold;" type="button" class="btn btn-lg btn-danger" onclick="MinusQuantityMonHang('#CurrentQuantityAdd_@itemMonHang.KEY_MON_HANG');">
+                                                &nbsp;&nbsp;<i class="fa fa-minus"></i>&nbsp;&nbsp;
+                                            </button>
+                                        </div>
+                                        <input  name="Quantity" style="font-size: 40px; height: auto; font-weight: bold;" type="number" id="CurrentQuantityAdd_@itemMonHang.KEY_MON_HANG" class="form-control text-center" value="1"/>
+                                        <div class="input-group-btn">
+                                            <button style="font-size: 37px; height: auto; font-weight: bold;" type="button" class="btn btn-lg btn-success" onclick="AddQuantityMonHang('#CurrentQuantityAdd_@itemMonHang.KEY_MON_HANG');">
+                                                &nbsp;&nbsp;<i class="fa fa-plus"></i>&nbsp;&nbsp;
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="2" name="NoteBillMeal" style="resize:vertical; font-size: 18px;" placeholder="Ghi chú (nhiều đường, ít đá, ..)"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-success btn-lg btn-block"><i class="fa fa-save"></i> Lưu thay đổi</button>
+                                <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal"><i class="fa fa-times"></i> Đóng</button>
+                            </div>
+                            
+                        }
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div>
+    }
+</div>
+
+<script>
+
+    function AddQuantityMonHang(targetupdate) {
+        var value = $(targetupdate).val();
+        $(targetupdate).val(parseInt(value) + 1);
+    }
+
+    function MinusQuantityMonHang(targetupdate)
+    {
+        var value = $(targetupdate).val();
+        if (parseInt(value) > 1) $(targetupdate).val(parseInt(value) - 1);
+    }
+
+    function AddMonHang(keymonhang, KeyNote, targetupdate) {
+        $.post("/home/addmonhang", { tableid: "@KeyBanMam", keymonhang: keymonhang, KeyNote: KeyNote}, function (data, status) {
+            if (data.success)
+            {
+                $(targetupdate).text(data.quantity);
+            }
+        });
+    }
+
+    function MinusMonHang(keymonhang, KeyNote, targetupdate)
+    {
+        $.post("/home/minusmonhang", { tableid: "@KeyBanMam", keymonhang: keymonhang, KeyNote: KeyNote}, function (data, status) {
+            if (data.success)
+            {
+                $(targetupdate).text(data.quantity);
+            }
+        });
+    }
+
+    function OnSuccessaddbillmealitem(data)
+    {
+        if (data.success) $(".modal_addmon").modal("hide");
+        else alert("Đã có lỗi xảy ra khi thêm món. Vui lòng thử lại sau");
+    }
+
+    $('.modal_addmon').on('hidden.bs.modal', function () {
+        LoadItemInGroup($("#CurrentNhomSelected").val());
+        Loadlistmonhang_bookselected();
+    })
+
+    $('.modal_updatemon').on('hidden.bs.modal', function () {
+        Loadlistmonhang_bookselected();
+    })
+</script>

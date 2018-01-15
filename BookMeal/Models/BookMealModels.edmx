@@ -1,0 +1,2838 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="wiseoffice.rbkModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BAN_MAM">
+          <Key>
+            <PropertyRef Name="KEY_BAN_MAM" />
+          </Key>
+          <Property Name="KEY_BAN_MAM" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MA_BAN_MAM" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_BAN_MAM" Type="nvarchar" MaxLength="255" />
+          <Property Name="MA_KHU_VUC" Type="nvarchar" MaxLength="31" />
+          <Property Name="DA_CO_KHACH" Type="bit" />
+          <Property Name="KEY_HOA_DON" Type="uniqueidentifier" />
+          <Property Name="GIU_BAN_MAM" Type="bit" />
+          <Property Name="GIO_BAN_MAM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BANG_VON">
+          <Key>
+            <PropertyRef Name="KEY_BANG_VON" />
+          </Key>
+          <Property Name="KEY_NHAP_XUAT" Type="uniqueidentifier" />
+          <Property Name="KEY_BANG_VON" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="KEY_KHACH_HANG" Type="uniqueidentifier" />
+          <Property Name="KEY_GIAO_DICH" Type="uniqueidentifier" />
+          <Property Name="KEY_THANH_TOAN" Type="uniqueidentifier" />
+          <Property Name="KEY_KHOAN_MUC" Type="uniqueidentifier" />
+          <Property Name="TIEN_VIET_NAM" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GHI_DIEN_GIAI" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="BILL_MEAL">
+          <Key>
+            <PropertyRef Name="KEY_BILL_MEAL" />
+          </Key>
+          <Property Name="INDEX_SAP_XEP" Type="smallint" />
+          <Property Name="KEY_HOA_DON" Type="uniqueidentifier" />
+          <Property Name="KEY_BILL_MEAL" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="KEY_MON_HANG" Type="uniqueidentifier" />
+          <Property Name="SO_LUONG_MON" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="DON_GIA_MON" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TIEN_VIET_MON" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TIEN_GIAM_GIA" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TIEN_PHAI_TRA" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="THEM_BO_SUNG" Type="bit" />
+          <Property Name="COOK_VA_MIXE" Type="bit" />
+          <Property Name="NOT_COOK_MIX" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="BILL_TACH">
+          <Key>
+            <PropertyRef Name="KEY_BILL_TACH" />
+          </Key>
+          <Property Name="KEY_HOA_DON" Type="uniqueidentifier" />
+          <Property Name="KEY_BILL_TACH" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="COD_BILL_TACH" Type="smallint" />
+          <Property Name="USE_BILL_TACH" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'wiseoffice.rbk.dbo.CAU_HINH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CAU_HINH">
+          <Key>
+            <PropertyRef Name="COD_CAU_HINH" />
+          </Key>
+          <Property Name="COD_CAU_HINH" Type="smallint" Nullable="false" />
+          <Property Name="TEN_TIEUDE_MOT" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEN_TIEUDE_HAI" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEN_TIEUDE_TAM" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEN_TIEUDE_BON" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEN_PATH_LOGOS" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEN_CHIEF_TOAN" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEN_CHIEF_TONG" Type="nvarchar" MaxLength="255" />
+          <Property Name="CODE_REG_USED" Type="nvarchar" MaxLength="31" />
+          <Property Name="VIEW_BAR_CODE" Type="bit" />
+          <Property Name="TYPE_BAR_CODE" Type="smallint" />
+          <Property Name="CODE_BAR_CODE" Type="nvarchar" MaxLength="255" />
+          <Property Name="KY_KE_TOAN" Type="smallint" />
+          <Property Name="NAM_KE_TOAN" Type="smallint" />
+          <Property Name="KY_HIEN_TAI" Type="smallint" />
+          <Property Name="NAM_HIEN_TAI" Type="smallint" />
+          <Property Name="KY_BAO_CAO" Type="smallint" />
+          <Property Name="DON_GIA_KHO" Type="smallint" />
+          <Property Name="LAN_SUA_BILL" Type="smallint" />
+          <Property Name="KEY_CHI_NHANH" Type="uniqueidentifier" />
+          <Property Name="PRINT_PHA_CHE" Type="nvarchar" MaxLength="255" />
+          <Property Name="PRINT_NHA_BEP" Type="nvarchar" MaxLength="255" />
+          <Property Name="PRINT_MAY_BIL" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIEM_QUI_UOC" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DIEM_QUI_DOI" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="CHI_NHANH">
+          <Key>
+            <PropertyRef Name="KEY_CHI_NHANH" />
+          </Key>
+          <Property Name="KEY_CHI_NHANH" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MA_CHI_NHANH" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_CHI_NHANH" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIA_CHI_NHANH" Type="nvarchar" MaxLength="255" />
+          <Property Name="SO_DIEN_THOAI" Type="nvarchar" MaxLength="255" />
+          <Property Name="BAO_CAO_TONG" Type="bit" />
+          <Property Name="CON_HOAT_DONG" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'wiseoffice.rbk.dbo.CHUC_NANG' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CHUC_NANG">
+          <Key>
+            <PropertyRef Name="COD_CHUC_NANG" />
+          </Key>
+          <Property Name="COD_CHUC_NANG" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TEN_CHUC_NANG" Type="nvarchar" MaxLength="255" />
+          <Property Name="CHA_CHUC_NANG" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="CHUNG_TU">
+          <Key>
+            <PropertyRef Name="KEY_CHUNG_TU" />
+          </Key>
+          <Property Name="IDX_CHUNG_TU" Type="smallint" />
+          <Property Name="MA_NGHIEP_VU" Type="nvarchar" MaxLength="31" />
+          <Property Name="KEY_CHUNG_TU" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MA_CHUNG_TU" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_CHUNG_TU" Type="nvarchar" MaxLength="255" />
+          <Property Name="NUM_CHUNG_TU" Type="smallint" />
+        </EntityType>
+        <EntityType Name="CLIENT_CARDS">
+          <Key>
+            <PropertyRef Name="KEY_CLIENT_CARDS" />
+          </Key>
+          <Property Name="KEY_LOAI_CARDS" Type="uniqueidentifier" />
+          <Property Name="KEY_CLIENT_CARDS" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="COD_CLIENT_CARDS" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_CLIENT_CARDS" Type="nvarchar" MaxLength="255" />
+          <Property Name="ADD_CLIENT_CARDS" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEL_CLIENT_CARDS" Type="nvarchar" MaxLength="255" />
+          <Property Name="TAX_CLIENT_CARDS" Type="nvarchar" MaxLength="31" />
+          <Property Name="MAR_CLIENT_CARDS" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="STA_CLIENT_CARDS" Type="bit" />
+        </EntityType>
+        <EntityType Name="COMB_MON">
+          <Key>
+            <PropertyRef Name="KEY_COMB_MON" />
+          </Key>
+          <Property Name="KEY_COMB_SET" Type="uniqueidentifier" />
+          <Property Name="KEY_COMB_MON" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="KEY_MON_HANG" Type="uniqueidentifier" />
+          <Property Name="SO_LUONG_MON" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="COMB_SET">
+          <Key>
+            <PropertyRef Name="KEY_COMB_SET" />
+          </Key>
+          <Property Name="KEY_COMB_SET" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TEN_COMB_SET" Type="nvarchar" MaxLength="255" />
+          <Property Name="GIA_COMB_SET" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TYP_COMB_SET" Type="smallint" />
+          <Property Name="ACT_COMB_SET" Type="bit" />
+        </EntityType>
+        <EntityType Name="DINH_MUC">
+          <Key>
+            <PropertyRef Name="KEY_DINH_MUC" />
+          </Key>
+          <Property Name="KEY_DINH_MUC" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="KEY_MON_HANG" Type="uniqueidentifier" />
+          <Property Name="KEY_MAT_HANG" Type="uniqueidentifier" />
+          <Property Name="SO_LUONG_MUC" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="GIAO_DICH">
+          <Key>
+            <PropertyRef Name="KEY_GIAO_DICH" />
+          </Key>
+          <Property Name="KEY_GIAO_DICH" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="COD_GIAO_DICH" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_GIAO_DICH" Type="nvarchar" MaxLength="255" />
+          <Property Name="COD_LOAI_DICH" Type="nvarchar" MaxLength="31" />
+          <Property Name="LOAI_CONG_NO" Type="nvarchar" MaxLength="31" />
+          <Property Name="DATE_DONG_BO" Type="datetime" />
+          <Property Name="VERS_DONG_BO" Type="smallint" />
+          <Property Name="FLAG_DONG_BO" Type="bit" />
+        </EntityType>
+        <EntityType Name="HOA_DON">
+          <Key>
+            <PropertyRef Name="KEY_HOA_DON" />
+          </Key>
+          <Property Name="KEY_BAN_MAM" Type="uniqueidentifier" />
+          <Property Name="KEY_NHAN_VIEN" Type="uniqueidentifier" />
+          <Property Name="KEY_NGUOI_BAN" Type="uniqueidentifier" />
+          <Property Name="KEY_USER_LOGIN" Type="uniqueidentifier" />
+          <Property Name="KEY_CLIENT_CARDS" Type="uniqueidentifier" />
+          <Property Name="HSO_CLIENT_CARDS" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="KEY_LOAI_COUPON" Type="uniqueidentifier" />
+          <Property Name="VAL_LOAI_COUPON" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="KEY_HOA_DON" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MA_HOA_DON" Type="nvarchar" MaxLength="31" />
+          <Property Name="NGAY_HOA_DON" Type="datetime" />
+          <Property Name="NGAY_GIO_BAN" Type="datetime" />
+          <Property Name="TIEN_THU_VAO" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TIEN_THOI_LAI" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TONG_KHUYEN_MAI" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TONG_PHAI_TRA" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GHI_GHI_CHU" Type="nvarchar" MaxLength="255" />
+          <Property Name="DA_THU_TIEN" Type="bit" />
+          <Property Name="DA_CHE_BIEN" Type="bit" />
+          <Property Name="LAN_IN_PHIEU" Type="int" />
+          <Property Name="NGAY_GIO_VAO" Type="datetime" />
+          <Property Name="NGAY_GIO_OUT" Type="datetime" />
+          <Property Name="TONG_GIO_USE" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TONG_TIEN_BO" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="KEY_COMB_SET" Type="uniqueidentifier" />
+          <Property Name="GIA_COMB_SET" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="KEY_THEM_TIEN" Type="uniqueidentifier" />
+          <Property Name="TONG_TANG_GIA" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="DIEM_QUI_UOC" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DIEM_QUI_DOI" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TIEN_TRU_DIEM" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TIEN_TICH_LUY" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="KHACH_HANG">
+          <Key>
+            <PropertyRef Name="KEY_KHACH_HANG" />
+          </Key>
+          <Property Name="KEY_KHACH_HANG" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MA_KHACH_HANG" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_KHACH_HANG" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIA_CHI_KHACH" Type="nvarchar" MaxLength="255" />
+          <Property Name="SO_DIEN_THOAI" Type="nvarchar" MaxLength="255" />
+          <Property Name="MA_SO_THUE" Type="nvarchar" MaxLength="31" />
+          <Property Name="HAN_MUC_NO" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="CO_GIAO_DICH" Type="bit" />
+        </EntityType>
+        <EntityType Name="KHO_HANG">
+          <Key>
+            <PropertyRef Name="KEY_KHO_HANG" />
+          </Key>
+          <Property Name="KEY_KHO_HANG" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MA_KHO_HANG" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_KHO_HANG" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIA_CHI_KHO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SUC_CHUA_KHO" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_THU_KHO" Type="nvarchar" MaxLength="255" />
+          <Property Name="MA_LOAI_KHO" Type="nvarchar" MaxLength="31" />
+        </EntityType>
+        <EntityType Name="KHOAN_MUC">
+          <Key>
+            <PropertyRef Name="KEY_KHOAN_MUC" />
+          </Key>
+          <Property Name="KEY_KHOAN_MUC" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="COD_KHOAN_MUC" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_KHOAN_MUC" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="KHU_VUC">
+          <Key>
+            <PropertyRef Name="MA_KHU_VUC" />
+          </Key>
+          <Property Name="MA_KHU_VUC" Type="nvarchar" MaxLength="31" Nullable="false" />
+          <Property Name="MA_LOAI_GIA" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_KHU_VUC" Type="nvarchar" MaxLength="255" />
+          <Property Name="TT_HIEN_THI" Type="int" />
+        </EntityType>
+        <EntityType Name="LAM_LENH">
+          <Key>
+            <PropertyRef Name="KEY_LAM_LENH" />
+          </Key>
+          <Property Name="KEY_CHI_NHANH" Type="uniqueidentifier" />
+          <Property Name="KEY_LAM_LENH" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NGAY_LAM_LENH" Type="datetime" />
+          <Property Name="COD_LAM_LENH" Type="nvarchar" MaxLength="31" />
+          <Property Name="XAC_NHAN_OUT" Type="bit" />
+          <Property Name="KEY_BILL_NHAP" Type="uniqueidentifier" />
+          <Property Name="KEY_BILL_XUAT" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="LOAI_CARDS">
+          <Key>
+            <PropertyRef Name="KEY_LOAI_CARDS" />
+          </Key>
+          <Property Name="KEY_LOAI_CARDS" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TEN_LOAI_CARDS" Type="nvarchar" MaxLength="255" />
+          <Property Name="HSO_LOAI_CARDS" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="MAR_LOAI_CARDS" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="LOAI_COUPON">
+          <Key>
+            <PropertyRef Name="KEY_LOAI_COUPON" />
+          </Key>
+          <Property Name="KEY_LOAI_COUPON" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="COD_LOAI_COUPON" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_LOAI_COUPON" Type="nvarchar" MaxLength="255" />
+          <Property Name="BEG_LOAI_COUPON" Type="datetime" />
+          <Property Name="END_LOAI_COUPON" Type="datetime" />
+          <Property Name="KIN_LOAI_COUPON" Type="int" />
+          <Property Name="VAL_LOAI_COUPON" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="QTY_LOAI_COUPON" Type="int" />
+          <Property Name="USE_LOAI_COUPON" Type="int" />
+          <Property Name="REM_LOAI_COUPON" Type="int" />
+        </EntityType>
+        <EntityType Name="LOAI_DICH">
+          <Key>
+            <PropertyRef Name="COD_LOAI_DICH" />
+          </Key>
+          <Property Name="COD_LOAI_DICH" Type="nvarchar" MaxLength="31" Nullable="false" />
+          <Property Name="TEN_LOAI_DICH" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="LOAI_KHO">
+          <Key>
+            <PropertyRef Name="MA_LOAI_KHO" />
+          </Key>
+          <Property Name="MA_LOAI_KHO" Type="nvarchar" MaxLength="31" Nullable="false" />
+          <Property Name="TEN_LOAI_KHO" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="LOAI_MON">
+          <Key>
+            <PropertyRef Name="KEY_LOAI_MON" />
+          </Key>
+          <Property Name="KEY_LOAI_MON" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MA_LOAI_MON" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_LOAI_MON" Type="nvarchar" MaxLength="255" />
+          <Property Name="NGAY_DONG_BO" Type="datetime" />
+          <Property Name="IS_NEW" Type="bit" />
+        </EntityType>
+        <EntityType Name="MON_HANG">
+          <Key>
+            <PropertyRef Name="KEY_MON_HANG" />
+          </Key>
+          <Property Name="KEY_NHOM_MON" Type="uniqueidentifier" />
+          <Property Name="KEY_MON_HANG" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MA_MON_HANG" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_MON_HANG" Type="nvarchar" MaxLength="255" />
+          <Property Name="DON_VI_TINH" Type="nvarchar" MaxLength="31" />
+          <Property Name="LOAI_PHA_NAU" Type="smallint" />
+          <Property Name="DON_GIA_MUC1" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="DON_GIA_MUC2" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="DON_GIA_MUC3" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="MUC_GIAM_KHAU" Type="smallint" />
+          <Property Name="MON_MAC_DINH" Type="bit" />
+          <Property Name="DON_GIA_NHAP" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TYP_MON_HANG" Type="smallint" />
+          <Property Name="CO_SU_DUNG" Type="bit" />
+          <Property Name="KEY_KHO_HANG" Type="uniqueidentifier" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'wiseoffice.rbk.dbo.NGHIEP_VU' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="NGHIEP_VU">
+          <Key>
+            <PropertyRef Name="MA_NGHIEP_VU" />
+          </Key>
+          <Property Name="IDX_NGHIEP_VU" Type="smallint" />
+          <Property Name="MA_NGHIEP_VU" Type="nvarchar" MaxLength="31" Nullable="false" />
+          <Property Name="TEN_NGHIEP_VU" Type="nvarchar" MaxLength="255" />
+          <Property Name="MA_LOAI_VIEW" Type="nvarchar" MaxLength="31" />
+          <Property Name="MA_LOAI_XULY" Type="nvarchar" MaxLength="31" />
+          <Property Name="MA_LOAI_SORT" Type="smallint" />
+        </EntityType>
+        <EntityType Name="NGUOI_BAN">
+          <Key>
+            <PropertyRef Name="KEY_NGUOI_BAN" />
+          </Key>
+          <Property Name="KEY_NHOM_GIOI" Type="uniqueidentifier" />
+          <Property Name="KEY_NGUOI_BAN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MA_NGUOI_BAN" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_NGUOI_BAN" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="NHAN_VIEN">
+          <Key>
+            <PropertyRef Name="KEY_NHAN_VIEN" />
+          </Key>
+          <Property Name="KEY_PHONG_BAN" Type="uniqueidentifier" />
+          <Property Name="KEY_NHAN_VIEN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MA_NHAN_VIEN" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_NHAN_VIEN" Type="nvarchar" MaxLength="255" />
+          <Property Name="GIU_CHUC_VU" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="NHAP_XUAT">
+          <Key>
+            <PropertyRef Name="KEY_NHAP_XUAT" />
+          </Key>
+          <Property Name="KEY_CHI_NHANH" Type="uniqueidentifier" />
+          <Property Name="KEY_CHUNG_TU" Type="uniqueidentifier" />
+          <Property Name="KEY_NGUOI_DUNG" Type="uniqueidentifier" />
+          <Property Name="KEY_KHACH_HANG" Type="uniqueidentifier" />
+          <Property Name="KEY_NHAP_XUAT" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="KY_HIEU_PHIEU" Type="nvarchar" MaxLength="31" />
+          <Property Name="SO_NHAP_XUAT" Type="nvarchar" MaxLength="31" />
+          <Property Name="SO_HOA_DON" Type="nvarchar" MaxLength="31" />
+          <Property Name="HIEU_HOA_DON" Type="nvarchar" MaxLength="31" />
+          <Property Name="NGAY_NHAP_XUAT" Type="datetime" />
+          <Property Name="TEN_KHACH_HANG" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIA_CHI_KHACH" Type="nvarchar" MaxLength="255" />
+          <Property Name="SO_TEL_KHACH" Type="nvarchar" MaxLength="255" />
+          <Property Name="LYDO_NHAP_XUAT" Type="nvarchar" MaxLength="255" />
+          <Property Name="KHAI_THUE_VAT" Type="bit" />
+          <Property Name="HOA_DON_KYGUI" Type="bit" />
+          <Property Name="COD_TRANG_THAI" Type="smallint" />
+          <Property Name="GHI_NHAP_XUAT" Type="nvarchar" MaxLength="1023" />
+        </EntityType>
+        <EntityType Name="NHOM_GIOI">
+          <Key>
+            <PropertyRef Name="KEY_NHOM_GIOI" />
+          </Key>
+          <Property Name="KEY_NHOM_GIOI" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MA_NHOM_GIOI" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_NHOM_GIOI" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="NHOM_MON">
+          <Key>
+            <PropertyRef Name="KEY_NHOM_MON" />
+          </Key>
+          <Property Name="KEY_LOAI_MON" Type="uniqueidentifier" />
+          <Property Name="KEY_NHOM_MON" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MA_NHOM_MON" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_NHOM_MON" Type="nvarchar" MaxLength="255" />
+          <Property Name="BAN_NHOM_MON" Type="bit" />
+        </EntityType>
+        <EntityType Name="PHA_NAU">
+          <Key>
+            <PropertyRef Name="LOAI_PHA_NAU" />
+          </Key>
+          <Property Name="LOAI_PHA_NAU" Type="smallint" Nullable="false" />
+          <Property Name="TEN_PHA_NAU" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'wiseoffice.rbk.dbo.PHAN_NHIEM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PHAN_NHIEM">
+          <Key>
+            <PropertyRef Name="KEY_PHAN_NHIEM" />
+          </Key>
+          <Property Name="KEY_PHAN_NHIEM" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="COD_PHAN_NHIEM" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_PHAN_NHIEM" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PHONG_BAN">
+          <Key>
+            <PropertyRef Name="KEY_PHONG_BAN" />
+          </Key>
+          <Property Name="KEY_PHONG_BAN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MA_PHONG_BAN" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_PHONG_BAN" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PUTIN_OUT">
+          <Key>
+            <PropertyRef Name="KEY_PUTIN_OUT" />
+          </Key>
+          <Property Name="KEY_NHAP_XUAT" Type="uniqueidentifier" />
+          <Property Name="KEY_KHO_HANG" Type="uniqueidentifier" />
+          <Property Name="KEY_KHO_MOVE" Type="uniqueidentifier" />
+          <Property Name="KEY_MAT_HANG" Type="uniqueidentifier" />
+          <Property Name="KEY_PUTIN_OUT" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="COD_ROW_XLIN" Type="smallint" />
+          <Property Name="KEY_CHI_MUC" Type="uniqueidentifier" />
+          <Property Name="KEY_HANG_FIFO" Type="uniqueidentifier" />
+          <Property Name="SOLO_SAN_XUAT" Type="nvarchar" MaxLength="31" />
+          <Property Name="THOI_HAN_DUNG" Type="nvarchar" MaxLength="31" />
+          <Property Name="NGAY_DEN_HAN" Type="datetime" />
+          <Property Name="SO_LUONG_HANG" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="DON_GIA_HANG" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TIEN_VIET_HANG" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="SO_CHIET_KHAU" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TIEN_CHIET_KHAU" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TIEN_SAU_KHAU" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="HE_SO_THUE" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GIA_SAU_THUE" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TIEN_VIET_THUE" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TIEN_VIET_NAM" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="GHI_DIEN_GIAI" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="SODU_HANG">
+          <Key>
+            <PropertyRef Name="KEY_SODU_HANG" />
+          </Key>
+          <Property Name="KEY_SODU_HANG" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="KEY_KHO_HANG" Type="uniqueidentifier" />
+          <Property Name="KEY_MAT_HANG" Type="uniqueidentifier" />
+          <Property Name="KY_KE_TOAN" Type="smallint" />
+          <Property Name="NAM_KE_TOAN" Type="smallint" />
+          <Property Name="DON_GIA_HANG" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="SO_LUONG_HANG" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TIEN_VIET_NAM" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="SODU_KHACH">
+          <Key>
+            <PropertyRef Name="KEY_SODU_KHACH" />
+          </Key>
+          <Property Name="KEY_SODU_KHACH" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="KEY_KHACH_HANG" Type="uniqueidentifier" />
+          <Property Name="KEY_GIAO_DICH" Type="uniqueidentifier" />
+          <Property Name="KY_KE_TOAN" Type="smallint" />
+          <Property Name="NAM_KE_TOAN" Type="smallint" />
+          <Property Name="TIEN_MUA_BAN" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TIEN_NODA_TRA" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="THEM_TIEN">
+          <Key>
+            <PropertyRef Name="KEY_THEM_TIEN" />
+          </Key>
+          <Property Name="KEY_THEM_TIEN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="COD_THEM_TIEN" Type="nvarchar" MaxLength="31" />
+          <Property Name="TEN_THEM_TIEN" Type="nvarchar" MaxLength="255" />
+          <Property Name="HSO_THEM_TIEN" Type="smallint" />
+        </EntityType>
+        <EntityType Name="TRANG_THAI">
+          <Key>
+            <PropertyRef Name="COD_TRANG_THAI" />
+          </Key>
+          <Property Name="COD_TRANG_THAI" Type="smallint" Nullable="false" />
+          <Property Name="TEN_TRANG_THAI" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="USER_LOGIN">
+          <Key>
+            <PropertyRef Name="KEY_USER_LOGIN" />
+          </Key>
+          <Property Name="KEY_USER_LOGIN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="COD_USER_LOGIN" Type="nvarchar" MaxLength="255" />
+          <Property Name="TEN_USER_LOGIN" Type="nvarchar" MaxLength="255" />
+          <Property Name="PAS_USER_LOGIN" Type="nvarchar" MaxLength="255" />
+          <Property Name="POS_USER_LOGIN" Type="nvarchar" MaxLength="255" />
+          <Property Name="ACT_USER_LOGIN" Type="bit" />
+        </EntityType>
+        <EntityType Name="USER_ZONES">
+          <Key>
+            <PropertyRef Name="KEY_USER_LOGIN" />
+            <PropertyRef Name="MA_KHU_VUC" />
+          </Key>
+          <Property Name="KEY_USER_LOGIN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MA_KHU_VUC" Type="nvarchar" MaxLength="31" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BAN_MAM_KHU_VUC">
+          <End Role="KHU_VUC" Type="Self.KHU_VUC" Multiplicity="0..1" />
+          <End Role="BAN_MAM" Type="Self.BAN_MAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHU_VUC">
+              <PropertyRef Name="MA_KHU_VUC" />
+            </Principal>
+            <Dependent Role="BAN_MAM">
+              <PropertyRef Name="MA_KHU_VUC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BANG_VON_GIAO_DICH">
+          <End Role="GIAO_DICH" Type="Self.GIAO_DICH" Multiplicity="0..1" />
+          <End Role="BANG_VON" Type="Self.BANG_VON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIAO_DICH">
+              <PropertyRef Name="KEY_GIAO_DICH" />
+            </Principal>
+            <Dependent Role="BANG_VON">
+              <PropertyRef Name="KEY_GIAO_DICH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BANG_VON_GIAO_DICH1">
+          <End Role="GIAO_DICH" Type="Self.GIAO_DICH" Multiplicity="0..1" />
+          <End Role="BANG_VON" Type="Self.BANG_VON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIAO_DICH">
+              <PropertyRef Name="KEY_GIAO_DICH" />
+            </Principal>
+            <Dependent Role="BANG_VON">
+              <PropertyRef Name="KEY_THANH_TOAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BANG_VON_KHOAN_MUC">
+          <End Role="KHOAN_MUC" Type="Self.KHOAN_MUC" Multiplicity="0..1" />
+          <End Role="BANG_VON" Type="Self.BANG_VON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHOAN_MUC">
+              <PropertyRef Name="KEY_KHOAN_MUC" />
+            </Principal>
+            <Dependent Role="BANG_VON">
+              <PropertyRef Name="KEY_KHOAN_MUC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BANG_VON_NHAP_XUAT">
+          <End Role="NHAP_XUAT" Type="Self.NHAP_XUAT" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BANG_VON" Type="Self.BANG_VON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHAP_XUAT">
+              <PropertyRef Name="KEY_NHAP_XUAT" />
+            </Principal>
+            <Dependent Role="BANG_VON">
+              <PropertyRef Name="KEY_NHAP_XUAT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BILL_TACH_HOA_DON">
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BILL_TACH" Type="Self.BILL_TACH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOA_DON">
+              <PropertyRef Name="KEY_HOA_DON" />
+            </Principal>
+            <Dependent Role="BILL_TACH">
+              <PropertyRef Name="KEY_HOA_DON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GIAO_DICH_LOAI_DICH">
+          <End Role="LOAI_DICH" Type="Self.LOAI_DICH" Multiplicity="0..1" />
+          <End Role="GIAO_DICH" Type="Self.GIAO_DICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAI_DICH">
+              <PropertyRef Name="COD_LOAI_DICH" />
+            </Principal>
+            <Dependent Role="GIAO_DICH">
+              <PropertyRef Name="COD_LOAI_DICH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDCHI_TIET_HOA_DON">
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BILL_MEAL" Type="Self.BILL_MEAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOA_DON">
+              <PropertyRef Name="KEY_HOA_DON" />
+            </Principal>
+            <Dependent Role="BILL_MEAL">
+              <PropertyRef Name="KEY_HOA_DON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDCHI_TIET_MON_HANG">
+          <End Role="MON_HANG" Type="Self.MON_HANG" Multiplicity="0..1" />
+          <End Role="BILL_MEAL" Type="Self.BILL_MEAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MON_HANG">
+              <PropertyRef Name="KEY_MON_HANG" />
+            </Principal>
+            <Dependent Role="BILL_MEAL">
+              <PropertyRef Name="KEY_MON_HANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_BAN_MAM">
+          <End Role="BAN_MAM" Type="Self.BAN_MAM" Multiplicity="0..1" />
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BAN_MAM">
+              <PropertyRef Name="KEY_BAN_MAM" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="KEY_BAN_MAM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_CLIENT_CARDS">
+          <End Role="CLIENT_CARDS" Type="Self.CLIENT_CARDS" Multiplicity="0..1" />
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT_CARDS">
+              <PropertyRef Name="KEY_CLIENT_CARDS" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="KEY_CLIENT_CARDS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_COMB_SET">
+          <End Role="COMB_SET" Type="Self.COMB_SET" Multiplicity="0..1" />
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMB_SET">
+              <PropertyRef Name="KEY_COMB_SET" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="KEY_COMB_SET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_NGUOI_BAN">
+          <End Role="NGUOI_BAN" Type="Self.NGUOI_BAN" Multiplicity="0..1" />
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGUOI_BAN">
+              <PropertyRef Name="KEY_NGUOI_BAN" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="KEY_NGUOI_BAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_NHAN_VIEN">
+          <End Role="NHAN_VIEN" Type="Self.NHAN_VIEN" Multiplicity="0..1" />
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHAN_VIEN">
+              <PropertyRef Name="KEY_NHAN_VIEN" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="KEY_NHAN_VIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_USER_LOGIN">
+          <End Role="USER_LOGIN" Type="Self.USER_LOGIN" Multiplicity="0..1" />
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_LOGIN">
+              <PropertyRef Name="KEY_USER_LOGIN" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="KEY_USER_LOGIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KHO_HANG_LOAI_KHO">
+          <End Role="LOAI_KHO" Type="Self.LOAI_KHO" Multiplicity="0..1" />
+          <End Role="KHO_HANG" Type="Self.KHO_HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAI_KHO">
+              <PropertyRef Name="MA_LOAI_KHO" />
+            </Principal>
+            <Dependent Role="KHO_HANG">
+              <PropertyRef Name="MA_LOAI_KHO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MON_COMBO_COMBO_SET">
+          <End Role="COMB_SET" Type="Self.COMB_SET" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="COMB_MON" Type="Self.COMB_MON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMB_SET">
+              <PropertyRef Name="KEY_COMB_SET" />
+            </Principal>
+            <Dependent Role="COMB_MON">
+              <PropertyRef Name="KEY_COMB_SET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MON_HANG_NHOM_MON">
+          <End Role="NHOM_MON" Type="Self.NHOM_MON" Multiplicity="0..1" />
+          <End Role="MON_HANG" Type="Self.MON_HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHOM_MON">
+              <PropertyRef Name="KEY_NHOM_MON" />
+            </Principal>
+            <Dependent Role="MON_HANG">
+              <PropertyRef Name="KEY_NHOM_MON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NGUOI_BAN_NHOM_GIOI">
+          <End Role="NHOM_GIOI" Type="Self.NHOM_GIOI" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NGUOI_BAN" Type="Self.NGUOI_BAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHOM_GIOI">
+              <PropertyRef Name="KEY_NHOM_GIOI" />
+            </Principal>
+            <Dependent Role="NGUOI_BAN">
+              <PropertyRef Name="KEY_NHOM_GIOI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHAN_VIEN_PHONG_BAN">
+          <End Role="PHONG_BAN" Type="Self.PHONG_BAN" Multiplicity="0..1" />
+          <End Role="NHAN_VIEN" Type="Self.NHAN_VIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG_BAN">
+              <PropertyRef Name="KEY_PHONG_BAN" />
+            </Principal>
+            <Dependent Role="NHAN_VIEN">
+              <PropertyRef Name="KEY_PHONG_BAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHAP_XUAT_CHI_NHANH">
+          <End Role="CHI_NHANH" Type="Self.CHI_NHANH" Multiplicity="0..1" />
+          <End Role="NHAP_XUAT" Type="Self.NHAP_XUAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHI_NHANH">
+              <PropertyRef Name="KEY_CHI_NHANH" />
+            </Principal>
+            <Dependent Role="NHAP_XUAT">
+              <PropertyRef Name="KEY_CHI_NHANH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHAP_XUAT_CHUNG_TU">
+          <End Role="CHUNG_TU" Type="Self.CHUNG_TU" Multiplicity="0..1" />
+          <End Role="NHAP_XUAT" Type="Self.NHAP_XUAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUNG_TU">
+              <PropertyRef Name="KEY_CHUNG_TU" />
+            </Principal>
+            <Dependent Role="NHAP_XUAT">
+              <PropertyRef Name="KEY_CHUNG_TU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHAP_XUAT_KHACH_HANG">
+          <End Role="KHACH_HANG" Type="Self.KHACH_HANG" Multiplicity="0..1" />
+          <End Role="NHAP_XUAT" Type="Self.NHAP_XUAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACH_HANG">
+              <PropertyRef Name="KEY_KHACH_HANG" />
+            </Principal>
+            <Dependent Role="NHAP_XUAT">
+              <PropertyRef Name="KEY_KHACH_HANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHAP_XUAT_NGUOI_DUNG">
+          <End Role="USER_LOGIN" Type="Self.USER_LOGIN" Multiplicity="0..1" />
+          <End Role="NHAP_XUAT" Type="Self.NHAP_XUAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_LOGIN">
+              <PropertyRef Name="KEY_USER_LOGIN" />
+            </Principal>
+            <Dependent Role="NHAP_XUAT">
+              <PropertyRef Name="KEY_NGUOI_DUNG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHOM_MON_LOAI_MON">
+          <End Role="LOAI_MON" Type="Self.LOAI_MON" Multiplicity="0..1" />
+          <End Role="NHOM_MON" Type="Self.NHOM_MON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAI_MON">
+              <PropertyRef Name="KEY_LOAI_MON" />
+            </Principal>
+            <Dependent Role="NHOM_MON">
+              <PropertyRef Name="KEY_LOAI_MON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PUTIN_OUT_KHO_HANG">
+          <End Role="KHO_HANG" Type="Self.KHO_HANG" Multiplicity="0..1" />
+          <End Role="PUTIN_OUT" Type="Self.PUTIN_OUT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHO_HANG">
+              <PropertyRef Name="KEY_KHO_HANG" />
+            </Principal>
+            <Dependent Role="PUTIN_OUT">
+              <PropertyRef Name="KEY_KHO_HANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PUTIN_OUT_MAT_HANG">
+          <End Role="MON_HANG" Type="Self.MON_HANG" Multiplicity="0..1" />
+          <End Role="PUTIN_OUT" Type="Self.PUTIN_OUT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MON_HANG">
+              <PropertyRef Name="KEY_MON_HANG" />
+            </Principal>
+            <Dependent Role="PUTIN_OUT">
+              <PropertyRef Name="KEY_MAT_HANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PUTIN_OUT_NHAP_XUAT">
+          <End Role="NHAP_XUAT" Type="Self.NHAP_XUAT" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PUTIN_OUT" Type="Self.PUTIN_OUT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHAP_XUAT">
+              <PropertyRef Name="KEY_NHAP_XUAT" />
+            </Principal>
+            <Dependent Role="PUTIN_OUT">
+              <PropertyRef Name="KEY_NHAP_XUAT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SODU_HANG_KHO_HANG">
+          <End Role="KHO_HANG" Type="Self.KHO_HANG" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SODU_HANG" Type="Self.SODU_HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHO_HANG">
+              <PropertyRef Name="KEY_KHO_HANG" />
+            </Principal>
+            <Dependent Role="SODU_HANG">
+              <PropertyRef Name="KEY_KHO_HANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SODU_KHACH_GIAO_DICH">
+          <End Role="GIAO_DICH" Type="Self.GIAO_DICH" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SODU_KHACH" Type="Self.SODU_KHACH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIAO_DICH">
+              <PropertyRef Name="KEY_GIAO_DICH" />
+            </Principal>
+            <Dependent Role="SODU_KHACH">
+              <PropertyRef Name="KEY_GIAO_DICH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SODU_KHACH_KHACH_HANG">
+          <End Role="KHACH_HANG" Type="Self.KHACH_HANG" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SODU_KHACH" Type="Self.SODU_KHACH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACH_HANG">
+              <PropertyRef Name="KEY_KHACH_HANG" />
+            </Principal>
+            <Dependent Role="SODU_KHACH">
+              <PropertyRef Name="KEY_KHACH_HANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="wiseofficerbkModelStoreContainer">
+          <EntitySet Name="BAN_MAM" EntityType="Self.BAN_MAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BANG_VON" EntityType="Self.BANG_VON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BILL_MEAL" EntityType="Self.BILL_MEAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BILL_TACH" EntityType="Self.BILL_TACH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHI_NHANH" EntityType="Self.CHI_NHANH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHUNG_TU" EntityType="Self.CHUNG_TU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENT_CARDS" EntityType="Self.CLIENT_CARDS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMB_MON" EntityType="Self.COMB_MON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMB_SET" EntityType="Self.COMB_SET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DINH_MUC" EntityType="Self.DINH_MUC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GIAO_DICH" EntityType="Self.GIAO_DICH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOA_DON" EntityType="Self.HOA_DON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHACH_HANG" EntityType="Self.KHACH_HANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHO_HANG" EntityType="Self.KHO_HANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHOAN_MUC" EntityType="Self.KHOAN_MUC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHU_VUC" EntityType="Self.KHU_VUC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LAM_LENH" EntityType="Self.LAM_LENH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAI_CARDS" EntityType="Self.LOAI_CARDS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAI_COUPON" EntityType="Self.LOAI_COUPON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAI_DICH" EntityType="Self.LOAI_DICH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAI_KHO" EntityType="Self.LOAI_KHO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAI_MON" EntityType="Self.LOAI_MON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MON_HANG" EntityType="Self.MON_HANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NGUOI_BAN" EntityType="Self.NGUOI_BAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHAN_VIEN" EntityType="Self.NHAN_VIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHAP_XUAT" EntityType="Self.NHAP_XUAT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHOM_GIOI" EntityType="Self.NHOM_GIOI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHOM_MON" EntityType="Self.NHOM_MON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHA_NAU" EntityType="Self.PHA_NAU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHONG_BAN" EntityType="Self.PHONG_BAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PUTIN_OUT" EntityType="Self.PUTIN_OUT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SODU_HANG" EntityType="Self.SODU_HANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SODU_KHACH" EntityType="Self.SODU_KHACH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THEM_TIEN" EntityType="Self.THEM_TIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRANG_THAI" EntityType="Self.TRANG_THAI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_LOGIN" EntityType="Self.USER_LOGIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_ZONES" EntityType="Self.USER_ZONES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAU_HINH" EntityType="Self.CAU_HINH" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CAU_HINH].[COD_CAU_HINH] AS [COD_CAU_HINH], 
+    [CAU_HINH].[TEN_TIEUDE_MOT] AS [TEN_TIEUDE_MOT], 
+    [CAU_HINH].[TEN_TIEUDE_HAI] AS [TEN_TIEUDE_HAI], 
+    [CAU_HINH].[TEN_TIEUDE_TAM] AS [TEN_TIEUDE_TAM], 
+    [CAU_HINH].[TEN_TIEUDE_BON] AS [TEN_TIEUDE_BON], 
+    [CAU_HINH].[TEN_PATH_LOGOS] AS [TEN_PATH_LOGOS], 
+    [CAU_HINH].[TEN_CHIEF_TOAN] AS [TEN_CHIEF_TOAN], 
+    [CAU_HINH].[TEN_CHIEF_TONG] AS [TEN_CHIEF_TONG], 
+    [CAU_HINH].[CODE_REG_USED] AS [CODE_REG_USED], 
+    [CAU_HINH].[VIEW_BAR_CODE] AS [VIEW_BAR_CODE], 
+    [CAU_HINH].[TYPE_BAR_CODE] AS [TYPE_BAR_CODE], 
+    [CAU_HINH].[CODE_BAR_CODE] AS [CODE_BAR_CODE], 
+    [CAU_HINH].[KY_KE_TOAN] AS [KY_KE_TOAN], 
+    [CAU_HINH].[NAM_KE_TOAN] AS [NAM_KE_TOAN], 
+    [CAU_HINH].[KY_HIEN_TAI] AS [KY_HIEN_TAI], 
+    [CAU_HINH].[NAM_HIEN_TAI] AS [NAM_HIEN_TAI], 
+    [CAU_HINH].[KY_BAO_CAO] AS [KY_BAO_CAO], 
+    [CAU_HINH].[DON_GIA_KHO] AS [DON_GIA_KHO], 
+    [CAU_HINH].[LAN_SUA_BILL] AS [LAN_SUA_BILL], 
+    [CAU_HINH].[KEY_CHI_NHANH] AS [KEY_CHI_NHANH], 
+    [CAU_HINH].[PRINT_PHA_CHE] AS [PRINT_PHA_CHE], 
+    [CAU_HINH].[PRINT_NHA_BEP] AS [PRINT_NHA_BEP], 
+    [CAU_HINH].[PRINT_MAY_BIL] AS [PRINT_MAY_BIL], 
+    [CAU_HINH].[DIEM_QUI_UOC] AS [DIEM_QUI_UOC], 
+    [CAU_HINH].[DIEM_QUI_DOI] AS [DIEM_QUI_DOI]
+    FROM [dbo].[CAU_HINH] AS [CAU_HINH]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CHUC_NANG" EntityType="Self.CHUC_NANG" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CHUC_NANG].[COD_CHUC_NANG] AS [COD_CHUC_NANG], 
+    [CHUC_NANG].[TEN_CHUC_NANG] AS [TEN_CHUC_NANG], 
+    [CHUC_NANG].[CHA_CHUC_NANG] AS [CHA_CHUC_NANG]
+    FROM [dbo].[CHUC_NANG] AS [CHUC_NANG]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="NGHIEP_VU" EntityType="Self.NGHIEP_VU" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [NGHIEP_VU].[IDX_NGHIEP_VU] AS [IDX_NGHIEP_VU], 
+    [NGHIEP_VU].[MA_NGHIEP_VU] AS [MA_NGHIEP_VU], 
+    [NGHIEP_VU].[TEN_NGHIEP_VU] AS [TEN_NGHIEP_VU], 
+    [NGHIEP_VU].[MA_LOAI_VIEW] AS [MA_LOAI_VIEW], 
+    [NGHIEP_VU].[MA_LOAI_XULY] AS [MA_LOAI_XULY], 
+    [NGHIEP_VU].[MA_LOAI_SORT] AS [MA_LOAI_SORT]
+    FROM [dbo].[NGHIEP_VU] AS [NGHIEP_VU]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PHAN_NHIEM" EntityType="Self.PHAN_NHIEM" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PHAN_NHIEM].[KEY_PHAN_NHIEM] AS [KEY_PHAN_NHIEM], 
+    [PHAN_NHIEM].[COD_PHAN_NHIEM] AS [COD_PHAN_NHIEM], 
+    [PHAN_NHIEM].[TEN_PHAN_NHIEM] AS [TEN_PHAN_NHIEM]
+    FROM [dbo].[PHAN_NHIEM] AS [PHAN_NHIEM]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_BAN_MAM_KHU_VUC" Association="Self.FK_BAN_MAM_KHU_VUC">
+            <End Role="KHU_VUC" EntitySet="KHU_VUC" />
+            <End Role="BAN_MAM" EntitySet="BAN_MAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BANG_VON_GIAO_DICH" Association="Self.FK_BANG_VON_GIAO_DICH">
+            <End Role="GIAO_DICH" EntitySet="GIAO_DICH" />
+            <End Role="BANG_VON" EntitySet="BANG_VON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BANG_VON_GIAO_DICH1" Association="Self.FK_BANG_VON_GIAO_DICH1">
+            <End Role="GIAO_DICH" EntitySet="GIAO_DICH" />
+            <End Role="BANG_VON" EntitySet="BANG_VON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BANG_VON_KHOAN_MUC" Association="Self.FK_BANG_VON_KHOAN_MUC">
+            <End Role="KHOAN_MUC" EntitySet="KHOAN_MUC" />
+            <End Role="BANG_VON" EntitySet="BANG_VON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BANG_VON_NHAP_XUAT" Association="Self.FK_BANG_VON_NHAP_XUAT">
+            <End Role="NHAP_XUAT" EntitySet="NHAP_XUAT" />
+            <End Role="BANG_VON" EntitySet="BANG_VON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BILL_TACH_HOA_DON" Association="Self.FK_BILL_TACH_HOA_DON">
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+            <End Role="BILL_TACH" EntitySet="BILL_TACH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GIAO_DICH_LOAI_DICH" Association="Self.FK_GIAO_DICH_LOAI_DICH">
+            <End Role="LOAI_DICH" EntitySet="LOAI_DICH" />
+            <End Role="GIAO_DICH" EntitySet="GIAO_DICH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDCHI_TIET_HOA_DON" Association="Self.FK_HDCHI_TIET_HOA_DON">
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+            <End Role="BILL_MEAL" EntitySet="BILL_MEAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDCHI_TIET_MON_HANG" Association="Self.FK_HDCHI_TIET_MON_HANG">
+            <End Role="MON_HANG" EntitySet="MON_HANG" />
+            <End Role="BILL_MEAL" EntitySet="BILL_MEAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_BAN_MAM" Association="Self.FK_HOA_DON_BAN_MAM">
+            <End Role="BAN_MAM" EntitySet="BAN_MAM" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_CLIENT_CARDS" Association="Self.FK_HOA_DON_CLIENT_CARDS">
+            <End Role="CLIENT_CARDS" EntitySet="CLIENT_CARDS" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_COMB_SET" Association="Self.FK_HOA_DON_COMB_SET">
+            <End Role="COMB_SET" EntitySet="COMB_SET" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_NGUOI_BAN" Association="Self.FK_HOA_DON_NGUOI_BAN">
+            <End Role="NGUOI_BAN" EntitySet="NGUOI_BAN" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_NHAN_VIEN" Association="Self.FK_HOA_DON_NHAN_VIEN">
+            <End Role="NHAN_VIEN" EntitySet="NHAN_VIEN" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_USER_LOGIN" Association="Self.FK_HOA_DON_USER_LOGIN">
+            <End Role="USER_LOGIN" EntitySet="USER_LOGIN" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KHO_HANG_LOAI_KHO" Association="Self.FK_KHO_HANG_LOAI_KHO">
+            <End Role="LOAI_KHO" EntitySet="LOAI_KHO" />
+            <End Role="KHO_HANG" EntitySet="KHO_HANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MON_COMBO_COMBO_SET" Association="Self.FK_MON_COMBO_COMBO_SET">
+            <End Role="COMB_SET" EntitySet="COMB_SET" />
+            <End Role="COMB_MON" EntitySet="COMB_MON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MON_HANG_NHOM_MON" Association="Self.FK_MON_HANG_NHOM_MON">
+            <End Role="NHOM_MON" EntitySet="NHOM_MON" />
+            <End Role="MON_HANG" EntitySet="MON_HANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NGUOI_BAN_NHOM_GIOI" Association="Self.FK_NGUOI_BAN_NHOM_GIOI">
+            <End Role="NHOM_GIOI" EntitySet="NHOM_GIOI" />
+            <End Role="NGUOI_BAN" EntitySet="NGUOI_BAN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHAN_VIEN_PHONG_BAN" Association="Self.FK_NHAN_VIEN_PHONG_BAN">
+            <End Role="PHONG_BAN" EntitySet="PHONG_BAN" />
+            <End Role="NHAN_VIEN" EntitySet="NHAN_VIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHAP_XUAT_CHI_NHANH" Association="Self.FK_NHAP_XUAT_CHI_NHANH">
+            <End Role="CHI_NHANH" EntitySet="CHI_NHANH" />
+            <End Role="NHAP_XUAT" EntitySet="NHAP_XUAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHAP_XUAT_CHUNG_TU" Association="Self.FK_NHAP_XUAT_CHUNG_TU">
+            <End Role="CHUNG_TU" EntitySet="CHUNG_TU" />
+            <End Role="NHAP_XUAT" EntitySet="NHAP_XUAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHAP_XUAT_KHACH_HANG" Association="Self.FK_NHAP_XUAT_KHACH_HANG">
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+            <End Role="NHAP_XUAT" EntitySet="NHAP_XUAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHAP_XUAT_NGUOI_DUNG" Association="Self.FK_NHAP_XUAT_NGUOI_DUNG">
+            <End Role="USER_LOGIN" EntitySet="USER_LOGIN" />
+            <End Role="NHAP_XUAT" EntitySet="NHAP_XUAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHOM_MON_LOAI_MON" Association="Self.FK_NHOM_MON_LOAI_MON">
+            <End Role="LOAI_MON" EntitySet="LOAI_MON" />
+            <End Role="NHOM_MON" EntitySet="NHOM_MON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PUTIN_OUT_KHO_HANG" Association="Self.FK_PUTIN_OUT_KHO_HANG">
+            <End Role="KHO_HANG" EntitySet="KHO_HANG" />
+            <End Role="PUTIN_OUT" EntitySet="PUTIN_OUT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PUTIN_OUT_MAT_HANG" Association="Self.FK_PUTIN_OUT_MAT_HANG">
+            <End Role="MON_HANG" EntitySet="MON_HANG" />
+            <End Role="PUTIN_OUT" EntitySet="PUTIN_OUT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PUTIN_OUT_NHAP_XUAT" Association="Self.FK_PUTIN_OUT_NHAP_XUAT">
+            <End Role="NHAP_XUAT" EntitySet="NHAP_XUAT" />
+            <End Role="PUTIN_OUT" EntitySet="PUTIN_OUT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SODU_HANG_KHO_HANG" Association="Self.FK_SODU_HANG_KHO_HANG">
+            <End Role="KHO_HANG" EntitySet="KHO_HANG" />
+            <End Role="SODU_HANG" EntitySet="SODU_HANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SODU_KHACH_GIAO_DICH" Association="Self.FK_SODU_KHACH_GIAO_DICH">
+            <End Role="GIAO_DICH" EntitySet="GIAO_DICH" />
+            <End Role="SODU_KHACH" EntitySet="SODU_KHACH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SODU_KHACH_KHACH_HANG" Association="Self.FK_SODU_KHACH_KHACH_HANG">
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+            <End Role="SODU_KHACH" EntitySet="SODU_KHACH" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="wiseoffice.rbkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EntitiesConnection" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BAN_MAM" EntityType="wiseoffice.rbkModel.BAN_MAM" />
+          <EntitySet Name="BANG_VON" EntityType="wiseoffice.rbkModel.BANG_VON" />
+          <EntitySet Name="BILL_MEAL" EntityType="wiseoffice.rbkModel.BILL_MEAL" />
+          <EntitySet Name="CHI_NHANH" EntityType="wiseoffice.rbkModel.CHI_NHANH" />
+          <EntitySet Name="CHUNG_TU" EntityType="wiseoffice.rbkModel.CHUNG_TU" />
+          <EntitySet Name="CLIENT_CARDS" EntityType="wiseoffice.rbkModel.CLIENT_CARDS" />
+          <EntitySet Name="COMB_MON" EntityType="wiseoffice.rbkModel.COMB_MON" />
+          <EntitySet Name="COMB_SET" EntityType="wiseoffice.rbkModel.COMB_SET" />
+          <EntitySet Name="DINH_MUC" EntityType="wiseoffice.rbkModel.DINH_MUC" />
+          <EntitySet Name="GIAO_DICH" EntityType="wiseoffice.rbkModel.GIAO_DICH" />
+          <EntitySet Name="HOA_DON" EntityType="wiseoffice.rbkModel.HOA_DON" />
+          <EntitySet Name="KHACH_HANG" EntityType="wiseoffice.rbkModel.KHACH_HANG" />
+          <EntitySet Name="KHO_HANG" EntityType="wiseoffice.rbkModel.KHO_HANG" />
+          <EntitySet Name="KHOAN_MUC" EntityType="wiseoffice.rbkModel.KHOAN_MUC" />
+          <EntitySet Name="KHU_VUC" EntityType="wiseoffice.rbkModel.KHU_VUC" />
+          <EntitySet Name="LAM_LENH" EntityType="wiseoffice.rbkModel.LAM_LENH" />
+          <EntitySet Name="LOAI_CARDS" EntityType="wiseoffice.rbkModel.LOAI_CARDS" />
+          <EntitySet Name="LOAI_COUPON" EntityType="wiseoffice.rbkModel.LOAI_COUPON" />
+          <EntitySet Name="LOAI_DICH" EntityType="wiseoffice.rbkModel.LOAI_DICH" />
+          <EntitySet Name="LOAI_KHO" EntityType="wiseoffice.rbkModel.LOAI_KHO" />
+          <EntitySet Name="LOAI_MON" EntityType="wiseoffice.rbkModel.LOAI_MON" />
+          <EntitySet Name="MON_HANG" EntityType="wiseoffice.rbkModel.MON_HANG" />
+          <EntitySet Name="NGUOI_BAN" EntityType="wiseoffice.rbkModel.NGUOI_BAN" />
+          <EntitySet Name="NHAN_VIEN" EntityType="wiseoffice.rbkModel.NHAN_VIEN" />
+          <EntitySet Name="NHAP_XUAT" EntityType="wiseoffice.rbkModel.NHAP_XUAT" />
+          <EntitySet Name="NHOM_GIOI" EntityType="wiseoffice.rbkModel.NHOM_GIOI" />
+          <EntitySet Name="NHOM_MON" EntityType="wiseoffice.rbkModel.NHOM_MON" />
+          <EntitySet Name="PHA_NAU" EntityType="wiseoffice.rbkModel.PHA_NAU" />
+          <EntitySet Name="PHONG_BAN" EntityType="wiseoffice.rbkModel.PHONG_BAN" />
+          <EntitySet Name="PUTIN_OUT" EntityType="wiseoffice.rbkModel.PUTIN_OUT" />
+          <EntitySet Name="SODU_HANG" EntityType="wiseoffice.rbkModel.SODU_HANG" />
+          <EntitySet Name="SODU_KHACH" EntityType="wiseoffice.rbkModel.SODU_KHACH" />
+          <EntitySet Name="THEM_TIEN" EntityType="wiseoffice.rbkModel.THEM_TIEN" />
+          <EntitySet Name="TRANG_THAI" EntityType="wiseoffice.rbkModel.TRANG_THAI" />
+          <EntitySet Name="USER_LOGIN" EntityType="wiseoffice.rbkModel.USER_LOGIN" />
+          <EntitySet Name="USER_ZONES" EntityType="wiseoffice.rbkModel.USER_ZONES" />
+          <EntitySet Name="CAU_HINH" EntityType="wiseoffice.rbkModel.CAU_HINH" />
+          <EntitySet Name="CHUC_NANG" EntityType="wiseoffice.rbkModel.CHUC_NANG" />
+          <EntitySet Name="NGHIEP_VU" EntityType="wiseoffice.rbkModel.NGHIEP_VU" />
+          <EntitySet Name="PHAN_NHIEM" EntityType="wiseoffice.rbkModel.PHAN_NHIEM" />
+          <AssociationSet Name="FK_BAN_MAM_KHU_VUC" Association="wiseoffice.rbkModel.FK_BAN_MAM_KHU_VUC">
+            <End Role="KHU_VUC" EntitySet="KHU_VUC" />
+            <End Role="BAN_MAM" EntitySet="BAN_MAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_BAN_MAM" Association="wiseoffice.rbkModel.FK_HOA_DON_BAN_MAM">
+            <End Role="BAN_MAM" EntitySet="BAN_MAM" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BANG_VON_GIAO_DICH" Association="wiseoffice.rbkModel.FK_BANG_VON_GIAO_DICH">
+            <End Role="GIAO_DICH" EntitySet="GIAO_DICH" />
+            <End Role="BANG_VON" EntitySet="BANG_VON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BANG_VON_GIAO_DICH1" Association="wiseoffice.rbkModel.FK_BANG_VON_GIAO_DICH1">
+            <End Role="GIAO_DICH" EntitySet="GIAO_DICH" />
+            <End Role="BANG_VON" EntitySet="BANG_VON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BANG_VON_KHOAN_MUC" Association="wiseoffice.rbkModel.FK_BANG_VON_KHOAN_MUC">
+            <End Role="KHOAN_MUC" EntitySet="KHOAN_MUC" />
+            <End Role="BANG_VON" EntitySet="BANG_VON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BANG_VON_NHAP_XUAT" Association="wiseoffice.rbkModel.FK_BANG_VON_NHAP_XUAT">
+            <End Role="NHAP_XUAT" EntitySet="NHAP_XUAT" />
+            <End Role="BANG_VON" EntitySet="BANG_VON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDCHI_TIET_HOA_DON" Association="wiseoffice.rbkModel.FK_HDCHI_TIET_HOA_DON">
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+            <End Role="BILL_MEAL" EntitySet="BILL_MEAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDCHI_TIET_MON_HANG" Association="wiseoffice.rbkModel.FK_HDCHI_TIET_MON_HANG">
+            <End Role="MON_HANG" EntitySet="MON_HANG" />
+            <End Role="BILL_MEAL" EntitySet="BILL_MEAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHAP_XUAT_CHI_NHANH" Association="wiseoffice.rbkModel.FK_NHAP_XUAT_CHI_NHANH">
+            <End Role="CHI_NHANH" EntitySet="CHI_NHANH" />
+            <End Role="NHAP_XUAT" EntitySet="NHAP_XUAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHAP_XUAT_CHUNG_TU" Association="wiseoffice.rbkModel.FK_NHAP_XUAT_CHUNG_TU">
+            <End Role="CHUNG_TU" EntitySet="CHUNG_TU" />
+            <End Role="NHAP_XUAT" EntitySet="NHAP_XUAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_CLIENT_CARDS" Association="wiseoffice.rbkModel.FK_HOA_DON_CLIENT_CARDS">
+            <End Role="CLIENT_CARDS" EntitySet="CLIENT_CARDS" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MON_COMBO_COMBO_SET" Association="wiseoffice.rbkModel.FK_MON_COMBO_COMBO_SET">
+            <End Role="COMB_SET" EntitySet="COMB_SET" />
+            <End Role="COMB_MON" EntitySet="COMB_MON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_COMB_SET" Association="wiseoffice.rbkModel.FK_HOA_DON_COMB_SET">
+            <End Role="COMB_SET" EntitySet="COMB_SET" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GIAO_DICH_LOAI_DICH" Association="wiseoffice.rbkModel.FK_GIAO_DICH_LOAI_DICH">
+            <End Role="LOAI_DICH" EntitySet="LOAI_DICH" />
+            <End Role="GIAO_DICH" EntitySet="GIAO_DICH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SODU_KHACH_GIAO_DICH" Association="wiseoffice.rbkModel.FK_SODU_KHACH_GIAO_DICH">
+            <End Role="GIAO_DICH" EntitySet="GIAO_DICH" />
+            <End Role="SODU_KHACH" EntitySet="SODU_KHACH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_NGUOI_BAN" Association="wiseoffice.rbkModel.FK_HOA_DON_NGUOI_BAN">
+            <End Role="NGUOI_BAN" EntitySet="NGUOI_BAN" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_NHAN_VIEN" Association="wiseoffice.rbkModel.FK_HOA_DON_NHAN_VIEN">
+            <End Role="NHAN_VIEN" EntitySet="NHAN_VIEN" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_USER_LOGIN" Association="wiseoffice.rbkModel.FK_HOA_DON_USER_LOGIN">
+            <End Role="USER_LOGIN" EntitySet="USER_LOGIN" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHAP_XUAT_KHACH_HANG" Association="wiseoffice.rbkModel.FK_NHAP_XUAT_KHACH_HANG">
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+            <End Role="NHAP_XUAT" EntitySet="NHAP_XUAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SODU_KHACH_KHACH_HANG" Association="wiseoffice.rbkModel.FK_SODU_KHACH_KHACH_HANG">
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+            <End Role="SODU_KHACH" EntitySet="SODU_KHACH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KHO_HANG_LOAI_KHO" Association="wiseoffice.rbkModel.FK_KHO_HANG_LOAI_KHO">
+            <End Role="LOAI_KHO" EntitySet="LOAI_KHO" />
+            <End Role="KHO_HANG" EntitySet="KHO_HANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PUTIN_OUT_KHO_HANG" Association="wiseoffice.rbkModel.FK_PUTIN_OUT_KHO_HANG">
+            <End Role="KHO_HANG" EntitySet="KHO_HANG" />
+            <End Role="PUTIN_OUT" EntitySet="PUTIN_OUT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SODU_HANG_KHO_HANG" Association="wiseoffice.rbkModel.FK_SODU_HANG_KHO_HANG">
+            <End Role="KHO_HANG" EntitySet="KHO_HANG" />
+            <End Role="SODU_HANG" EntitySet="SODU_HANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHOM_MON_LOAI_MON" Association="wiseoffice.rbkModel.FK_NHOM_MON_LOAI_MON">
+            <End Role="LOAI_MON" EntitySet="LOAI_MON" />
+            <End Role="NHOM_MON" EntitySet="NHOM_MON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MON_HANG_NHOM_MON" Association="wiseoffice.rbkModel.FK_MON_HANG_NHOM_MON">
+            <End Role="NHOM_MON" EntitySet="NHOM_MON" />
+            <End Role="MON_HANG" EntitySet="MON_HANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PUTIN_OUT_MAT_HANG" Association="wiseoffice.rbkModel.FK_PUTIN_OUT_MAT_HANG">
+            <End Role="MON_HANG" EntitySet="MON_HANG" />
+            <End Role="PUTIN_OUT" EntitySet="PUTIN_OUT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NGUOI_BAN_NHOM_GIOI" Association="wiseoffice.rbkModel.FK_NGUOI_BAN_NHOM_GIOI">
+            <End Role="NHOM_GIOI" EntitySet="NHOM_GIOI" />
+            <End Role="NGUOI_BAN" EntitySet="NGUOI_BAN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHAN_VIEN_PHONG_BAN" Association="wiseoffice.rbkModel.FK_NHAN_VIEN_PHONG_BAN">
+            <End Role="PHONG_BAN" EntitySet="PHONG_BAN" />
+            <End Role="NHAN_VIEN" EntitySet="NHAN_VIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHAP_XUAT_NGUOI_DUNG" Association="wiseoffice.rbkModel.FK_NHAP_XUAT_NGUOI_DUNG">
+            <End Role="USER_LOGIN" EntitySet="USER_LOGIN" />
+            <End Role="NHAP_XUAT" EntitySet="NHAP_XUAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PUTIN_OUT_NHAP_XUAT" Association="wiseoffice.rbkModel.FK_PUTIN_OUT_NHAP_XUAT">
+            <End Role="NHAP_XUAT" EntitySet="NHAP_XUAT" />
+            <End Role="PUTIN_OUT" EntitySet="PUTIN_OUT" />
+          </AssociationSet>
+          <EntitySet Name="BILL_TACH" EntityType="wiseoffice.rbkModel.BILL_TACH" />
+          <AssociationSet Name="FK_BILL_TACH_HOA_DON" Association="wiseoffice.rbkModel.FK_BILL_TACH_HOA_DON">
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+            <End Role="BILL_TACH" EntitySet="BILL_TACH" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BAN_MAM">
+          <Key>
+            <PropertyRef Name="KEY_BAN_MAM" />
+          </Key>
+          <Property Name="KEY_BAN_MAM" Type="Guid" Nullable="false" />
+          <Property Name="MA_BAN_MAM" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_BAN_MAM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MA_KHU_VUC" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="DA_CO_KHACH" Type="Boolean" />
+          <Property Name="KEY_HOA_DON" Type="Guid" />
+          <Property Name="GIU_BAN_MAM" Type="Boolean" />
+          <Property Name="GIO_BAN_MAM" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="KHU_VUC" Relationship="wiseoffice.rbkModel.FK_BAN_MAM_KHU_VUC" FromRole="BAN_MAM" ToRole="KHU_VUC" />
+          <NavigationProperty Name="HOA_DON" Relationship="wiseoffice.rbkModel.FK_HOA_DON_BAN_MAM" FromRole="BAN_MAM" ToRole="HOA_DON" />
+        </EntityType>
+        <EntityType Name="BANG_VON">
+          <Key>
+            <PropertyRef Name="KEY_BANG_VON" />
+          </Key>
+          <Property Name="KEY_NHAP_XUAT" Type="Guid" />
+          <Property Name="KEY_BANG_VON" Type="Guid" Nullable="false" />
+          <Property Name="KEY_KHACH_HANG" Type="Guid" />
+          <Property Name="KEY_GIAO_DICH" Type="Guid" />
+          <Property Name="KEY_THANH_TOAN" Type="Guid" />
+          <Property Name="KEY_KHOAN_MUC" Type="Guid" />
+          <Property Name="TIEN_VIET_NAM" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GHI_DIEN_GIAI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GIAO_DICH" Relationship="wiseoffice.rbkModel.FK_BANG_VON_GIAO_DICH" FromRole="BANG_VON" ToRole="GIAO_DICH" />
+          <NavigationProperty Name="GIAO_DICH1" Relationship="wiseoffice.rbkModel.FK_BANG_VON_GIAO_DICH1" FromRole="BANG_VON" ToRole="GIAO_DICH" />
+          <NavigationProperty Name="KHOAN_MUC" Relationship="wiseoffice.rbkModel.FK_BANG_VON_KHOAN_MUC" FromRole="BANG_VON" ToRole="KHOAN_MUC" />
+          <NavigationProperty Name="NHAP_XUAT" Relationship="wiseoffice.rbkModel.FK_BANG_VON_NHAP_XUAT" FromRole="BANG_VON" ToRole="NHAP_XUAT" />
+        </EntityType>
+        <EntityType Name="BILL_MEAL">
+          <Key>
+            <PropertyRef Name="KEY_BILL_MEAL" />
+          </Key>
+          <Property Name="INDEX_SAP_XEP" Type="Int16" />
+          <Property Name="KEY_HOA_DON" Type="Guid" />
+          <Property Name="KEY_BILL_MEAL" Type="Guid" Nullable="false" />
+          <Property Name="KEY_MON_HANG" Type="Guid" />
+          <Property Name="SO_LUONG_MON" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DON_GIA_MON" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TIEN_VIET_MON" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TIEN_GIAM_GIA" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TIEN_PHAI_TRA" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="THEM_BO_SUNG" Type="Boolean" />
+          <Property Name="COOK_VA_MIXE" Type="Boolean" />
+          <Property Name="NOT_COOK_MIX" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HOA_DON" Relationship="wiseoffice.rbkModel.FK_HDCHI_TIET_HOA_DON" FromRole="BILL_MEAL" ToRole="HOA_DON" />
+          <NavigationProperty Name="MON_HANG" Relationship="wiseoffice.rbkModel.FK_HDCHI_TIET_MON_HANG" FromRole="BILL_MEAL" ToRole="MON_HANG" />
+        </EntityType>
+        <EntityType Name="CHI_NHANH">
+          <Key>
+            <PropertyRef Name="KEY_CHI_NHANH" />
+          </Key>
+          <Property Name="KEY_CHI_NHANH" Type="Guid" Nullable="false" />
+          <Property Name="MA_CHI_NHANH" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_CHI_NHANH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DIA_CHI_NHANH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SO_DIEN_THOAI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BAO_CAO_TONG" Type="Boolean" />
+          <Property Name="CON_HOAT_DONG" Type="Boolean" />
+          <NavigationProperty Name="NHAP_XUAT" Relationship="wiseoffice.rbkModel.FK_NHAP_XUAT_CHI_NHANH" FromRole="CHI_NHANH" ToRole="NHAP_XUAT" />
+        </EntityType>
+        <EntityType Name="CHUNG_TU">
+          <Key>
+            <PropertyRef Name="KEY_CHUNG_TU" />
+          </Key>
+          <Property Name="IDX_CHUNG_TU" Type="Int16" />
+          <Property Name="MA_NGHIEP_VU" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="KEY_CHUNG_TU" Type="Guid" Nullable="false" />
+          <Property Name="MA_CHUNG_TU" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_CHUNG_TU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NUM_CHUNG_TU" Type="Int16" />
+          <NavigationProperty Name="NHAP_XUAT" Relationship="wiseoffice.rbkModel.FK_NHAP_XUAT_CHUNG_TU" FromRole="CHUNG_TU" ToRole="NHAP_XUAT" />
+        </EntityType>
+        <EntityType Name="CLIENT_CARDS">
+          <Key>
+            <PropertyRef Name="KEY_CLIENT_CARDS" />
+          </Key>
+          <Property Name="KEY_LOAI_CARDS" Type="Guid" />
+          <Property Name="KEY_CLIENT_CARDS" Type="Guid" Nullable="false" />
+          <Property Name="COD_CLIENT_CARDS" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_CLIENT_CARDS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ADD_CLIENT_CARDS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TEL_CLIENT_CARDS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TAX_CLIENT_CARDS" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="MAR_CLIENT_CARDS" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="STA_CLIENT_CARDS" Type="Boolean" />
+          <NavigationProperty Name="HOA_DON" Relationship="wiseoffice.rbkModel.FK_HOA_DON_CLIENT_CARDS" FromRole="CLIENT_CARDS" ToRole="HOA_DON" />
+        </EntityType>
+        <EntityType Name="COMB_MON">
+          <Key>
+            <PropertyRef Name="KEY_COMB_MON" />
+          </Key>
+          <Property Name="KEY_COMB_SET" Type="Guid" />
+          <Property Name="KEY_COMB_MON" Type="Guid" Nullable="false" />
+          <Property Name="KEY_MON_HANG" Type="Guid" />
+          <Property Name="SO_LUONG_MON" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="COMB_SET" Relationship="wiseoffice.rbkModel.FK_MON_COMBO_COMBO_SET" FromRole="COMB_MON" ToRole="COMB_SET" />
+        </EntityType>
+        <EntityType Name="COMB_SET">
+          <Key>
+            <PropertyRef Name="KEY_COMB_SET" />
+          </Key>
+          <Property Name="KEY_COMB_SET" Type="Guid" Nullable="false" />
+          <Property Name="TEN_COMB_SET" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GIA_COMB_SET" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TYP_COMB_SET" Type="Int16" />
+          <Property Name="ACT_COMB_SET" Type="Boolean" />
+          <NavigationProperty Name="COMB_MON" Relationship="wiseoffice.rbkModel.FK_MON_COMBO_COMBO_SET" FromRole="COMB_SET" ToRole="COMB_MON" />
+          <NavigationProperty Name="HOA_DON" Relationship="wiseoffice.rbkModel.FK_HOA_DON_COMB_SET" FromRole="COMB_SET" ToRole="HOA_DON" />
+        </EntityType>
+        <EntityType Name="DINH_MUC">
+          <Key>
+            <PropertyRef Name="KEY_DINH_MUC" />
+          </Key>
+          <Property Name="KEY_DINH_MUC" Type="Guid" Nullable="false" />
+          <Property Name="KEY_MON_HANG" Type="Guid" />
+          <Property Name="KEY_MAT_HANG" Type="Guid" />
+          <Property Name="SO_LUONG_MUC" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="GIAO_DICH">
+          <Key>
+            <PropertyRef Name="KEY_GIAO_DICH" />
+          </Key>
+          <Property Name="KEY_GIAO_DICH" Type="Guid" Nullable="false" />
+          <Property Name="COD_GIAO_DICH" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_GIAO_DICH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="COD_LOAI_DICH" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="LOAI_CONG_NO" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="DATE_DONG_BO" Type="DateTime" Precision="3" />
+          <Property Name="VERS_DONG_BO" Type="Int16" />
+          <Property Name="FLAG_DONG_BO" Type="Boolean" />
+          <NavigationProperty Name="BANG_VON" Relationship="wiseoffice.rbkModel.FK_BANG_VON_GIAO_DICH" FromRole="GIAO_DICH" ToRole="BANG_VON" />
+          <NavigationProperty Name="BANG_VON1" Relationship="wiseoffice.rbkModel.FK_BANG_VON_GIAO_DICH1" FromRole="GIAO_DICH" ToRole="BANG_VON" />
+          <NavigationProperty Name="LOAI_DICH" Relationship="wiseoffice.rbkModel.FK_GIAO_DICH_LOAI_DICH" FromRole="GIAO_DICH" ToRole="LOAI_DICH" />
+          <NavigationProperty Name="SODU_KHACH" Relationship="wiseoffice.rbkModel.FK_SODU_KHACH_GIAO_DICH" FromRole="GIAO_DICH" ToRole="SODU_KHACH" />
+        </EntityType>
+        <EntityType Name="HOA_DON">
+          <Key>
+            <PropertyRef Name="KEY_HOA_DON" />
+          </Key>
+          <Property Name="KEY_BAN_MAM" Type="Guid" />
+          <Property Name="KEY_NHAN_VIEN" Type="Guid" />
+          <Property Name="KEY_NGUOI_BAN" Type="Guid" />
+          <Property Name="KEY_USER_LOGIN" Type="Guid" />
+          <Property Name="KEY_CLIENT_CARDS" Type="Guid" />
+          <Property Name="HSO_CLIENT_CARDS" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KEY_LOAI_COUPON" Type="Guid" />
+          <Property Name="VAL_LOAI_COUPON" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KEY_HOA_DON" Type="Guid" Nullable="false" />
+          <Property Name="MA_HOA_DON" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="NGAY_HOA_DON" Type="DateTime" Precision="3" />
+          <Property Name="NGAY_GIO_BAN" Type="DateTime" Precision="3" />
+          <Property Name="TIEN_THU_VAO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TIEN_THOI_LAI" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TONG_KHUYEN_MAI" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TONG_PHAI_TRA" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GHI_GHI_CHU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DA_THU_TIEN" Type="Boolean" />
+          <Property Name="DA_CHE_BIEN" Type="Boolean" />
+          <Property Name="LAN_IN_PHIEU" Type="Int32" />
+          <Property Name="NGAY_GIO_VAO" Type="DateTime" Precision="3" />
+          <Property Name="NGAY_GIO_OUT" Type="DateTime" Precision="3" />
+          <Property Name="TONG_GIO_USE" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TONG_TIEN_BO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KEY_COMB_SET" Type="Guid" />
+          <Property Name="GIA_COMB_SET" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KEY_THEM_TIEN" Type="Guid" />
+          <Property Name="TONG_TANG_GIA" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DIEM_QUI_UOC" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DIEM_QUI_DOI" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TIEN_TRU_DIEM" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TIEN_TICH_LUY" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="BAN_MAM" Relationship="wiseoffice.rbkModel.FK_HOA_DON_BAN_MAM" FromRole="HOA_DON" ToRole="BAN_MAM" />
+          <NavigationProperty Name="BILL_MEAL" Relationship="wiseoffice.rbkModel.FK_HDCHI_TIET_HOA_DON" FromRole="HOA_DON" ToRole="BILL_MEAL" />
+          <NavigationProperty Name="CLIENT_CARDS" Relationship="wiseoffice.rbkModel.FK_HOA_DON_CLIENT_CARDS" FromRole="HOA_DON" ToRole="CLIENT_CARDS" />
+          <NavigationProperty Name="COMB_SET" Relationship="wiseoffice.rbkModel.FK_HOA_DON_COMB_SET" FromRole="HOA_DON" ToRole="COMB_SET" />
+          <NavigationProperty Name="NGUOI_BAN" Relationship="wiseoffice.rbkModel.FK_HOA_DON_NGUOI_BAN" FromRole="HOA_DON" ToRole="NGUOI_BAN" />
+          <NavigationProperty Name="NHAN_VIEN" Relationship="wiseoffice.rbkModel.FK_HOA_DON_NHAN_VIEN" FromRole="HOA_DON" ToRole="NHAN_VIEN" />
+          <NavigationProperty Name="USER_LOGIN" Relationship="wiseoffice.rbkModel.FK_HOA_DON_USER_LOGIN" FromRole="HOA_DON" ToRole="USER_LOGIN" />
+          <NavigationProperty Name="BILL_TACH" Relationship="wiseoffice.rbkModel.FK_BILL_TACH_HOA_DON" FromRole="HOA_DON" ToRole="BILL_TACH" />
+        </EntityType>
+        <EntityType Name="KHACH_HANG">
+          <Key>
+            <PropertyRef Name="KEY_KHACH_HANG" />
+          </Key>
+          <Property Name="KEY_KHACH_HANG" Type="Guid" Nullable="false" />
+          <Property Name="MA_KHACH_HANG" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_KHACH_HANG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DIA_CHI_KHACH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SO_DIEN_THOAI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MA_SO_THUE" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="HAN_MUC_NO" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CO_GIAO_DICH" Type="Boolean" />
+          <NavigationProperty Name="NHAP_XUAT" Relationship="wiseoffice.rbkModel.FK_NHAP_XUAT_KHACH_HANG" FromRole="KHACH_HANG" ToRole="NHAP_XUAT" />
+          <NavigationProperty Name="SODU_KHACH" Relationship="wiseoffice.rbkModel.FK_SODU_KHACH_KHACH_HANG" FromRole="KHACH_HANG" ToRole="SODU_KHACH" />
+        </EntityType>
+        <EntityType Name="KHO_HANG">
+          <Key>
+            <PropertyRef Name="KEY_KHO_HANG" />
+          </Key>
+          <Property Name="KEY_KHO_HANG" Type="Guid" Nullable="false" />
+          <Property Name="MA_KHO_HANG" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_KHO_HANG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DIA_CHI_KHO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SUC_CHUA_KHO" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_THU_KHO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MA_LOAI_KHO" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LOAI_KHO" Relationship="wiseoffice.rbkModel.FK_KHO_HANG_LOAI_KHO" FromRole="KHO_HANG" ToRole="LOAI_KHO" />
+          <NavigationProperty Name="PUTIN_OUT" Relationship="wiseoffice.rbkModel.FK_PUTIN_OUT_KHO_HANG" FromRole="KHO_HANG" ToRole="PUTIN_OUT" />
+          <NavigationProperty Name="SODU_HANG" Relationship="wiseoffice.rbkModel.FK_SODU_HANG_KHO_HANG" FromRole="KHO_HANG" ToRole="SODU_HANG" />
+        </EntityType>
+        <EntityType Name="KHOAN_MUC">
+          <Key>
+            <PropertyRef Name="KEY_KHOAN_MUC" />
+          </Key>
+          <Property Name="KEY_KHOAN_MUC" Type="Guid" Nullable="false" />
+          <Property Name="COD_KHOAN_MUC" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_KHOAN_MUC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BANG_VON" Relationship="wiseoffice.rbkModel.FK_BANG_VON_KHOAN_MUC" FromRole="KHOAN_MUC" ToRole="BANG_VON" />
+        </EntityType>
+        <EntityType Name="KHU_VUC">
+          <Key>
+            <PropertyRef Name="MA_KHU_VUC" />
+          </Key>
+          <Property Name="MA_KHU_VUC" Type="String" Nullable="false" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="MA_LOAI_GIA" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_KHU_VUC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TT_HIEN_THI" Type="Int32" />
+          <NavigationProperty Name="BAN_MAM" Relationship="wiseoffice.rbkModel.FK_BAN_MAM_KHU_VUC" FromRole="KHU_VUC" ToRole="BAN_MAM" />
+        </EntityType>
+        <EntityType Name="LAM_LENH">
+          <Key>
+            <PropertyRef Name="KEY_LAM_LENH" />
+          </Key>
+          <Property Name="KEY_CHI_NHANH" Type="Guid" />
+          <Property Name="KEY_LAM_LENH" Type="Guid" Nullable="false" />
+          <Property Name="NGAY_LAM_LENH" Type="DateTime" Precision="3" />
+          <Property Name="COD_LAM_LENH" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="XAC_NHAN_OUT" Type="Boolean" />
+          <Property Name="KEY_BILL_NHAP" Type="Guid" />
+          <Property Name="KEY_BILL_XUAT" Type="Guid" />
+        </EntityType>
+        <EntityType Name="LOAI_CARDS">
+          <Key>
+            <PropertyRef Name="KEY_LOAI_CARDS" />
+          </Key>
+          <Property Name="KEY_LOAI_CARDS" Type="Guid" Nullable="false" />
+          <Property Name="TEN_LOAI_CARDS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HSO_LOAI_CARDS" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MAR_LOAI_CARDS" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="LOAI_COUPON">
+          <Key>
+            <PropertyRef Name="KEY_LOAI_COUPON" />
+          </Key>
+          <Property Name="KEY_LOAI_COUPON" Type="Guid" Nullable="false" />
+          <Property Name="COD_LOAI_COUPON" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_LOAI_COUPON" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BEG_LOAI_COUPON" Type="DateTime" Precision="3" />
+          <Property Name="END_LOAI_COUPON" Type="DateTime" Precision="3" />
+          <Property Name="KIN_LOAI_COUPON" Type="Int32" />
+          <Property Name="VAL_LOAI_COUPON" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="QTY_LOAI_COUPON" Type="Int32" />
+          <Property Name="USE_LOAI_COUPON" Type="Int32" />
+          <Property Name="REM_LOAI_COUPON" Type="Int32" />
+        </EntityType>
+        <EntityType Name="LOAI_DICH">
+          <Key>
+            <PropertyRef Name="COD_LOAI_DICH" />
+          </Key>
+          <Property Name="COD_LOAI_DICH" Type="String" Nullable="false" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_LOAI_DICH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GIAO_DICH" Relationship="wiseoffice.rbkModel.FK_GIAO_DICH_LOAI_DICH" FromRole="LOAI_DICH" ToRole="GIAO_DICH" />
+        </EntityType>
+        <EntityType Name="LOAI_KHO">
+          <Key>
+            <PropertyRef Name="MA_LOAI_KHO" />
+          </Key>
+          <Property Name="MA_LOAI_KHO" Type="String" Nullable="false" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_LOAI_KHO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KHO_HANG" Relationship="wiseoffice.rbkModel.FK_KHO_HANG_LOAI_KHO" FromRole="LOAI_KHO" ToRole="KHO_HANG" />
+        </EntityType>
+        <EntityType Name="LOAI_MON">
+          <Key>
+            <PropertyRef Name="KEY_LOAI_MON" />
+          </Key>
+          <Property Name="KEY_LOAI_MON" Type="Guid" Nullable="false" />
+          <Property Name="MA_LOAI_MON" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_LOAI_MON" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NGAY_DONG_BO" Type="DateTime" Precision="3" />
+          <Property Name="IS_NEW" Type="Boolean" />
+          <NavigationProperty Name="NHOM_MON" Relationship="wiseoffice.rbkModel.FK_NHOM_MON_LOAI_MON" FromRole="LOAI_MON" ToRole="NHOM_MON" />
+        </EntityType>
+        <EntityType Name="MON_HANG">
+          <Key>
+            <PropertyRef Name="KEY_MON_HANG" />
+          </Key>
+          <Property Name="KEY_NHOM_MON" Type="Guid" />
+          <Property Name="KEY_MON_HANG" Type="Guid" Nullable="false" />
+          <Property Name="MA_MON_HANG" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_MON_HANG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DON_VI_TINH" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="LOAI_PHA_NAU" Type="Int16" />
+          <Property Name="DON_GIA_MUC1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DON_GIA_MUC2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DON_GIA_MUC3" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MUC_GIAM_KHAU" Type="Int16" />
+          <Property Name="MON_MAC_DINH" Type="Boolean" />
+          <Property Name="DON_GIA_NHAP" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TYP_MON_HANG" Type="Int16" />
+          <Property Name="CO_SU_DUNG" Type="Boolean" />
+          <Property Name="KEY_KHO_HANG" Type="Guid" />
+          <NavigationProperty Name="BILL_MEAL" Relationship="wiseoffice.rbkModel.FK_HDCHI_TIET_MON_HANG" FromRole="MON_HANG" ToRole="BILL_MEAL" />
+          <NavigationProperty Name="NHOM_MON" Relationship="wiseoffice.rbkModel.FK_MON_HANG_NHOM_MON" FromRole="MON_HANG" ToRole="NHOM_MON" />
+          <NavigationProperty Name="PUTIN_OUT" Relationship="wiseoffice.rbkModel.FK_PUTIN_OUT_MAT_HANG" FromRole="MON_HANG" ToRole="PUTIN_OUT" />
+        </EntityType>
+        <EntityType Name="NGUOI_BAN">
+          <Key>
+            <PropertyRef Name="KEY_NGUOI_BAN" />
+          </Key>
+          <Property Name="KEY_NHOM_GIOI" Type="Guid" />
+          <Property Name="KEY_NGUOI_BAN" Type="Guid" Nullable="false" />
+          <Property Name="MA_NGUOI_BAN" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_NGUOI_BAN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HOA_DON" Relationship="wiseoffice.rbkModel.FK_HOA_DON_NGUOI_BAN" FromRole="NGUOI_BAN" ToRole="HOA_DON" />
+          <NavigationProperty Name="NHOM_GIOI" Relationship="wiseoffice.rbkModel.FK_NGUOI_BAN_NHOM_GIOI" FromRole="NGUOI_BAN" ToRole="NHOM_GIOI" />
+        </EntityType>
+        <EntityType Name="NHAN_VIEN">
+          <Key>
+            <PropertyRef Name="KEY_NHAN_VIEN" />
+          </Key>
+          <Property Name="KEY_PHONG_BAN" Type="Guid" />
+          <Property Name="KEY_NHAN_VIEN" Type="Guid" Nullable="false" />
+          <Property Name="MA_NHAN_VIEN" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_NHAN_VIEN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GIU_CHUC_VU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HOA_DON" Relationship="wiseoffice.rbkModel.FK_HOA_DON_NHAN_VIEN" FromRole="NHAN_VIEN" ToRole="HOA_DON" />
+          <NavigationProperty Name="PHONG_BAN" Relationship="wiseoffice.rbkModel.FK_NHAN_VIEN_PHONG_BAN" FromRole="NHAN_VIEN" ToRole="PHONG_BAN" />
+        </EntityType>
+        <EntityType Name="NHAP_XUAT">
+          <Key>
+            <PropertyRef Name="KEY_NHAP_XUAT" />
+          </Key>
+          <Property Name="KEY_CHI_NHANH" Type="Guid" />
+          <Property Name="KEY_CHUNG_TU" Type="Guid" />
+          <Property Name="KEY_NGUOI_DUNG" Type="Guid" />
+          <Property Name="KEY_KHACH_HANG" Type="Guid" />
+          <Property Name="KEY_NHAP_XUAT" Type="Guid" Nullable="false" />
+          <Property Name="KY_HIEU_PHIEU" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="SO_NHAP_XUAT" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="SO_HOA_DON" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="HIEU_HOA_DON" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="NGAY_NHAP_XUAT" Type="DateTime" Precision="3" />
+          <Property Name="TEN_KHACH_HANG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DIA_CHI_KHACH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SO_TEL_KHACH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LYDO_NHAP_XUAT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="KHAI_THUE_VAT" Type="Boolean" />
+          <Property Name="HOA_DON_KYGUI" Type="Boolean" />
+          <Property Name="COD_TRANG_THAI" Type="Int16" />
+          <Property Name="GHI_NHAP_XUAT" Type="String" MaxLength="1023" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BANG_VON" Relationship="wiseoffice.rbkModel.FK_BANG_VON_NHAP_XUAT" FromRole="NHAP_XUAT" ToRole="BANG_VON" />
+          <NavigationProperty Name="CHI_NHANH" Relationship="wiseoffice.rbkModel.FK_NHAP_XUAT_CHI_NHANH" FromRole="NHAP_XUAT" ToRole="CHI_NHANH" />
+          <NavigationProperty Name="CHUNG_TU" Relationship="wiseoffice.rbkModel.FK_NHAP_XUAT_CHUNG_TU" FromRole="NHAP_XUAT" ToRole="CHUNG_TU" />
+          <NavigationProperty Name="KHACH_HANG" Relationship="wiseoffice.rbkModel.FK_NHAP_XUAT_KHACH_HANG" FromRole="NHAP_XUAT" ToRole="KHACH_HANG" />
+          <NavigationProperty Name="USER_LOGIN" Relationship="wiseoffice.rbkModel.FK_NHAP_XUAT_NGUOI_DUNG" FromRole="NHAP_XUAT" ToRole="USER_LOGIN" />
+          <NavigationProperty Name="PUTIN_OUT" Relationship="wiseoffice.rbkModel.FK_PUTIN_OUT_NHAP_XUAT" FromRole="NHAP_XUAT" ToRole="PUTIN_OUT" />
+        </EntityType>
+        <EntityType Name="NHOM_GIOI">
+          <Key>
+            <PropertyRef Name="KEY_NHOM_GIOI" />
+          </Key>
+          <Property Name="KEY_NHOM_GIOI" Type="Guid" Nullable="false" />
+          <Property Name="MA_NHOM_GIOI" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_NHOM_GIOI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NGUOI_BAN" Relationship="wiseoffice.rbkModel.FK_NGUOI_BAN_NHOM_GIOI" FromRole="NHOM_GIOI" ToRole="NGUOI_BAN" />
+        </EntityType>
+        <EntityType Name="NHOM_MON">
+          <Key>
+            <PropertyRef Name="KEY_NHOM_MON" />
+          </Key>
+          <Property Name="KEY_LOAI_MON" Type="Guid" />
+          <Property Name="KEY_NHOM_MON" Type="Guid" Nullable="false" />
+          <Property Name="MA_NHOM_MON" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_NHOM_MON" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BAN_NHOM_MON" Type="Boolean" />
+          <NavigationProperty Name="LOAI_MON" Relationship="wiseoffice.rbkModel.FK_NHOM_MON_LOAI_MON" FromRole="NHOM_MON" ToRole="LOAI_MON" />
+          <NavigationProperty Name="MON_HANG" Relationship="wiseoffice.rbkModel.FK_MON_HANG_NHOM_MON" FromRole="NHOM_MON" ToRole="MON_HANG" />
+        </EntityType>
+        <EntityType Name="PHA_NAU">
+          <Key>
+            <PropertyRef Name="LOAI_PHA_NAU" />
+          </Key>
+          <Property Name="LOAI_PHA_NAU" Type="Int16" Nullable="false" />
+          <Property Name="TEN_PHA_NAU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PHONG_BAN">
+          <Key>
+            <PropertyRef Name="KEY_PHONG_BAN" />
+          </Key>
+          <Property Name="KEY_PHONG_BAN" Type="Guid" Nullable="false" />
+          <Property Name="MA_PHONG_BAN" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_PHONG_BAN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NHAN_VIEN" Relationship="wiseoffice.rbkModel.FK_NHAN_VIEN_PHONG_BAN" FromRole="PHONG_BAN" ToRole="NHAN_VIEN" />
+        </EntityType>
+        <EntityType Name="PUTIN_OUT">
+          <Key>
+            <PropertyRef Name="KEY_PUTIN_OUT" />
+          </Key>
+          <Property Name="KEY_NHAP_XUAT" Type="Guid" />
+          <Property Name="KEY_KHO_HANG" Type="Guid" />
+          <Property Name="KEY_KHO_MOVE" Type="Guid" />
+          <Property Name="KEY_MAT_HANG" Type="Guid" />
+          <Property Name="KEY_PUTIN_OUT" Type="Guid" Nullable="false" />
+          <Property Name="COD_ROW_XLIN" Type="Int16" />
+          <Property Name="KEY_CHI_MUC" Type="Guid" />
+          <Property Name="KEY_HANG_FIFO" Type="Guid" />
+          <Property Name="SOLO_SAN_XUAT" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="THOI_HAN_DUNG" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="NGAY_DEN_HAN" Type="DateTime" Precision="3" />
+          <Property Name="SO_LUONG_HANG" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DON_GIA_HANG" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TIEN_VIET_HANG" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SO_CHIET_KHAU" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TIEN_CHIET_KHAU" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TIEN_SAU_KHAU" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="HE_SO_THUE" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GIA_SAU_THUE" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TIEN_VIET_THUE" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TIEN_VIET_NAM" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GHI_DIEN_GIAI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KHO_HANG" Relationship="wiseoffice.rbkModel.FK_PUTIN_OUT_KHO_HANG" FromRole="PUTIN_OUT" ToRole="KHO_HANG" />
+          <NavigationProperty Name="MON_HANG" Relationship="wiseoffice.rbkModel.FK_PUTIN_OUT_MAT_HANG" FromRole="PUTIN_OUT" ToRole="MON_HANG" />
+          <NavigationProperty Name="NHAP_XUAT" Relationship="wiseoffice.rbkModel.FK_PUTIN_OUT_NHAP_XUAT" FromRole="PUTIN_OUT" ToRole="NHAP_XUAT" />
+        </EntityType>
+        <EntityType Name="SODU_HANG">
+          <Key>
+            <PropertyRef Name="KEY_SODU_HANG" />
+          </Key>
+          <Property Name="KEY_SODU_HANG" Type="Guid" Nullable="false" />
+          <Property Name="KEY_KHO_HANG" Type="Guid" />
+          <Property Name="KEY_MAT_HANG" Type="Guid" />
+          <Property Name="KY_KE_TOAN" Type="Int16" />
+          <Property Name="NAM_KE_TOAN" Type="Int16" />
+          <Property Name="DON_GIA_HANG" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SO_LUONG_HANG" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TIEN_VIET_NAM" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="KHO_HANG" Relationship="wiseoffice.rbkModel.FK_SODU_HANG_KHO_HANG" FromRole="SODU_HANG" ToRole="KHO_HANG" />
+        </EntityType>
+        <EntityType Name="SODU_KHACH">
+          <Key>
+            <PropertyRef Name="KEY_SODU_KHACH" />
+          </Key>
+          <Property Name="KEY_SODU_KHACH" Type="Guid" Nullable="false" />
+          <Property Name="KEY_KHACH_HANG" Type="Guid" />
+          <Property Name="KEY_GIAO_DICH" Type="Guid" />
+          <Property Name="KY_KE_TOAN" Type="Int16" />
+          <Property Name="NAM_KE_TOAN" Type="Int16" />
+          <Property Name="TIEN_MUA_BAN" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TIEN_NODA_TRA" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="GIAO_DICH" Relationship="wiseoffice.rbkModel.FK_SODU_KHACH_GIAO_DICH" FromRole="SODU_KHACH" ToRole="GIAO_DICH" />
+          <NavigationProperty Name="KHACH_HANG" Relationship="wiseoffice.rbkModel.FK_SODU_KHACH_KHACH_HANG" FromRole="SODU_KHACH" ToRole="KHACH_HANG" />
+        </EntityType>
+        <EntityType Name="THEM_TIEN">
+          <Key>
+            <PropertyRef Name="KEY_THEM_TIEN" />
+          </Key>
+          <Property Name="KEY_THEM_TIEN" Type="Guid" Nullable="false" />
+          <Property Name="COD_THEM_TIEN" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_THEM_TIEN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HSO_THEM_TIEN" Type="Int16" />
+        </EntityType>
+        <EntityType Name="TRANG_THAI">
+          <Key>
+            <PropertyRef Name="COD_TRANG_THAI" />
+          </Key>
+          <Property Name="COD_TRANG_THAI" Type="Int16" Nullable="false" />
+          <Property Name="TEN_TRANG_THAI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="USER_LOGIN">
+          <Key>
+            <PropertyRef Name="KEY_USER_LOGIN" />
+          </Key>
+          <Property Name="KEY_USER_LOGIN" Type="Guid" Nullable="false" />
+          <Property Name="COD_USER_LOGIN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_USER_LOGIN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PAS_USER_LOGIN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="POS_USER_LOGIN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ACT_USER_LOGIN" Type="Boolean" />
+          <NavigationProperty Name="HOA_DON" Relationship="wiseoffice.rbkModel.FK_HOA_DON_USER_LOGIN" FromRole="USER_LOGIN" ToRole="HOA_DON" />
+          <NavigationProperty Name="NHAP_XUAT" Relationship="wiseoffice.rbkModel.FK_NHAP_XUAT_NGUOI_DUNG" FromRole="USER_LOGIN" ToRole="NHAP_XUAT" />
+        </EntityType>
+        <EntityType Name="USER_ZONES">
+          <Key>
+            <PropertyRef Name="KEY_USER_LOGIN" />
+            <PropertyRef Name="MA_KHU_VUC" />
+          </Key>
+          <Property Name="KEY_USER_LOGIN" Type="Guid" Nullable="false" />
+          <Property Name="MA_KHU_VUC" Type="String" Nullable="false" MaxLength="31" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CAU_HINH">
+          <Key>
+            <PropertyRef Name="COD_CAU_HINH" />
+          </Key>
+          <Property Name="COD_CAU_HINH" Type="Int16" Nullable="false" />
+          <Property Name="TEN_TIEUDE_MOT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_TIEUDE_HAI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_TIEUDE_TAM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_TIEUDE_BON" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_PATH_LOGOS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_CHIEF_TOAN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_CHIEF_TONG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CODE_REG_USED" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="VIEW_BAR_CODE" Type="Boolean" />
+          <Property Name="TYPE_BAR_CODE" Type="Int16" />
+          <Property Name="CODE_BAR_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="KY_KE_TOAN" Type="Int16" />
+          <Property Name="NAM_KE_TOAN" Type="Int16" />
+          <Property Name="KY_HIEN_TAI" Type="Int16" />
+          <Property Name="NAM_HIEN_TAI" Type="Int16" />
+          <Property Name="KY_BAO_CAO" Type="Int16" />
+          <Property Name="DON_GIA_KHO" Type="Int16" />
+          <Property Name="LAN_SUA_BILL" Type="Int16" />
+          <Property Name="KEY_CHI_NHANH" Type="Guid" />
+          <Property Name="PRINT_PHA_CHE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PRINT_NHA_BEP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PRINT_MAY_BIL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DIEM_QUI_UOC" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DIEM_QUI_DOI" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="CHUC_NANG">
+          <Key>
+            <PropertyRef Name="COD_CHUC_NANG" />
+          </Key>
+          <Property Name="COD_CHUC_NANG" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_CHUC_NANG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CHA_CHUC_NANG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NGHIEP_VU">
+          <Key>
+            <PropertyRef Name="MA_NGHIEP_VU" />
+          </Key>
+          <Property Name="IDX_NGHIEP_VU" Type="Int16" />
+          <Property Name="MA_NGHIEP_VU" Type="String" Nullable="false" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_NGHIEP_VU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MA_LOAI_VIEW" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="MA_LOAI_XULY" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="MA_LOAI_SORT" Type="Int16" />
+        </EntityType>
+        <EntityType Name="PHAN_NHIEM">
+          <Key>
+            <PropertyRef Name="KEY_PHAN_NHIEM" />
+          </Key>
+          <Property Name="KEY_PHAN_NHIEM" Type="Guid" Nullable="false" />
+          <Property Name="COD_PHAN_NHIEM" Type="String" MaxLength="31" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_PHAN_NHIEM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_BAN_MAM_KHU_VUC">
+          <End Type="wiseoffice.rbkModel.KHU_VUC" Role="KHU_VUC" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.BAN_MAM" Role="BAN_MAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHU_VUC">
+              <PropertyRef Name="MA_KHU_VUC" />
+            </Principal>
+            <Dependent Role="BAN_MAM">
+              <PropertyRef Name="MA_KHU_VUC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_BAN_MAM">
+          <End Type="wiseoffice.rbkModel.BAN_MAM" Role="BAN_MAM" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.HOA_DON" Role="HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BAN_MAM">
+              <PropertyRef Name="KEY_BAN_MAM" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="KEY_BAN_MAM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BANG_VON_GIAO_DICH">
+          <End Type="wiseoffice.rbkModel.GIAO_DICH" Role="GIAO_DICH" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.BANG_VON" Role="BANG_VON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIAO_DICH">
+              <PropertyRef Name="KEY_GIAO_DICH" />
+            </Principal>
+            <Dependent Role="BANG_VON">
+              <PropertyRef Name="KEY_GIAO_DICH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BANG_VON_GIAO_DICH1">
+          <End Type="wiseoffice.rbkModel.GIAO_DICH" Role="GIAO_DICH" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.BANG_VON" Role="BANG_VON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIAO_DICH">
+              <PropertyRef Name="KEY_GIAO_DICH" />
+            </Principal>
+            <Dependent Role="BANG_VON">
+              <PropertyRef Name="KEY_THANH_TOAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BANG_VON_KHOAN_MUC">
+          <End Type="wiseoffice.rbkModel.KHOAN_MUC" Role="KHOAN_MUC" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.BANG_VON" Role="BANG_VON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHOAN_MUC">
+              <PropertyRef Name="KEY_KHOAN_MUC" />
+            </Principal>
+            <Dependent Role="BANG_VON">
+              <PropertyRef Name="KEY_KHOAN_MUC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BANG_VON_NHAP_XUAT">
+          <End Type="wiseoffice.rbkModel.NHAP_XUAT" Role="NHAP_XUAT" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="wiseoffice.rbkModel.BANG_VON" Role="BANG_VON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHAP_XUAT">
+              <PropertyRef Name="KEY_NHAP_XUAT" />
+            </Principal>
+            <Dependent Role="BANG_VON">
+              <PropertyRef Name="KEY_NHAP_XUAT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDCHI_TIET_HOA_DON">
+          <End Type="wiseoffice.rbkModel.HOA_DON" Role="HOA_DON" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="wiseoffice.rbkModel.BILL_MEAL" Role="BILL_MEAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOA_DON">
+              <PropertyRef Name="KEY_HOA_DON" />
+            </Principal>
+            <Dependent Role="BILL_MEAL">
+              <PropertyRef Name="KEY_HOA_DON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDCHI_TIET_MON_HANG">
+          <End Type="wiseoffice.rbkModel.MON_HANG" Role="MON_HANG" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.BILL_MEAL" Role="BILL_MEAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MON_HANG">
+              <PropertyRef Name="KEY_MON_HANG" />
+            </Principal>
+            <Dependent Role="BILL_MEAL">
+              <PropertyRef Name="KEY_MON_HANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHAP_XUAT_CHI_NHANH">
+          <End Type="wiseoffice.rbkModel.CHI_NHANH" Role="CHI_NHANH" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.NHAP_XUAT" Role="NHAP_XUAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHI_NHANH">
+              <PropertyRef Name="KEY_CHI_NHANH" />
+            </Principal>
+            <Dependent Role="NHAP_XUAT">
+              <PropertyRef Name="KEY_CHI_NHANH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHAP_XUAT_CHUNG_TU">
+          <End Type="wiseoffice.rbkModel.CHUNG_TU" Role="CHUNG_TU" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.NHAP_XUAT" Role="NHAP_XUAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUNG_TU">
+              <PropertyRef Name="KEY_CHUNG_TU" />
+            </Principal>
+            <Dependent Role="NHAP_XUAT">
+              <PropertyRef Name="KEY_CHUNG_TU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_CLIENT_CARDS">
+          <End Type="wiseoffice.rbkModel.CLIENT_CARDS" Role="CLIENT_CARDS" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.HOA_DON" Role="HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT_CARDS">
+              <PropertyRef Name="KEY_CLIENT_CARDS" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="KEY_CLIENT_CARDS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MON_COMBO_COMBO_SET">
+          <End Type="wiseoffice.rbkModel.COMB_SET" Role="COMB_SET" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="wiseoffice.rbkModel.COMB_MON" Role="COMB_MON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMB_SET">
+              <PropertyRef Name="KEY_COMB_SET" />
+            </Principal>
+            <Dependent Role="COMB_MON">
+              <PropertyRef Name="KEY_COMB_SET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_COMB_SET">
+          <End Type="wiseoffice.rbkModel.COMB_SET" Role="COMB_SET" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.HOA_DON" Role="HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMB_SET">
+              <PropertyRef Name="KEY_COMB_SET" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="KEY_COMB_SET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GIAO_DICH_LOAI_DICH">
+          <End Type="wiseoffice.rbkModel.LOAI_DICH" Role="LOAI_DICH" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.GIAO_DICH" Role="GIAO_DICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAI_DICH">
+              <PropertyRef Name="COD_LOAI_DICH" />
+            </Principal>
+            <Dependent Role="GIAO_DICH">
+              <PropertyRef Name="COD_LOAI_DICH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SODU_KHACH_GIAO_DICH">
+          <End Type="wiseoffice.rbkModel.GIAO_DICH" Role="GIAO_DICH" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="wiseoffice.rbkModel.SODU_KHACH" Role="SODU_KHACH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GIAO_DICH">
+              <PropertyRef Name="KEY_GIAO_DICH" />
+            </Principal>
+            <Dependent Role="SODU_KHACH">
+              <PropertyRef Name="KEY_GIAO_DICH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_NGUOI_BAN">
+          <End Type="wiseoffice.rbkModel.NGUOI_BAN" Role="NGUOI_BAN" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.HOA_DON" Role="HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGUOI_BAN">
+              <PropertyRef Name="KEY_NGUOI_BAN" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="KEY_NGUOI_BAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_NHAN_VIEN">
+          <End Type="wiseoffice.rbkModel.NHAN_VIEN" Role="NHAN_VIEN" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.HOA_DON" Role="HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHAN_VIEN">
+              <PropertyRef Name="KEY_NHAN_VIEN" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="KEY_NHAN_VIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_USER_LOGIN">
+          <End Type="wiseoffice.rbkModel.USER_LOGIN" Role="USER_LOGIN" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.HOA_DON" Role="HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_LOGIN">
+              <PropertyRef Name="KEY_USER_LOGIN" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="KEY_USER_LOGIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHAP_XUAT_KHACH_HANG">
+          <End Type="wiseoffice.rbkModel.KHACH_HANG" Role="KHACH_HANG" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.NHAP_XUAT" Role="NHAP_XUAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACH_HANG">
+              <PropertyRef Name="KEY_KHACH_HANG" />
+            </Principal>
+            <Dependent Role="NHAP_XUAT">
+              <PropertyRef Name="KEY_KHACH_HANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SODU_KHACH_KHACH_HANG">
+          <End Type="wiseoffice.rbkModel.KHACH_HANG" Role="KHACH_HANG" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="wiseoffice.rbkModel.SODU_KHACH" Role="SODU_KHACH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACH_HANG">
+              <PropertyRef Name="KEY_KHACH_HANG" />
+            </Principal>
+            <Dependent Role="SODU_KHACH">
+              <PropertyRef Name="KEY_KHACH_HANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KHO_HANG_LOAI_KHO">
+          <End Type="wiseoffice.rbkModel.LOAI_KHO" Role="LOAI_KHO" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.KHO_HANG" Role="KHO_HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAI_KHO">
+              <PropertyRef Name="MA_LOAI_KHO" />
+            </Principal>
+            <Dependent Role="KHO_HANG">
+              <PropertyRef Name="MA_LOAI_KHO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PUTIN_OUT_KHO_HANG">
+          <End Type="wiseoffice.rbkModel.KHO_HANG" Role="KHO_HANG" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.PUTIN_OUT" Role="PUTIN_OUT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHO_HANG">
+              <PropertyRef Name="KEY_KHO_HANG" />
+            </Principal>
+            <Dependent Role="PUTIN_OUT">
+              <PropertyRef Name="KEY_KHO_HANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SODU_HANG_KHO_HANG">
+          <End Type="wiseoffice.rbkModel.KHO_HANG" Role="KHO_HANG" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="wiseoffice.rbkModel.SODU_HANG" Role="SODU_HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHO_HANG">
+              <PropertyRef Name="KEY_KHO_HANG" />
+            </Principal>
+            <Dependent Role="SODU_HANG">
+              <PropertyRef Name="KEY_KHO_HANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHOM_MON_LOAI_MON">
+          <End Type="wiseoffice.rbkModel.LOAI_MON" Role="LOAI_MON" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.NHOM_MON" Role="NHOM_MON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAI_MON">
+              <PropertyRef Name="KEY_LOAI_MON" />
+            </Principal>
+            <Dependent Role="NHOM_MON">
+              <PropertyRef Name="KEY_LOAI_MON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MON_HANG_NHOM_MON">
+          <End Type="wiseoffice.rbkModel.NHOM_MON" Role="NHOM_MON" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.MON_HANG" Role="MON_HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHOM_MON">
+              <PropertyRef Name="KEY_NHOM_MON" />
+            </Principal>
+            <Dependent Role="MON_HANG">
+              <PropertyRef Name="KEY_NHOM_MON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PUTIN_OUT_MAT_HANG">
+          <End Type="wiseoffice.rbkModel.MON_HANG" Role="MON_HANG" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.PUTIN_OUT" Role="PUTIN_OUT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MON_HANG">
+              <PropertyRef Name="KEY_MON_HANG" />
+            </Principal>
+            <Dependent Role="PUTIN_OUT">
+              <PropertyRef Name="KEY_MAT_HANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NGUOI_BAN_NHOM_GIOI">
+          <End Type="wiseoffice.rbkModel.NHOM_GIOI" Role="NHOM_GIOI" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="wiseoffice.rbkModel.NGUOI_BAN" Role="NGUOI_BAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHOM_GIOI">
+              <PropertyRef Name="KEY_NHOM_GIOI" />
+            </Principal>
+            <Dependent Role="NGUOI_BAN">
+              <PropertyRef Name="KEY_NHOM_GIOI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHAN_VIEN_PHONG_BAN">
+          <End Type="wiseoffice.rbkModel.PHONG_BAN" Role="PHONG_BAN" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.NHAN_VIEN" Role="NHAN_VIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG_BAN">
+              <PropertyRef Name="KEY_PHONG_BAN" />
+            </Principal>
+            <Dependent Role="NHAN_VIEN">
+              <PropertyRef Name="KEY_PHONG_BAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHAP_XUAT_NGUOI_DUNG">
+          <End Type="wiseoffice.rbkModel.USER_LOGIN" Role="USER_LOGIN" Multiplicity="0..1" />
+          <End Type="wiseoffice.rbkModel.NHAP_XUAT" Role="NHAP_XUAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_LOGIN">
+              <PropertyRef Name="KEY_USER_LOGIN" />
+            </Principal>
+            <Dependent Role="NHAP_XUAT">
+              <PropertyRef Name="KEY_NGUOI_DUNG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PUTIN_OUT_NHAP_XUAT">
+          <End Type="wiseoffice.rbkModel.NHAP_XUAT" Role="NHAP_XUAT" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="wiseoffice.rbkModel.PUTIN_OUT" Role="PUTIN_OUT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHAP_XUAT">
+              <PropertyRef Name="KEY_NHAP_XUAT" />
+            </Principal>
+            <Dependent Role="PUTIN_OUT">
+              <PropertyRef Name="KEY_NHAP_XUAT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BILL_TACH">
+          <Key>
+            <PropertyRef Name="KEY_BILL_TACH" />
+          </Key>
+          <Property Name="KEY_HOA_DON" Type="Guid" />
+          <Property Name="KEY_BILL_TACH" Type="Guid" Nullable="false" />
+          <Property Name="COD_BILL_TACH" Type="Int16" />
+          <Property Name="USE_BILL_TACH" Type="Boolean" />
+          <NavigationProperty Name="HOA_DON" Relationship="wiseoffice.rbkModel.FK_BILL_TACH_HOA_DON" FromRole="BILL_TACH" ToRole="HOA_DON" />
+        </EntityType>
+        <Association Name="FK_BILL_TACH_HOA_DON">
+          <End Type="wiseoffice.rbkModel.HOA_DON" Role="HOA_DON" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="wiseoffice.rbkModel.BILL_TACH" Role="BILL_TACH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOA_DON">
+              <PropertyRef Name="KEY_HOA_DON" />
+            </Principal>
+            <Dependent Role="BILL_TACH">
+              <PropertyRef Name="KEY_HOA_DON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="wiseofficerbkModelStoreContainer" CdmEntityContainer="EntitiesConnection">
+          <EntitySetMapping Name="BAN_MAM">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.BAN_MAM">
+              <MappingFragment StoreEntitySet="BAN_MAM">
+                <ScalarProperty Name="GIO_BAN_MAM" ColumnName="GIO_BAN_MAM" />
+                <ScalarProperty Name="GIU_BAN_MAM" ColumnName="GIU_BAN_MAM" />
+                <ScalarProperty Name="KEY_HOA_DON" ColumnName="KEY_HOA_DON" />
+                <ScalarProperty Name="DA_CO_KHACH" ColumnName="DA_CO_KHACH" />
+                <ScalarProperty Name="MA_KHU_VUC" ColumnName="MA_KHU_VUC" />
+                <ScalarProperty Name="TEN_BAN_MAM" ColumnName="TEN_BAN_MAM" />
+                <ScalarProperty Name="MA_BAN_MAM" ColumnName="MA_BAN_MAM" />
+                <ScalarProperty Name="KEY_BAN_MAM" ColumnName="KEY_BAN_MAM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BANG_VON">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.BANG_VON">
+              <MappingFragment StoreEntitySet="BANG_VON">
+                <ScalarProperty Name="GHI_DIEN_GIAI" ColumnName="GHI_DIEN_GIAI" />
+                <ScalarProperty Name="TIEN_VIET_NAM" ColumnName="TIEN_VIET_NAM" />
+                <ScalarProperty Name="KEY_KHOAN_MUC" ColumnName="KEY_KHOAN_MUC" />
+                <ScalarProperty Name="KEY_THANH_TOAN" ColumnName="KEY_THANH_TOAN" />
+                <ScalarProperty Name="KEY_GIAO_DICH" ColumnName="KEY_GIAO_DICH" />
+                <ScalarProperty Name="KEY_KHACH_HANG" ColumnName="KEY_KHACH_HANG" />
+                <ScalarProperty Name="KEY_BANG_VON" ColumnName="KEY_BANG_VON" />
+                <ScalarProperty Name="KEY_NHAP_XUAT" ColumnName="KEY_NHAP_XUAT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BILL_MEAL">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.BILL_MEAL">
+              <MappingFragment StoreEntitySet="BILL_MEAL">
+                <ScalarProperty Name="NOT_COOK_MIX" ColumnName="NOT_COOK_MIX" />
+                <ScalarProperty Name="COOK_VA_MIXE" ColumnName="COOK_VA_MIXE" />
+                <ScalarProperty Name="THEM_BO_SUNG" ColumnName="THEM_BO_SUNG" />
+                <ScalarProperty Name="TIEN_PHAI_TRA" ColumnName="TIEN_PHAI_TRA" />
+                <ScalarProperty Name="TIEN_GIAM_GIA" ColumnName="TIEN_GIAM_GIA" />
+                <ScalarProperty Name="TIEN_VIET_MON" ColumnName="TIEN_VIET_MON" />
+                <ScalarProperty Name="DON_GIA_MON" ColumnName="DON_GIA_MON" />
+                <ScalarProperty Name="SO_LUONG_MON" ColumnName="SO_LUONG_MON" />
+                <ScalarProperty Name="KEY_MON_HANG" ColumnName="KEY_MON_HANG" />
+                <ScalarProperty Name="KEY_BILL_MEAL" ColumnName="KEY_BILL_MEAL" />
+                <ScalarProperty Name="KEY_HOA_DON" ColumnName="KEY_HOA_DON" />
+                <ScalarProperty Name="INDEX_SAP_XEP" ColumnName="INDEX_SAP_XEP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHI_NHANH">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.CHI_NHANH">
+              <MappingFragment StoreEntitySet="CHI_NHANH">
+                <ScalarProperty Name="CON_HOAT_DONG" ColumnName="CON_HOAT_DONG" />
+                <ScalarProperty Name="BAO_CAO_TONG" ColumnName="BAO_CAO_TONG" />
+                <ScalarProperty Name="SO_DIEN_THOAI" ColumnName="SO_DIEN_THOAI" />
+                <ScalarProperty Name="DIA_CHI_NHANH" ColumnName="DIA_CHI_NHANH" />
+                <ScalarProperty Name="TEN_CHI_NHANH" ColumnName="TEN_CHI_NHANH" />
+                <ScalarProperty Name="MA_CHI_NHANH" ColumnName="MA_CHI_NHANH" />
+                <ScalarProperty Name="KEY_CHI_NHANH" ColumnName="KEY_CHI_NHANH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHUNG_TU">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.CHUNG_TU">
+              <MappingFragment StoreEntitySet="CHUNG_TU">
+                <ScalarProperty Name="NUM_CHUNG_TU" ColumnName="NUM_CHUNG_TU" />
+                <ScalarProperty Name="TEN_CHUNG_TU" ColumnName="TEN_CHUNG_TU" />
+                <ScalarProperty Name="MA_CHUNG_TU" ColumnName="MA_CHUNG_TU" />
+                <ScalarProperty Name="KEY_CHUNG_TU" ColumnName="KEY_CHUNG_TU" />
+                <ScalarProperty Name="MA_NGHIEP_VU" ColumnName="MA_NGHIEP_VU" />
+                <ScalarProperty Name="IDX_CHUNG_TU" ColumnName="IDX_CHUNG_TU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENT_CARDS">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.CLIENT_CARDS">
+              <MappingFragment StoreEntitySet="CLIENT_CARDS">
+                <ScalarProperty Name="STA_CLIENT_CARDS" ColumnName="STA_CLIENT_CARDS" />
+                <ScalarProperty Name="MAR_CLIENT_CARDS" ColumnName="MAR_CLIENT_CARDS" />
+                <ScalarProperty Name="TAX_CLIENT_CARDS" ColumnName="TAX_CLIENT_CARDS" />
+                <ScalarProperty Name="TEL_CLIENT_CARDS" ColumnName="TEL_CLIENT_CARDS" />
+                <ScalarProperty Name="ADD_CLIENT_CARDS" ColumnName="ADD_CLIENT_CARDS" />
+                <ScalarProperty Name="TEN_CLIENT_CARDS" ColumnName="TEN_CLIENT_CARDS" />
+                <ScalarProperty Name="COD_CLIENT_CARDS" ColumnName="COD_CLIENT_CARDS" />
+                <ScalarProperty Name="KEY_CLIENT_CARDS" ColumnName="KEY_CLIENT_CARDS" />
+                <ScalarProperty Name="KEY_LOAI_CARDS" ColumnName="KEY_LOAI_CARDS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMB_MON">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.COMB_MON">
+              <MappingFragment StoreEntitySet="COMB_MON">
+                <ScalarProperty Name="SO_LUONG_MON" ColumnName="SO_LUONG_MON" />
+                <ScalarProperty Name="KEY_MON_HANG" ColumnName="KEY_MON_HANG" />
+                <ScalarProperty Name="KEY_COMB_MON" ColumnName="KEY_COMB_MON" />
+                <ScalarProperty Name="KEY_COMB_SET" ColumnName="KEY_COMB_SET" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMB_SET">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.COMB_SET">
+              <MappingFragment StoreEntitySet="COMB_SET">
+                <ScalarProperty Name="ACT_COMB_SET" ColumnName="ACT_COMB_SET" />
+                <ScalarProperty Name="TYP_COMB_SET" ColumnName="TYP_COMB_SET" />
+                <ScalarProperty Name="GIA_COMB_SET" ColumnName="GIA_COMB_SET" />
+                <ScalarProperty Name="TEN_COMB_SET" ColumnName="TEN_COMB_SET" />
+                <ScalarProperty Name="KEY_COMB_SET" ColumnName="KEY_COMB_SET" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DINH_MUC">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.DINH_MUC">
+              <MappingFragment StoreEntitySet="DINH_MUC">
+                <ScalarProperty Name="SO_LUONG_MUC" ColumnName="SO_LUONG_MUC" />
+                <ScalarProperty Name="KEY_MAT_HANG" ColumnName="KEY_MAT_HANG" />
+                <ScalarProperty Name="KEY_MON_HANG" ColumnName="KEY_MON_HANG" />
+                <ScalarProperty Name="KEY_DINH_MUC" ColumnName="KEY_DINH_MUC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GIAO_DICH">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.GIAO_DICH">
+              <MappingFragment StoreEntitySet="GIAO_DICH">
+                <ScalarProperty Name="FLAG_DONG_BO" ColumnName="FLAG_DONG_BO" />
+                <ScalarProperty Name="VERS_DONG_BO" ColumnName="VERS_DONG_BO" />
+                <ScalarProperty Name="DATE_DONG_BO" ColumnName="DATE_DONG_BO" />
+                <ScalarProperty Name="LOAI_CONG_NO" ColumnName="LOAI_CONG_NO" />
+                <ScalarProperty Name="COD_LOAI_DICH" ColumnName="COD_LOAI_DICH" />
+                <ScalarProperty Name="TEN_GIAO_DICH" ColumnName="TEN_GIAO_DICH" />
+                <ScalarProperty Name="COD_GIAO_DICH" ColumnName="COD_GIAO_DICH" />
+                <ScalarProperty Name="KEY_GIAO_DICH" ColumnName="KEY_GIAO_DICH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOA_DON">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.HOA_DON">
+              <MappingFragment StoreEntitySet="HOA_DON">
+                <ScalarProperty Name="TIEN_TICH_LUY" ColumnName="TIEN_TICH_LUY" />
+                <ScalarProperty Name="TIEN_TRU_DIEM" ColumnName="TIEN_TRU_DIEM" />
+                <ScalarProperty Name="DIEM_QUI_DOI" ColumnName="DIEM_QUI_DOI" />
+                <ScalarProperty Name="DIEM_QUI_UOC" ColumnName="DIEM_QUI_UOC" />
+                <ScalarProperty Name="TONG_TANG_GIA" ColumnName="TONG_TANG_GIA" />
+                <ScalarProperty Name="KEY_THEM_TIEN" ColumnName="KEY_THEM_TIEN" />
+                <ScalarProperty Name="GIA_COMB_SET" ColumnName="GIA_COMB_SET" />
+                <ScalarProperty Name="KEY_COMB_SET" ColumnName="KEY_COMB_SET" />
+                <ScalarProperty Name="TONG_TIEN_BO" ColumnName="TONG_TIEN_BO" />
+                <ScalarProperty Name="TONG_GIO_USE" ColumnName="TONG_GIO_USE" />
+                <ScalarProperty Name="NGAY_GIO_OUT" ColumnName="NGAY_GIO_OUT" />
+                <ScalarProperty Name="NGAY_GIO_VAO" ColumnName="NGAY_GIO_VAO" />
+                <ScalarProperty Name="LAN_IN_PHIEU" ColumnName="LAN_IN_PHIEU" />
+                <ScalarProperty Name="DA_CHE_BIEN" ColumnName="DA_CHE_BIEN" />
+                <ScalarProperty Name="DA_THU_TIEN" ColumnName="DA_THU_TIEN" />
+                <ScalarProperty Name="GHI_GHI_CHU" ColumnName="GHI_GHI_CHU" />
+                <ScalarProperty Name="TONG_PHAI_TRA" ColumnName="TONG_PHAI_TRA" />
+                <ScalarProperty Name="TONG_KHUYEN_MAI" ColumnName="TONG_KHUYEN_MAI" />
+                <ScalarProperty Name="TIEN_THOI_LAI" ColumnName="TIEN_THOI_LAI" />
+                <ScalarProperty Name="TIEN_THU_VAO" ColumnName="TIEN_THU_VAO" />
+                <ScalarProperty Name="NGAY_GIO_BAN" ColumnName="NGAY_GIO_BAN" />
+                <ScalarProperty Name="NGAY_HOA_DON" ColumnName="NGAY_HOA_DON" />
+                <ScalarProperty Name="MA_HOA_DON" ColumnName="MA_HOA_DON" />
+                <ScalarProperty Name="KEY_HOA_DON" ColumnName="KEY_HOA_DON" />
+                <ScalarProperty Name="VAL_LOAI_COUPON" ColumnName="VAL_LOAI_COUPON" />
+                <ScalarProperty Name="KEY_LOAI_COUPON" ColumnName="KEY_LOAI_COUPON" />
+                <ScalarProperty Name="HSO_CLIENT_CARDS" ColumnName="HSO_CLIENT_CARDS" />
+                <ScalarProperty Name="KEY_CLIENT_CARDS" ColumnName="KEY_CLIENT_CARDS" />
+                <ScalarProperty Name="KEY_USER_LOGIN" ColumnName="KEY_USER_LOGIN" />
+                <ScalarProperty Name="KEY_NGUOI_BAN" ColumnName="KEY_NGUOI_BAN" />
+                <ScalarProperty Name="KEY_NHAN_VIEN" ColumnName="KEY_NHAN_VIEN" />
+                <ScalarProperty Name="KEY_BAN_MAM" ColumnName="KEY_BAN_MAM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHACH_HANG">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.KHACH_HANG">
+              <MappingFragment StoreEntitySet="KHACH_HANG">
+                <ScalarProperty Name="CO_GIAO_DICH" ColumnName="CO_GIAO_DICH" />
+                <ScalarProperty Name="HAN_MUC_NO" ColumnName="HAN_MUC_NO" />
+                <ScalarProperty Name="MA_SO_THUE" ColumnName="MA_SO_THUE" />
+                <ScalarProperty Name="SO_DIEN_THOAI" ColumnName="SO_DIEN_THOAI" />
+                <ScalarProperty Name="DIA_CHI_KHACH" ColumnName="DIA_CHI_KHACH" />
+                <ScalarProperty Name="TEN_KHACH_HANG" ColumnName="TEN_KHACH_HANG" />
+                <ScalarProperty Name="MA_KHACH_HANG" ColumnName="MA_KHACH_HANG" />
+                <ScalarProperty Name="KEY_KHACH_HANG" ColumnName="KEY_KHACH_HANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHO_HANG">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.KHO_HANG">
+              <MappingFragment StoreEntitySet="KHO_HANG">
+                <ScalarProperty Name="MA_LOAI_KHO" ColumnName="MA_LOAI_KHO" />
+                <ScalarProperty Name="TEN_THU_KHO" ColumnName="TEN_THU_KHO" />
+                <ScalarProperty Name="SUC_CHUA_KHO" ColumnName="SUC_CHUA_KHO" />
+                <ScalarProperty Name="DIA_CHI_KHO" ColumnName="DIA_CHI_KHO" />
+                <ScalarProperty Name="TEN_KHO_HANG" ColumnName="TEN_KHO_HANG" />
+                <ScalarProperty Name="MA_KHO_HANG" ColumnName="MA_KHO_HANG" />
+                <ScalarProperty Name="KEY_KHO_HANG" ColumnName="KEY_KHO_HANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHOAN_MUC">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.KHOAN_MUC">
+              <MappingFragment StoreEntitySet="KHOAN_MUC">
+                <ScalarProperty Name="TEN_KHOAN_MUC" ColumnName="TEN_KHOAN_MUC" />
+                <ScalarProperty Name="COD_KHOAN_MUC" ColumnName="COD_KHOAN_MUC" />
+                <ScalarProperty Name="KEY_KHOAN_MUC" ColumnName="KEY_KHOAN_MUC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHU_VUC">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.KHU_VUC">
+              <MappingFragment StoreEntitySet="KHU_VUC">
+                <ScalarProperty Name="TT_HIEN_THI" ColumnName="TT_HIEN_THI" />
+                <ScalarProperty Name="TEN_KHU_VUC" ColumnName="TEN_KHU_VUC" />
+                <ScalarProperty Name="MA_LOAI_GIA" ColumnName="MA_LOAI_GIA" />
+                <ScalarProperty Name="MA_KHU_VUC" ColumnName="MA_KHU_VUC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LAM_LENH">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.LAM_LENH">
+              <MappingFragment StoreEntitySet="LAM_LENH">
+                <ScalarProperty Name="KEY_BILL_XUAT" ColumnName="KEY_BILL_XUAT" />
+                <ScalarProperty Name="KEY_BILL_NHAP" ColumnName="KEY_BILL_NHAP" />
+                <ScalarProperty Name="XAC_NHAN_OUT" ColumnName="XAC_NHAN_OUT" />
+                <ScalarProperty Name="COD_LAM_LENH" ColumnName="COD_LAM_LENH" />
+                <ScalarProperty Name="NGAY_LAM_LENH" ColumnName="NGAY_LAM_LENH" />
+                <ScalarProperty Name="KEY_LAM_LENH" ColumnName="KEY_LAM_LENH" />
+                <ScalarProperty Name="KEY_CHI_NHANH" ColumnName="KEY_CHI_NHANH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAI_CARDS">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.LOAI_CARDS">
+              <MappingFragment StoreEntitySet="LOAI_CARDS">
+                <ScalarProperty Name="MAR_LOAI_CARDS" ColumnName="MAR_LOAI_CARDS" />
+                <ScalarProperty Name="HSO_LOAI_CARDS" ColumnName="HSO_LOAI_CARDS" />
+                <ScalarProperty Name="TEN_LOAI_CARDS" ColumnName="TEN_LOAI_CARDS" />
+                <ScalarProperty Name="KEY_LOAI_CARDS" ColumnName="KEY_LOAI_CARDS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAI_COUPON">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.LOAI_COUPON">
+              <MappingFragment StoreEntitySet="LOAI_COUPON">
+                <ScalarProperty Name="REM_LOAI_COUPON" ColumnName="REM_LOAI_COUPON" />
+                <ScalarProperty Name="USE_LOAI_COUPON" ColumnName="USE_LOAI_COUPON" />
+                <ScalarProperty Name="QTY_LOAI_COUPON" ColumnName="QTY_LOAI_COUPON" />
+                <ScalarProperty Name="VAL_LOAI_COUPON" ColumnName="VAL_LOAI_COUPON" />
+                <ScalarProperty Name="KIN_LOAI_COUPON" ColumnName="KIN_LOAI_COUPON" />
+                <ScalarProperty Name="END_LOAI_COUPON" ColumnName="END_LOAI_COUPON" />
+                <ScalarProperty Name="BEG_LOAI_COUPON" ColumnName="BEG_LOAI_COUPON" />
+                <ScalarProperty Name="TEN_LOAI_COUPON" ColumnName="TEN_LOAI_COUPON" />
+                <ScalarProperty Name="COD_LOAI_COUPON" ColumnName="COD_LOAI_COUPON" />
+                <ScalarProperty Name="KEY_LOAI_COUPON" ColumnName="KEY_LOAI_COUPON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAI_DICH">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.LOAI_DICH">
+              <MappingFragment StoreEntitySet="LOAI_DICH">
+                <ScalarProperty Name="TEN_LOAI_DICH" ColumnName="TEN_LOAI_DICH" />
+                <ScalarProperty Name="COD_LOAI_DICH" ColumnName="COD_LOAI_DICH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAI_KHO">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.LOAI_KHO">
+              <MappingFragment StoreEntitySet="LOAI_KHO">
+                <ScalarProperty Name="TEN_LOAI_KHO" ColumnName="TEN_LOAI_KHO" />
+                <ScalarProperty Name="MA_LOAI_KHO" ColumnName="MA_LOAI_KHO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAI_MON">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.LOAI_MON">
+              <MappingFragment StoreEntitySet="LOAI_MON">
+                <ScalarProperty Name="IS_NEW" ColumnName="IS_NEW" />
+                <ScalarProperty Name="NGAY_DONG_BO" ColumnName="NGAY_DONG_BO" />
+                <ScalarProperty Name="TEN_LOAI_MON" ColumnName="TEN_LOAI_MON" />
+                <ScalarProperty Name="MA_LOAI_MON" ColumnName="MA_LOAI_MON" />
+                <ScalarProperty Name="KEY_LOAI_MON" ColumnName="KEY_LOAI_MON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MON_HANG">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.MON_HANG">
+              <MappingFragment StoreEntitySet="MON_HANG">
+                <ScalarProperty Name="KEY_KHO_HANG" ColumnName="KEY_KHO_HANG" />
+                <ScalarProperty Name="CO_SU_DUNG" ColumnName="CO_SU_DUNG" />
+                <ScalarProperty Name="TYP_MON_HANG" ColumnName="TYP_MON_HANG" />
+                <ScalarProperty Name="DON_GIA_NHAP" ColumnName="DON_GIA_NHAP" />
+                <ScalarProperty Name="MON_MAC_DINH" ColumnName="MON_MAC_DINH" />
+                <ScalarProperty Name="MUC_GIAM_KHAU" ColumnName="MUC_GIAM_KHAU" />
+                <ScalarProperty Name="DON_GIA_MUC3" ColumnName="DON_GIA_MUC3" />
+                <ScalarProperty Name="DON_GIA_MUC2" ColumnName="DON_GIA_MUC2" />
+                <ScalarProperty Name="DON_GIA_MUC1" ColumnName="DON_GIA_MUC1" />
+                <ScalarProperty Name="LOAI_PHA_NAU" ColumnName="LOAI_PHA_NAU" />
+                <ScalarProperty Name="DON_VI_TINH" ColumnName="DON_VI_TINH" />
+                <ScalarProperty Name="TEN_MON_HANG" ColumnName="TEN_MON_HANG" />
+                <ScalarProperty Name="MA_MON_HANG" ColumnName="MA_MON_HANG" />
+                <ScalarProperty Name="KEY_MON_HANG" ColumnName="KEY_MON_HANG" />
+                <ScalarProperty Name="KEY_NHOM_MON" ColumnName="KEY_NHOM_MON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NGUOI_BAN">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.NGUOI_BAN">
+              <MappingFragment StoreEntitySet="NGUOI_BAN">
+                <ScalarProperty Name="TEN_NGUOI_BAN" ColumnName="TEN_NGUOI_BAN" />
+                <ScalarProperty Name="MA_NGUOI_BAN" ColumnName="MA_NGUOI_BAN" />
+                <ScalarProperty Name="KEY_NGUOI_BAN" ColumnName="KEY_NGUOI_BAN" />
+                <ScalarProperty Name="KEY_NHOM_GIOI" ColumnName="KEY_NHOM_GIOI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHAN_VIEN">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.NHAN_VIEN">
+              <MappingFragment StoreEntitySet="NHAN_VIEN">
+                <ScalarProperty Name="GIU_CHUC_VU" ColumnName="GIU_CHUC_VU" />
+                <ScalarProperty Name="TEN_NHAN_VIEN" ColumnName="TEN_NHAN_VIEN" />
+                <ScalarProperty Name="MA_NHAN_VIEN" ColumnName="MA_NHAN_VIEN" />
+                <ScalarProperty Name="KEY_NHAN_VIEN" ColumnName="KEY_NHAN_VIEN" />
+                <ScalarProperty Name="KEY_PHONG_BAN" ColumnName="KEY_PHONG_BAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHAP_XUAT">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.NHAP_XUAT">
+              <MappingFragment StoreEntitySet="NHAP_XUAT">
+                <ScalarProperty Name="GHI_NHAP_XUAT" ColumnName="GHI_NHAP_XUAT" />
+                <ScalarProperty Name="COD_TRANG_THAI" ColumnName="COD_TRANG_THAI" />
+                <ScalarProperty Name="HOA_DON_KYGUI" ColumnName="HOA_DON_KYGUI" />
+                <ScalarProperty Name="KHAI_THUE_VAT" ColumnName="KHAI_THUE_VAT" />
+                <ScalarProperty Name="LYDO_NHAP_XUAT" ColumnName="LYDO_NHAP_XUAT" />
+                <ScalarProperty Name="SO_TEL_KHACH" ColumnName="SO_TEL_KHACH" />
+                <ScalarProperty Name="DIA_CHI_KHACH" ColumnName="DIA_CHI_KHACH" />
+                <ScalarProperty Name="TEN_KHACH_HANG" ColumnName="TEN_KHACH_HANG" />
+                <ScalarProperty Name="NGAY_NHAP_XUAT" ColumnName="NGAY_NHAP_XUAT" />
+                <ScalarProperty Name="HIEU_HOA_DON" ColumnName="HIEU_HOA_DON" />
+                <ScalarProperty Name="SO_HOA_DON" ColumnName="SO_HOA_DON" />
+                <ScalarProperty Name="SO_NHAP_XUAT" ColumnName="SO_NHAP_XUAT" />
+                <ScalarProperty Name="KY_HIEU_PHIEU" ColumnName="KY_HIEU_PHIEU" />
+                <ScalarProperty Name="KEY_NHAP_XUAT" ColumnName="KEY_NHAP_XUAT" />
+                <ScalarProperty Name="KEY_KHACH_HANG" ColumnName="KEY_KHACH_HANG" />
+                <ScalarProperty Name="KEY_NGUOI_DUNG" ColumnName="KEY_NGUOI_DUNG" />
+                <ScalarProperty Name="KEY_CHUNG_TU" ColumnName="KEY_CHUNG_TU" />
+                <ScalarProperty Name="KEY_CHI_NHANH" ColumnName="KEY_CHI_NHANH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHOM_GIOI">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.NHOM_GIOI">
+              <MappingFragment StoreEntitySet="NHOM_GIOI">
+                <ScalarProperty Name="TEN_NHOM_GIOI" ColumnName="TEN_NHOM_GIOI" />
+                <ScalarProperty Name="MA_NHOM_GIOI" ColumnName="MA_NHOM_GIOI" />
+                <ScalarProperty Name="KEY_NHOM_GIOI" ColumnName="KEY_NHOM_GIOI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHOM_MON">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.NHOM_MON">
+              <MappingFragment StoreEntitySet="NHOM_MON">
+                <ScalarProperty Name="BAN_NHOM_MON" ColumnName="BAN_NHOM_MON" />
+                <ScalarProperty Name="TEN_NHOM_MON" ColumnName="TEN_NHOM_MON" />
+                <ScalarProperty Name="MA_NHOM_MON" ColumnName="MA_NHOM_MON" />
+                <ScalarProperty Name="KEY_NHOM_MON" ColumnName="KEY_NHOM_MON" />
+                <ScalarProperty Name="KEY_LOAI_MON" ColumnName="KEY_LOAI_MON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHA_NAU">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.PHA_NAU">
+              <MappingFragment StoreEntitySet="PHA_NAU">
+                <ScalarProperty Name="TEN_PHA_NAU" ColumnName="TEN_PHA_NAU" />
+                <ScalarProperty Name="LOAI_PHA_NAU" ColumnName="LOAI_PHA_NAU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHONG_BAN">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.PHONG_BAN">
+              <MappingFragment StoreEntitySet="PHONG_BAN">
+                <ScalarProperty Name="TEN_PHONG_BAN" ColumnName="TEN_PHONG_BAN" />
+                <ScalarProperty Name="MA_PHONG_BAN" ColumnName="MA_PHONG_BAN" />
+                <ScalarProperty Name="KEY_PHONG_BAN" ColumnName="KEY_PHONG_BAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PUTIN_OUT">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.PUTIN_OUT">
+              <MappingFragment StoreEntitySet="PUTIN_OUT">
+                <ScalarProperty Name="GHI_DIEN_GIAI" ColumnName="GHI_DIEN_GIAI" />
+                <ScalarProperty Name="TIEN_VIET_NAM" ColumnName="TIEN_VIET_NAM" />
+                <ScalarProperty Name="TIEN_VIET_THUE" ColumnName="TIEN_VIET_THUE" />
+                <ScalarProperty Name="GIA_SAU_THUE" ColumnName="GIA_SAU_THUE" />
+                <ScalarProperty Name="HE_SO_THUE" ColumnName="HE_SO_THUE" />
+                <ScalarProperty Name="TIEN_SAU_KHAU" ColumnName="TIEN_SAU_KHAU" />
+                <ScalarProperty Name="TIEN_CHIET_KHAU" ColumnName="TIEN_CHIET_KHAU" />
+                <ScalarProperty Name="SO_CHIET_KHAU" ColumnName="SO_CHIET_KHAU" />
+                <ScalarProperty Name="TIEN_VIET_HANG" ColumnName="TIEN_VIET_HANG" />
+                <ScalarProperty Name="DON_GIA_HANG" ColumnName="DON_GIA_HANG" />
+                <ScalarProperty Name="SO_LUONG_HANG" ColumnName="SO_LUONG_HANG" />
+                <ScalarProperty Name="NGAY_DEN_HAN" ColumnName="NGAY_DEN_HAN" />
+                <ScalarProperty Name="THOI_HAN_DUNG" ColumnName="THOI_HAN_DUNG" />
+                <ScalarProperty Name="SOLO_SAN_XUAT" ColumnName="SOLO_SAN_XUAT" />
+                <ScalarProperty Name="KEY_HANG_FIFO" ColumnName="KEY_HANG_FIFO" />
+                <ScalarProperty Name="KEY_CHI_MUC" ColumnName="KEY_CHI_MUC" />
+                <ScalarProperty Name="COD_ROW_XLIN" ColumnName="COD_ROW_XLIN" />
+                <ScalarProperty Name="KEY_PUTIN_OUT" ColumnName="KEY_PUTIN_OUT" />
+                <ScalarProperty Name="KEY_MAT_HANG" ColumnName="KEY_MAT_HANG" />
+                <ScalarProperty Name="KEY_KHO_MOVE" ColumnName="KEY_KHO_MOVE" />
+                <ScalarProperty Name="KEY_KHO_HANG" ColumnName="KEY_KHO_HANG" />
+                <ScalarProperty Name="KEY_NHAP_XUAT" ColumnName="KEY_NHAP_XUAT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SODU_HANG">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.SODU_HANG">
+              <MappingFragment StoreEntitySet="SODU_HANG">
+                <ScalarProperty Name="TIEN_VIET_NAM" ColumnName="TIEN_VIET_NAM" />
+                <ScalarProperty Name="SO_LUONG_HANG" ColumnName="SO_LUONG_HANG" />
+                <ScalarProperty Name="DON_GIA_HANG" ColumnName="DON_GIA_HANG" />
+                <ScalarProperty Name="NAM_KE_TOAN" ColumnName="NAM_KE_TOAN" />
+                <ScalarProperty Name="KY_KE_TOAN" ColumnName="KY_KE_TOAN" />
+                <ScalarProperty Name="KEY_MAT_HANG" ColumnName="KEY_MAT_HANG" />
+                <ScalarProperty Name="KEY_KHO_HANG" ColumnName="KEY_KHO_HANG" />
+                <ScalarProperty Name="KEY_SODU_HANG" ColumnName="KEY_SODU_HANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SODU_KHACH">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.SODU_KHACH">
+              <MappingFragment StoreEntitySet="SODU_KHACH">
+                <ScalarProperty Name="TIEN_NODA_TRA" ColumnName="TIEN_NODA_TRA" />
+                <ScalarProperty Name="TIEN_MUA_BAN" ColumnName="TIEN_MUA_BAN" />
+                <ScalarProperty Name="NAM_KE_TOAN" ColumnName="NAM_KE_TOAN" />
+                <ScalarProperty Name="KY_KE_TOAN" ColumnName="KY_KE_TOAN" />
+                <ScalarProperty Name="KEY_GIAO_DICH" ColumnName="KEY_GIAO_DICH" />
+                <ScalarProperty Name="KEY_KHACH_HANG" ColumnName="KEY_KHACH_HANG" />
+                <ScalarProperty Name="KEY_SODU_KHACH" ColumnName="KEY_SODU_KHACH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THEM_TIEN">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.THEM_TIEN">
+              <MappingFragment StoreEntitySet="THEM_TIEN">
+                <ScalarProperty Name="HSO_THEM_TIEN" ColumnName="HSO_THEM_TIEN" />
+                <ScalarProperty Name="TEN_THEM_TIEN" ColumnName="TEN_THEM_TIEN" />
+                <ScalarProperty Name="COD_THEM_TIEN" ColumnName="COD_THEM_TIEN" />
+                <ScalarProperty Name="KEY_THEM_TIEN" ColumnName="KEY_THEM_TIEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANG_THAI">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.TRANG_THAI">
+              <MappingFragment StoreEntitySet="TRANG_THAI">
+                <ScalarProperty Name="TEN_TRANG_THAI" ColumnName="TEN_TRANG_THAI" />
+                <ScalarProperty Name="COD_TRANG_THAI" ColumnName="COD_TRANG_THAI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_LOGIN">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.USER_LOGIN">
+              <MappingFragment StoreEntitySet="USER_LOGIN">
+                <ScalarProperty Name="ACT_USER_LOGIN" ColumnName="ACT_USER_LOGIN" />
+                <ScalarProperty Name="POS_USER_LOGIN" ColumnName="POS_USER_LOGIN" />
+                <ScalarProperty Name="PAS_USER_LOGIN" ColumnName="PAS_USER_LOGIN" />
+                <ScalarProperty Name="TEN_USER_LOGIN" ColumnName="TEN_USER_LOGIN" />
+                <ScalarProperty Name="COD_USER_LOGIN" ColumnName="COD_USER_LOGIN" />
+                <ScalarProperty Name="KEY_USER_LOGIN" ColumnName="KEY_USER_LOGIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_ZONES">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.USER_ZONES">
+              <MappingFragment StoreEntitySet="USER_ZONES">
+                <ScalarProperty Name="MA_KHU_VUC" ColumnName="MA_KHU_VUC" />
+                <ScalarProperty Name="KEY_USER_LOGIN" ColumnName="KEY_USER_LOGIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAU_HINH">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.CAU_HINH">
+              <MappingFragment StoreEntitySet="CAU_HINH">
+                <ScalarProperty Name="DIEM_QUI_DOI" ColumnName="DIEM_QUI_DOI" />
+                <ScalarProperty Name="DIEM_QUI_UOC" ColumnName="DIEM_QUI_UOC" />
+                <ScalarProperty Name="PRINT_MAY_BIL" ColumnName="PRINT_MAY_BIL" />
+                <ScalarProperty Name="PRINT_NHA_BEP" ColumnName="PRINT_NHA_BEP" />
+                <ScalarProperty Name="PRINT_PHA_CHE" ColumnName="PRINT_PHA_CHE" />
+                <ScalarProperty Name="KEY_CHI_NHANH" ColumnName="KEY_CHI_NHANH" />
+                <ScalarProperty Name="LAN_SUA_BILL" ColumnName="LAN_SUA_BILL" />
+                <ScalarProperty Name="DON_GIA_KHO" ColumnName="DON_GIA_KHO" />
+                <ScalarProperty Name="KY_BAO_CAO" ColumnName="KY_BAO_CAO" />
+                <ScalarProperty Name="NAM_HIEN_TAI" ColumnName="NAM_HIEN_TAI" />
+                <ScalarProperty Name="KY_HIEN_TAI" ColumnName="KY_HIEN_TAI" />
+                <ScalarProperty Name="NAM_KE_TOAN" ColumnName="NAM_KE_TOAN" />
+                <ScalarProperty Name="KY_KE_TOAN" ColumnName="KY_KE_TOAN" />
+                <ScalarProperty Name="CODE_BAR_CODE" ColumnName="CODE_BAR_CODE" />
+                <ScalarProperty Name="TYPE_BAR_CODE" ColumnName="TYPE_BAR_CODE" />
+                <ScalarProperty Name="VIEW_BAR_CODE" ColumnName="VIEW_BAR_CODE" />
+                <ScalarProperty Name="CODE_REG_USED" ColumnName="CODE_REG_USED" />
+                <ScalarProperty Name="TEN_CHIEF_TONG" ColumnName="TEN_CHIEF_TONG" />
+                <ScalarProperty Name="TEN_CHIEF_TOAN" ColumnName="TEN_CHIEF_TOAN" />
+                <ScalarProperty Name="TEN_PATH_LOGOS" ColumnName="TEN_PATH_LOGOS" />
+                <ScalarProperty Name="TEN_TIEUDE_BON" ColumnName="TEN_TIEUDE_BON" />
+                <ScalarProperty Name="TEN_TIEUDE_TAM" ColumnName="TEN_TIEUDE_TAM" />
+                <ScalarProperty Name="TEN_TIEUDE_HAI" ColumnName="TEN_TIEUDE_HAI" />
+                <ScalarProperty Name="TEN_TIEUDE_MOT" ColumnName="TEN_TIEUDE_MOT" />
+                <ScalarProperty Name="COD_CAU_HINH" ColumnName="COD_CAU_HINH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHUC_NANG">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.CHUC_NANG">
+              <MappingFragment StoreEntitySet="CHUC_NANG">
+                <ScalarProperty Name="CHA_CHUC_NANG" ColumnName="CHA_CHUC_NANG" />
+                <ScalarProperty Name="TEN_CHUC_NANG" ColumnName="TEN_CHUC_NANG" />
+                <ScalarProperty Name="COD_CHUC_NANG" ColumnName="COD_CHUC_NANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NGHIEP_VU">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.NGHIEP_VU">
+              <MappingFragment StoreEntitySet="NGHIEP_VU">
+                <ScalarProperty Name="MA_LOAI_SORT" ColumnName="MA_LOAI_SORT" />
+                <ScalarProperty Name="MA_LOAI_XULY" ColumnName="MA_LOAI_XULY" />
+                <ScalarProperty Name="MA_LOAI_VIEW" ColumnName="MA_LOAI_VIEW" />
+                <ScalarProperty Name="TEN_NGHIEP_VU" ColumnName="TEN_NGHIEP_VU" />
+                <ScalarProperty Name="MA_NGHIEP_VU" ColumnName="MA_NGHIEP_VU" />
+                <ScalarProperty Name="IDX_NGHIEP_VU" ColumnName="IDX_NGHIEP_VU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHAN_NHIEM">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.PHAN_NHIEM">
+              <MappingFragment StoreEntitySet="PHAN_NHIEM">
+                <ScalarProperty Name="TEN_PHAN_NHIEM" ColumnName="TEN_PHAN_NHIEM" />
+                <ScalarProperty Name="COD_PHAN_NHIEM" ColumnName="COD_PHAN_NHIEM" />
+                <ScalarProperty Name="KEY_PHAN_NHIEM" ColumnName="KEY_PHAN_NHIEM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BILL_TACH">
+            <EntityTypeMapping TypeName="wiseoffice.rbkModel.BILL_TACH">
+              <MappingFragment StoreEntitySet="BILL_TACH">
+                <ScalarProperty Name="USE_BILL_TACH" ColumnName="USE_BILL_TACH" />
+                <ScalarProperty Name="COD_BILL_TACH" ColumnName="COD_BILL_TACH" />
+                <ScalarProperty Name="KEY_BILL_TACH" ColumnName="KEY_BILL_TACH" />
+                <ScalarProperty Name="KEY_HOA_DON" ColumnName="KEY_HOA_DON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

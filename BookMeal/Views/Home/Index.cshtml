@@ -1,0 +1,255 @@
+﻿@using BookMeal.Models;
+@model List<BAN_MAM>
+@{
+    ViewBag.Title = "DANH SÁCH BÀN";
+    var lstKhuVuc = ViewBag.KhuVuc as List<KHU_VUC>;
+}
+
+@if (TempData["ErrorMsg"] != null)
+{
+    <div class="alert alert-danger text-center alert-dismissable" style="margin-top: 25px; margin-bottom: 2px; font-size: 20px;">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["ErrorMsg"]
+    </div>
+}
+
+@if (TempData["SuccessMsg"] != null)
+{
+    <div class="alert alert-success text-center alert-dismissable" style="margin-top: 25px; margin-bottom: 2px; font-size: 20px;">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["SuccessMsg"]
+    </div>
+}
+
+<div class="form-group" style="margin-top: 20px;">
+    <select class="form-control" onchange="this.options[this.selectedIndex].value && (window.location = '/Home?khuvuc=' + this.options[this.selectedIndex].value);"
+            style="font-size: 25px; font-weight: bold; height: auto; padding: 10px 12px; border: 2px solid #468847;background-color: #e2ffe3;">
+        <option value="all">Tất cả khu vực</option>
+        @foreach (var itemKhuVuc in lstKhuVuc)
+        {
+        <option @if (Request.QueryString["khuvuc"] != null && Request.QueryString["khuvuc"] == itemKhuVuc.MA_KHU_VUC) { <text>selected</text> } value ="@itemKhuVuc.MA_KHU_VUC">@itemKhuVuc.TEN_KHU_VUC</option>
+        }
+    </select>
+</div>
+
+@foreach (var itemKhuVuc in lstKhuVuc)
+{
+    var lstTableKV = Model.Where(a => a.MA_KHU_VUC == itemKhuVuc.MA_KHU_VUC).OrderBy(a => a.TEN_BAN_MAM, new NaturalComparer()).ToList();
+    if(lstTableKV == null || lstTableKV.Count == 0) { continue; }
+    <div class="row group-wrapper">
+        <div class="col-xs-12">
+            <h3 class="group-table"><strong class="text-danger">@itemKhuVuc.MA_KHU_VUC.ToUpper() - @itemKhuVuc.TEN_KHU_VUC.ToUpper()</strong></h3>
+        </div>
+        @foreach (var itemTable in lstTableKV)
+        {
+        <div class="table-item col-xs-4 col-sm-3 col-md-2">
+            <label>
+                <input name="selectedTable"  value="@itemTable.KEY_BAN_MAM" type="radio" /><span></span>
+                @if ((itemTable.DA_CO_KHACH == null || !itemTable.DA_CO_KHACH.Value) && itemTable.GIU_BAN_MAM != null && itemTable.GIU_BAN_MAM.Value)
+                {
+                    if (itemTable.GIO_BAN_MAM != null)
+                    {
+                        if (itemTable.GIO_BAN_MAM.Value.Date == DateTime.Now.Date)
+                        {
+                            if (itemTable.GIO_BAN_MAM != null)
+                            {
+                                DateTime datetimebook = itemTable.GIO_BAN_MAM.Value;
+
+                                if (datetimebook > DateTime.Now || (DateTime.Now - datetimebook).TotalMinutes < 30)
+                                {
+                                    <span class="label label-success" style="font-size: 14px; position: absolute; top: 0; left: 15px;"><i class="fa fa-clock-o"></i> @itemTable.GIO_BAN_MAM.Value.ToString("HH:mm")</span>
+                                }
+                            }
+                        }
+                    }
+                }
+                <span class="table-icon" data-availble="true">
+                    @if (itemTable.DA_CO_KHACH != null && itemTable.DA_CO_KHACH.Value)
+                    {
+                        <img src="~/images/table-booked.png" style="width: 100%;" />
+                    }
+                    else
+                    {
+                        <img src="~/images/table-empty.png" style="width: 100%;" />
+                    }
+                </span>
+                <span  style="display: block; position: relative; z-index: 5;" class="table-name text-center">@itemTable.TEN_BAN_MAM</span>
+            </label>
+            <ul class="custom-menu">
+                @if (itemTable.DA_CO_KHACH != null && itemTable.DA_CO_KHACH.Value)
+                {
+                    <li><a href="/home/update?billid=@itemTable.KEY_HOA_DON">CẬP NHẬT LẠI BILL</a></li>
+                    if (itemTable.KEY_HOA_DON != null)
+                    {
+                    <li class="split"></li>
+                    <li><a class="table-action" data-titleaction="CHUYỂN BÀN @itemTable.TEN_BAN_MAM" data-actionid="CHUYEN_BAN" data-sourceid="@itemTable.KEY_BAN_MAM"  href="javascript:void(0);">KHÁCH CHUYỂN BÀN</a></li>
+                    <!--
+                    <li><a class="table-action" data-titleaction="Tách bàn @@itemTable.TEN_BAN_MAM" data-actionid="TACH_BAN" data-sourceid="@@itemTable.KEY_BAN_MAM" href="javascript:void(0);">KHÁCH TÁCH BÀN</a></li>
+                    -->
+
+                    <li><a class="table-action" data-titleaction="GHÉP BÀN @itemTable.TEN_BAN_MAM" data-actionid="GHEP_BAN" data-sourceid="@itemTable.KEY_BAN_MAM" href="javascript:void(0);">KHÁCH GHÉP BÀN</a></li>
+                    }
+                }
+                else
+                {
+                    <li><a href="/home/open?tableid=@itemTable.KEY_BAN_MAM">MỞ BÀN - GỌI MÓN</a></li>
+                }
+            </ul>
+        </div>
+        }
+    </div>
+}
+
+<div id="modal_table_action" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            @using (Ajax.BeginForm(new AjaxOptions { HttpMethod="post", Url="/home/submittableaction", OnSuccess= "OnSuccessTableAction" }))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><strong id="table_action_title"></strong></h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="actionid" id="table_action_actionid" />
+                    <input type="hidden" name="sourceid" id="table_action_sourceid" />
+                    <div id="table_action_target">
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">KHÔNG LƯU</button>
+                    <button type="submit" class="btn btn-lg btn-success">CHẤP NHẬN</button>
+                </div>
+            }
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+
+    var reloadTimer = null;
+
+    function StartRefreshTable()
+    {
+        reloadTimer = setInterval(function () { location.reload();  console.log('run') }, 30000);
+    }
+
+    StartRefreshTable();
+
+    $(".table-item").on("click", function (event) {
+        // Avoid the real one
+        // If the clicked element is not the menu
+        if (!$(event.target).parents(".custom-menu").length > 0 || !$(event.target).parents(".table-item").length > 0) {
+            $(".custom-menu").hide(100);
+            event.preventDefault();
+        }
+
+        var scrollTop = $(document).scrollTop();
+        var cusmenuHeight = $(event.target).closest('div').children(".custom-menu").first().height();
+        var cusmenuWidth = $(event.target).closest('div').children(".custom-menu").first().width();
+        var documentHeight = $(document).height();
+        var documentWidth = $(document).width();
+        var yPos = event.pageY;
+        var xPos = event.pageX;
+
+        var menuPosX = xPos;
+        var menuPosY = yPos - scrollTop;
+        if (yPos + cusmenuHeight > documentHeight) {
+            menuPosY = yPos - cusmenuHeight - scrollTop;
+        }
+
+        if (xPos + cusmenuWidth > documentWidth) {
+            menuPosX = xPos - cusmenuWidth;
+        }
+        $(event.target).closest("label").children("input").prop("checked", true);
+        // Show contextmenu
+        $(event.target).closest('div').children(".custom-menu").finish().toggle(100).
+
+            //// In the right position (the mouse)
+            css({
+                top: menuPosY + "px",
+                left: menuPosX + "px"
+            });
+    });
+
+    // Trigger action when the contexmenu is about to be shown
+    $(".table-item").bind("contextmenu", function (event) {
+        // Avoid the real one
+        event.preventDefault();
+        var scrollTop = $(document).scrollTop();
+        var cusmenuHeight = $(event.target).closest('div').children(".custom-menu").first().height();
+        var cusmenuWidth = $(event.target).closest('div').children(".custom-menu").first().width();
+        var documentHeight = $(document).height();
+        var documentWidth = $(document).width();
+        var yPos = event.pageY;
+        var xPos = event.pageX;
+
+        var menuPosX = xPos;
+        var menuPosY = yPos - scrollTop;
+        if (yPos + cusmenuHeight> documentHeight) {
+            menuPosY = yPos - cusmenuHeight - scrollTop;
+        }
+
+        if (xPos + cusmenuWidth > documentWidth) {
+            menuPosX = xPos - cusmenuWidth;
+        }
+        $(event.target).closest("label").children("input").prop("checked", true);
+        // Show contextmenu
+        $(event.target).closest('div').children(".custom-menu").finish().toggle(100).
+        
+        //// In the right position (the mouse)
+        css({
+            top: menuPosY + "px",
+            left: menuPosX + "px"
+        });
+    });
+
+
+    // If the document is clicked somewhere
+    $(document).bind("mousedown", function (e) {
+        // If the clicked element is not the menu
+        if (!$(e.target).parents(".table-item").length > 0) {
+
+            // Hide it
+            $(".custom-menu").hide(100);
+        }
+    });
+
+
+
+    $(window).resize(function () {
+        // Hide it
+        $(".custom-menu").hide(100);
+    });
+
+    $(window).scroll(function () {
+        // Hide it
+        $(".custom-menu").hide(100);
+    });
+
+    $(".table-action").on("click", function () {
+        var TitleAction = $(this).data("titleaction");
+        var ActionID = $(this).data("actionid");
+        var SourceID = $(this).data("sourceid");
+        $("#table_action_title").text(TitleAction);
+        $("#table_action_actionid").val(ActionID);
+        $("#table_action_sourceid").val(SourceID);
+        $("#table_action_target").load("/home/loadtableaction", { "actionid": ActionID, "sourceid": SourceID }, function () {
+            $("#modal_table_action").modal("show");
+        });
+    });
+
+    function OnSuccessTableAction(result)
+    {
+        if (result.success) location.reload();
+        else alert(result.msg);
+    }
+
+    
+</script>

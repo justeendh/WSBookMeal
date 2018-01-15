@@ -1,0 +1,214 @@
+﻿@using BookMeal.Models;
+@model List<MON_HANG>
+@{
+    ViewBag.Title = "Bookmeal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var itemBillTachChild = ViewBag.itemBillTachChild as BILL_TACH;
+    BAN_MAM itenBanMam = ViewBag.BAN_MAM as BAN_MAM;
+    List<NHOM_MON> lstNhomMon = ViewBag.lstNhomMon as List<NHOM_MON>;
+    List<MON_HANG> lstMonHang = ViewBag.lstMonHang as List<MON_HANG>;
+    bool IsOpenTable = (bool)ViewBag.IsOpenTable;
+}
+
+<script>
+    function CheckTableDone()
+    {
+        $.post("/home/Checktabledone", function (data, status) {
+            console.log(data);
+            if (data.success)
+            {
+                window.location = "/home/";
+            }
+        });
+    }
+
+    //setInterval(function () {
+    //    CheckTableDone();
+    //}, 5000);
+</script>
+
+<h2>
+    <strong>
+        @itenBanMam.TEN_BAN_MAM - @itenBanMam.KHU_VUC.TEN_KHU_VUC
+        @if(itemBillTachChild != null)
+        {
+            <span>/ BILL: <span  class="text-danger">@itemBillTachChild.COD_BILL_TACH.Value.ToString("00")</span></span>
+        }
+    </strong>
+</h2>
+<div>
+    <input id="initnhommon" type="hidden" value="@if (lstNhomMon.Count > 0) { <text>@lstNhomMon[0].KEY_NHOM_MON</text> }" />
+
+    <!-- Default Tabs -->
+    <ul class="nav nav-tabs push" data-toggle="tabs">
+        <li class="active"><a href="#meallist"><h4 style="margin: 2px;">Danh sách món</h4></a></li>
+        <li><a href="#selectedlist"><h4 style="margin: 2px;">Món đã chọn</h4></a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="meallist">
+            <div class="row">
+                <div class="col-xs-3" style="padding-right: 0 !important;">
+                    <section class="grouplist" style="overflow-y: auto;">
+                        <input id="CurrentNhomSelected" type="hidden" value="" />
+                        <div class="group-mon-book-item" style="cursor: pointer;">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td class="text-center" style="vertical-align: middle; min-height: 50px; font-size: 16px;" onclick="Loadlistcombo();">
+                                        <strong>COMBO</strong>
+                                    </td>
+                                    <td>
+                                        <div style="min-height: 50px;"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        @foreach (var itemNhomMon in lstNhomMon)
+                        {
+                            <div class="group-mon-book-item" style="cursor: pointer;" onclick="LoadItemInGroup('@itemNhomMon.KEY_NHOM_MON');">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td class="text-center" style="vertical-align: middle; min-height: 50px; font-size: 16px; word-wrap: break-word !important;">
+                                            <strong>@itemNhomMon.TEN_NHOM_MON.ToUpper()</strong>
+                                        </td>
+                                        <td>
+                                            <div style="min-height: 50px;"></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        }
+                    </section>
+                </div>
+                <div class="col-xs-9">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Gõ để tìm kiếm..." id="txtInputSearch" 
+                               style="font-size: 25px; font-weight: bold; height: auto; padding: 10px 12px; border: 2px solid #468847;background-color: #e2ffe3; color: #f00;"/>
+                        <button type="button" id="btnClearText" class="btn-xs btn-danger" style="position: absolute;top: 10px;right: 24px;border: none;display: none;">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <section class="monlist" style="overflow-y: auto;">
+                        <div class="container" id="lstMonData">
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="selectedlist">
+            <section class="monlist_bookselected" style="overflow-y: auto;">
+                <div class="container" id="lstMonData_bookselected">
+
+                </div>
+            </section>
+        </div>
+
+        
+        <div style="margin-top: 10px;">
+            <div class="row">
+                <div class="col-xs-6">
+                    @{ 
+                        string UrlCancel = "";
+                        if (IsOpenTable) { UrlCancel = Url.Action("index", "home"); }
+                        else { UrlCancel = Url.Action("update", "home", Request.QueryString.ToRouteValues(new { tableid = "", isopentable = "" })); }
+                    }
+                    <a href="@UrlCancel" class="btn btn-danger btn-lg btn-block">
+                        <strong><i class="fa fa-times"></i> HUỶ BỎ</strong>
+                    </a>
+                </div>
+                <div class="col-xs-6">
+                    <a href="@Url.Action("savechonmon", "home", Request.QueryString.ToRouteValues(new { tableid = itenBanMam.KEY_BAN_MAM, isopentable = IsOpenTable }))" class="btn btn-success btn-lg btn-block">
+                        <strong><i class="fa fa-save"></i> LƯU LẠI</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Default Tabs -->
+
+    
+</div>
+
+
+<script>
+    $("section.grouplist").css("max-height", ($(window).innerHeight() - 225));
+    $("section.monlist").css("max-height", ($(window).innerHeight() - 195 - 105));
+    $("section.monlist_bookselected").css("max-height", ($(window).innerHeight() - 120 - 110));
+
+    $(window).resize(function () {
+        $("section.grouplist").css("max-height", ($(window).innerHeight() - 225));
+        $("section.monlist").css("max-height", ($(window).innerHeight() - 195 - 105));
+        $("section.monlist_bookselected").css("max-height", ($(window).innerHeight() - 120 - 110));
+    });
+
+    function Loadlistcombo()
+    {
+        $("#lstMonData").load("/home/loadlistcombo", { tableid : "@itenBanMam.KEY_BAN_MAM" }, function () {
+
+        });
+    }
+
+    function Loadlistmonhang(nhommon)
+    {
+        $("#lstMonData").load("/home/loadlistmonhang", { nhomid: nhommon, tableid : "@itenBanMam.KEY_BAN_MAM" }, function () {
+
+        });
+    }
+
+    function Loadlistmonhang_bookselected()
+    {
+        $("#lstMonData_bookselected").load("/home/loadlistmonhangselected", { tableid : "@itenBanMam.KEY_BAN_MAM" }, function () {
+
+        });
+    }
+
+
+    function LoadItemInGroup(valNhom) {
+        $("#txtInputSearch").val("");
+        $("#CurrentNhomSelected").val(valNhom);
+        Loadlistmonhang(valNhom);
+    }
+    var xhr;
+
+    function abortAjax(xhr) {
+        if (xhr) {
+            xhr.abort();
+        }
+    }
+
+    $("#txtInputSearch").on("input", function () {
+        var valNhom = $("#CurrentNhomSelected").val();
+        var query = $(this).val();
+        abortAjax(xhr);
+        xhr = $.ajax({
+            type: "POST",
+            data: { nhomid: valNhom, query: query, tableid : "@itenBanMam.KEY_BAN_MAM" },
+            url: "/home/searchmonhang",
+            success: function (data) {
+                
+            }
+        });
+
+        $("#lstMonData").load("/home/searchmonhang", { nhomid: valNhom, query: query, tableid : "@itenBanMam.KEY_BAN_MAM" }, function () {
+
+        });
+        if (query !== '')
+        {
+            $("#btnClearText").show();
+        }
+        else
+        {
+            $("#btnClearText").hide();
+        }
+    });
+
+    LoadItemInGroup($("#initnhommon").val());
+    Loadlistmonhang_bookselected();
+
+    $("#btnClearText").on("click", function () {
+        $("#btnClearText").hide();
+        $("#txtInputSearch").val("");
+    });
+
+</script>

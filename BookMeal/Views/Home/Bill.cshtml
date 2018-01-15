@@ -1,0 +1,248 @@
+﻿@using BookMeal.Models;
+@model HOA_DON
+@{
+    ViewBag.Title = "Bill";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<BILL_MEAL> lstBillMeal = Session["MON_SELECTED_" + Model.KEY_BAN_MAM.ToString()] as List<BILL_MEAL>;
+    var lstBillTach = ViewBag.lstBillTach as  List<BILL_TACH>;
+    var lstChildHoaDon = ViewBag.lstChildHoaDon as List<HOA_DON>;
+
+    var dictToTalMonBillTach = ViewBag.dictToTalMonBillTach as Dictionary<string, int>;
+    var dictDaPhucVuBillTach = ViewBag.dictDaPhucVuBillTach as Dictionary<string, int>;
+    var dictChuaPhucVuBillTach = ViewBag.dictChuaPhucVuBillTach as Dictionary<string, int>;
+    var itemBillTachChild = ViewBag.itemBillTachChild as BILL_TACH;
+    bool IsOpenTable = (bool)ViewBag.IsOpenTable;
+    bool CanCancel = (bool)ViewBag.CanCancel;
+
+}
+
+<h2>
+    <strong>
+        @if (Request.QueryString["parent"] != null)
+        {
+            <a class="btn btn-warning  btn-lg" href="/home/update?billid=@Request.QueryString["parent"]#lstbillchild">
+                <i class="fa fa-arrow-circle-left"></i>
+            </a>
+        }
+        @Model.BAN_MAM.TEN_BAN_MAM - @Model.BAN_MAM.KHU_VUC.TEN_KHU_VUC
+        @if(itemBillTachChild != null)
+        {
+            <span>/ BILL: <span  class="text-danger">@itemBillTachChild.COD_BILL_TACH.Value.ToString("00")</span></span>
+        }
+    </strong>
+</h2>
+<div>
+    
+    <div style="margin-bottom: 10px;">
+        
+        @if (TempData["ErrorMsg"] != null)
+        {
+            <div class="alert alert-danger text-center alert-dismissable"  style="margin-top: 10px; margin-bottom: 10px; font-size: 20px;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                @TempData["ErrorMsg"]
+            </div>
+        }
+
+        @if (TempData["SuccessMsg"] != null)
+        {
+            <div class="alert alert-success text-center alert-dismissable"  style="margin-top: 10px; margin-bottom: 10px; font-size: 20px;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                @TempData["SuccessMsg"]
+            </div>
+        }
+
+        <div class="row">
+            
+            <div class="col-xs-12">
+                <a  class="btn btn-success  btn-lg btn-block" href="@Url.Action("Bookmeal", "home", Request.QueryString.ToRouteValues(new { isopentable = IsOpenTable, tableid = @Model.BAN_MAM.KEY_BAN_MAM }))">
+                    <i class="fa fa-plus-circle"></i> THÊM MÓN/THAY ĐỔI MÓN
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="lstBillMealSelected">
+        
+    </div>
+
+    <div style="margin-top: 8px; font-size: 16px;">
+        <table class="table">
+            <tr>
+                <td><strong>Số món:</strong></td>
+                <td class="text-right">
+                    <strong class="text-danger">@Model.BILL_MEAL.Count</strong>
+                </td>
+                <td><strong>Tổng tiền:</strong></td>
+                <td class="text-right">
+                    <strong class="text-danger">@Model.TONG_PHAI_TRA.Value.ToString("###,###,###,##0")</strong>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Đã phục vụ:</strong></td>
+                <td class="text-right">
+                    @{ 
+                        var countDaPV = Model.BILL_MEAL.Where(a => a.COOK_VA_MIXE != null && a.COOK_VA_MIXE.Value).Count();
+                    }
+                    <strong class="text-danger">@countDaPV.ToString("###,###,###,##0")</strong>
+                </td>
+                <td><strong>Chưa phục vụ:</strong></td>
+                <td class="text-right">
+                    @{ 
+                        var countChuaPV = Model.BILL_MEAL.Where(a => a.COOK_VA_MIXE == null || !a.COOK_VA_MIXE.Value).Count();
+                    }
+                    <strong class="text-danger">@countChuaPV.ToString("###,###,###,##0")</strong>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Trạng thái:</strong></td>
+                <td colspan="3" class="text-right">
+                    <strong class="text-danger">
+                        @if (Model.DA_THU_TIEN != null && Model.DA_THU_TIEN.Value)
+                        {
+                            <span>ĐÃ THU</span>
+                        }
+                        else
+                        {
+                            <span>CHƯA THU</span>
+                        }
+                    </strong>
+                </td>
+            </tr>
+        </table>
+
+
+        
+        @if (IsOpenTable)
+        {
+            if (Request.QueryString["parent"] == null)
+            {
+                <div class="form-group">
+                    <a href="/home/huyban?tableid=@Model.KEY_BAN_MAM" class="btn btn-danger btn-lg btn-block">
+                        <i class="fa fa-times"></i> HUỶ BÀN
+                    </a>
+                </div>
+            }
+        }
+        else
+        {
+            int count = lstBillMeal.Where(a => a.COOK_VA_MIXE == null || !a.COOK_VA_MIXE.Value).Count();
+            if (count > 0)
+            {
+            <div class="form-group">
+                <a href="/home/phanauxuatmon?billid=@Model.KEY_HOA_DON" class="btn btn-success btn-lg btn-block">
+                    <i class="fa fa-check"></i> LỆNH PHA - NẤU - XUẤT
+                </a>
+            </div>
+            }
+            if (CanCancel)
+            {
+                if (Request.QueryString["parent"] == null)
+                {
+                    <div class="form-group">
+                        <a href="/home/huybanchuathanhtoan?billid=@Model.KEY_HOA_DON" class="btn btn-danger btn-lg btn-block">
+                            <i class="fa fa-times"></i> HUỶ BÀN
+                        </a>
+                    </div>
+                }
+            }
+            else
+            {
+                if (Request.QueryString["parent"] == null)
+                {
+                    <div class="form-group" style="display: none !important;">
+                        <a href="/home/thanhtoanxong?billid=@Model.KEY_HOA_DON" class="btn btn-danger btn-lg btn-block">
+                            <i class="fa fa-money"></i> THANH TOÁN
+                        </a>
+                    </div>
+                }
+            }
+        }
+
+
+    </div>
+</div>
+
+
+<script>
+    
+    function Loadlistmonhangselected() {
+        $("#lstBillMealSelected").load("/home/listmonselected", { tableid: "@Model.BAN_MAM.KEY_BAN_MAM", billid: "@Model.KEY_HOA_DON", isopentable: "@IsOpenTable" }, function () {
+
+        });
+    }
+    Loadlistmonhangselected();
+</script>
+
+@if (lstBillTach != null && lstBillTach.Count > 0)
+{
+    <hr/>
+    <h2><strong><i class="fa fa-exchange"></i> TÁCH BILL</strong></h2>
+    <div id="lstbillchild" class="container" style="margin-bottom: 15px;">
+        <div class="row">
+            @if (lstChildHoaDon != null && lstChildHoaDon.Count > 0)
+            {
+                foreach (var ItemHDChild in lstChildHoaDon)
+                {
+                    var ItemBillTach = lstBillTach.FirstOrDefault(a => a.KEY_BILL_TACH == ItemHDChild.KEY_HOA_DON);
+                    <div class="meal-item col-xs-12 col-sm-6 col-md-6">
+                        <div class="pull-right quantity-meal text-right">
+                            <div class="btn-group">  
+                                <a class="btn btn-lg btn-success" href="@Url.Action("update", "home", Request.QueryString.ToRouteValues(new { billid = @ItemHDChild.KEY_HOA_DON, parent = @Model.KEY_HOA_DON, childBill = true }))">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <div  style="margin-right: 50px;">
+                                <h3 style="margin: 0;">
+                                    <strong>BILL: </strong><strong class="text-success">@ItemBillTach.COD_BILL_TACH.Value.ToString("00")</strong> -                               
+                                    <strong><i class="fa fa-money"></i>:</strong> <strong class="text-danger">@ItemHDChild.TONG_PHAI_TRA.Value.ToString("###,###,###,##0")</strong>
+                                </h3>
+                            </div>
+                            <div class="text-nowrap">
+                                <h4 style="margin: 5px 0 0 0;">
+                                    @if (dictToTalMonBillTach.ContainsKey(ItemHDChild.KEY_HOA_DON.ToString()))
+                                    {
+                                    <strong class="label label-success">MÓN: @dictToTalMonBillTach[ItemHDChild.KEY_HOA_DON.ToString()].ToString("0")</strong> 
+                                    }
+                                    @if(dictDaPhucVuBillTach.ContainsKey(ItemHDChild.KEY_HOA_DON.ToString()))
+                                    {
+                                    <strong class="label label-success"><i class="fa fa-check"></i> @dictDaPhucVuBillTach[ItemHDChild.KEY_HOA_DON.ToString()].ToString("0")</strong>
+                                    }
+                                    else
+                                    {
+                                        <strong class="label label-success"><i class="fa fa-check"></i> 0</strong>
+                                    }
+                                    @if (dictChuaPhucVuBillTach.ContainsKey(ItemHDChild.KEY_HOA_DON.ToString()))
+                                    {
+                                    <strong class="label label-danger"><i class="fa fa-hourglass-half"></i> @dictChuaPhucVuBillTach[ItemHDChild.KEY_HOA_DON.ToString()].ToString("0")</strong>
+                                    }
+                                    else
+                                    {
+                                        <strong class="label label-danger"><i class="fa fa-hourglass-half"></i> 0</strong>
+                                    }
+                                    <strong class="label label-danger">
+                                        @if (ItemHDChild.DA_THU_TIEN != null && ItemHDChild.DA_THU_TIEN.Value)
+                                        {
+                                            <span>ĐÃ THU</span>
+                                        }
+                                        else
+                                        {
+                                            <span>CHƯA THU</span>
+                                        }
+                                    </strong>
+                                </h4>
+                            </div>
+                        </div>
+
+                        <div style="clear: both;"></div>
+                    </div>
+                }
+            }
+        </div> 
+    </div>
+}

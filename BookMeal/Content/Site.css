@@ -1,0 +1,221 @@
+﻿/* Include Open Sans font from Google Web Fonts */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,600italic,700,700italic');
+@font-face {
+    font-family: 'blonescript';
+    src: url('fonts/FS BlondeScript-Regular.otf');
+}
+
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.text-nowrap{
+    white-space: nowrap !important;
+    overflow: hidden;
+}
+
+/* CSS3 */
+
+/* The whole thing */
+.custom-menu {
+    display: none;
+    z-index: 1000;
+    position: fixed;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background: #468847;
+    color: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 0;
+    line-height:32px;
+}
+
+/* Each of the items in the list */
+.custom-menu li {
+    color: #fff;
+    cursor: pointer;
+    list-style-type: none;
+    transition: all .3s ease;
+    user-select: none;
+}
+
+    .custom-menu li a {
+        padding: 8px 12px;
+        text-decoration: none;
+        position: relative;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: #fff;
+    }
+
+.custom-menu li a:hover {
+    text-decoration: none;
+    color: #468847;
+}
+
+.custom-menu li.split {
+    padding: 0;
+    cursor: none;
+    list-style-type: none;
+    user-select: none;
+    height: 1px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.custom-menu li:not(.split):hover {
+    background-color: #DEF;
+}
+
+.group-wrapper
+{
+    margin-bottom:20px;
+}
+
+.group-table {
+    margin-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.table-item{
+    position: relative;
+    cursor: pointer;
+}
+
+.table-item label{
+    display: block;
+    cursor: pointer;
+    z-index:5;
+}
+
+.table-item label input{
+    display: none;
+}
+
+.table-item label input:checked + span {
+    display: block;
+    background-color: rgba(214, 214, 214, 0.75);
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.table-item .table-name{
+    padding-bottom: 8px;
+    font-size: 23px;
+}
+
+.table-item .table-icon {
+    z-index: 5;
+    position: relative;
+    user-select: none;
+    display: block;
+}
+
+
+.meal-item {
+    padding: 15px 10px;
+    margin-bottom: 2px;
+}
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .meal-item:nth-child(even) {
+        border-left: 1px solid #fff;
+    }
+
+    .meal-item:nth-child(odd) {
+        border-right: 1px solid #fff;
+    }
+}
+
+
+.meal-item:nth-child(odd) {
+    background-color: #DEF;
+}
+
+
+.meal-item:nth-child(even) {
+    background-color: #fff3aa;
+}
+
+.quantity-meal{
+    font-size: 13px;
+}
+
+.meal-status {
+    font-size: 13px;
+    font-style: italic;
+}
+
+.group-mon-book-item{
+    width: 100%;
+    padding: 5px;
+    white-space: normal;
+    overflow: hidden;
+}
+
+.group-mon-book-item:nth-child(odd) {
+    background-color: #73d873;
+    color: #fff;
+}
+
+.group-mon-book-item:nth-child(even) {
+    background-color: #4cbe4c;
+    color: #fff;
+}
+
+.nav-tabs{
+    margin-bottom: 10px;
+    border-bottom: 2px solid #468847;
+}
+
+.nav-tabs > li > a, .nav > li > a:hover, .nav > li > a:focus
+{
+    text-transform: uppercase;
+    background-color: #b3b3b3;
+    color: #fff;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #316732;
+    font-weight: bold;
+    border: 2px solid #468847;
+    border-bottom-color: transparent;    
+    padding: 7px 5px;
+}
+
+.nav-tabs > li:not(.active) {
+    top: 0;
+}
+
+.nav-tabs > li {
+    margin-bottom: -6px;
+}
+
+.nav-tabs > li:not(.active) > a{
+     margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+.nav-tabs > li > a:hover {
+    border-color: #468847;
+}
