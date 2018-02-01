@@ -52,7 +52,7 @@ namespace SocketCommunicate
             }
         }
         
-        public void SendData(string KeyHoaDon)
+        public bool SendData(string KeyHoaDon)
         {
             if (IsReady && client != null && client.Connected)
             {
@@ -61,10 +61,16 @@ namespace SocketCommunicate
                 receiveDone.Reset();
                 Send(client, SendDataa);
                 sendDone.WaitOne(5000);
+                Receive(client);
+                receiveDone.WaitOne(5000);
                 if (OnSendActionCompleated != null) OnSendActionCompleated();
-                return;
+                if(response != null)
+                {
+                    string ResultStr = Encoding.Unicode.GetString(response);
+                    if (ResultStr.ToUpper().CompareTo("SUCCESS") == 0) return true;
+                }
             }
-            return;
+            return false;
         }
 
         public void Close()
@@ -121,22 +127,20 @@ namespace SocketCommunicate
                     {
                         byte[] byteRecv = new byte[bytesRead];
                         Array.Copy(state.buffer, 0, byteRecv, 0, bytesRead);                       
-                        response = byteRecv;
-                        
+                        response = byteRecv;                        
                         receiveDone.Set();
                         client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReceiveCallback), state);
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Disconected to {0}", client.RemoteEndPoint.ToString());
-                    client.Shutdown(SocketShutdown.Both);
-                    client.Close();
+                    receiveDone.Set();
                     return;
                 }
             }
             catch (Exception ex)
             {
+                receiveDone.Set();
                 Console.WriteLine(ex.ToString());
             }
         }

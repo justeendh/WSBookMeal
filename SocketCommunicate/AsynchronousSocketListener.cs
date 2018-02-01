@@ -44,29 +44,49 @@ namespace SocketCommunicate
 
             Thread threadCheckClientConnection = new Thread(() =>
             {
-                lock (Clients)
+                while(true)
                 {
-                    if (Clients != null && Clients.Count > 0)
+                    try
                     {
-                        List<string> lstRemove = new List<string>();
-                        foreach (var client in Clients)
+                        lock (Clients)
                         {
-                            Socket clientProccess = client.Value;
-                            if (!SocketExtensions.IsConnected(clientProccess))
+                            if (Clients != null && Clients.Count > 0)
                             {
-                                IPEndPoint localIpEndPoint = clientProccess.LocalEndPoint as IPEndPoint;
-                                if (Clients.ContainsKey(localIpEndPoint.ToString())) Clients.Remove(localIpEndPoint.Address.ToString());
-                                Console.WriteLine("Disconected to {0}", localIpEndPoint.ToString());
-                                clientProccess.Shutdown(SocketShutdown.Both);
-                                clientProccess.Close();
-                                lstRemove.Add(client.Key);
+                                List<string> lstRemove = new List<string>();
+                                foreach (var client in Clients)
+                                {
+                                    Socket clientProccess = client.Value;
+                                    if (!SocketExtensions.IsConnected(clientProccess))
+                                    {
+                                        IPEndPoint localIpEndPoint = clientProccess.LocalEndPoint as IPEndPoint;
+                                        if (Clients.ContainsKey(localIpEndPoint.ToString())) Clients.Remove(localIpEndPoint.Address.ToString());
+                                        Console.WriteLine("Disconected to {0}", localIpEndPoint.ToString());
+                                        clientProccess.Shutdown(SocketShutdown.Both);
+                                        clientProccess.Close();
+                                        lstRemove.Add(client.Key);
+                                    }
+                                }
+
+                                foreach (var client in lstRemove)
+                                {
+                                    try
+                                    {
+                                        Clients[client].Shutdown(SocketShutdown.Both);
+                                        Clients[client].Close();
+                                        Clients.Remove(client);
+                                    }
+                                    catch (Exception ex)
+                                    {
+
+                                    }
+                                    Clients.Remove(client);
+                                }
                             }
                         }
-
-                        foreach (var client in lstRemove)
-                        {
-                            Clients.Remove(client);
-                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        continue;
                     }
                 }
             });
@@ -76,57 +96,77 @@ namespace SocketCommunicate
 
         public void Start()
         {
-            try
+            Thread threadStartServer = new Thread(() =>
             {
-                listener.Bind(localEndPoint);
-                listener.Listen(MAX_CLIENTS);
                 while (true)
                 {
-                    // Set the event to nonsignaled state.
-                    allDone.Reset();
-                    // Start an asynchronous socket to listen for connections.
-                    Console.WriteLine("{0} Waiting for a connection...", AppName);
-                    listener.BeginAccept(new AsyncCallback(AcceptCallback), listener);
-                    // Wait until a connection is made before continuing.
-                    allDone.WaitOne();
+                    try
+                    {
+                        listener.Bind(localEndPoint);
+                        listener.Listen(MAX_CLIENTS);
+                        while (true)
+                        {
+                            // Set the event to nonsignaled state.
+                            allDone.Reset();
+                            // Start an asynchronous socket to listen for connections.
+                            Console.WriteLine("{0} Waiting for a connection...", AppName);
+                            listener.BeginAccept(new AsyncCallback(AcceptCallback), listener);
+                            // Wait until a connection is made before continuing.
+                            allDone.WaitOne();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //EventsLogging.WriteLogError(ex);
+                        //Console.WriteLine(ex.ToString());
+                        //Environment.Exit(0);
+                        continue;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                //EventsLogging.WriteLogError(ex);
-                //Console.WriteLine(ex.ToString());
-                Environment.Exit(0);
-            }
-            Console.WriteLine("\nPress ENTER to continue...");
-            Console.Read();
-
+                //Console.WriteLine("\nPress ENTER to continue...");
+                //Console.Read();
+            });
+            threadStartServer.IsBackground = true;
+            threadStartServer.Start();
         }
         
         public void AcceptCallback(IAsyncResult ar)
         {
-            // Signal the main thread to continue.
-            allDone.Set();
-            // Get the socket that handles the client request.
-            Socket listener = (Socket)ar.AsyncState;
-            Socket handler = listener.EndAccept(ar);
-            IPEndPoint localIpEndPoint = handler.LocalEndPoint as IPEndPoint;
-            Console.WriteLine("Client connected: {0}", handler.RemoteEndPoint.ToString());
+            try
+            {
+                // Signal the main thread to continue.
+                allDone.Set();
+                // Get the socket that handles the client request.
+                Socket listener = (Socket)ar.AsyncState;
+                Socket handler = listener.EndAccept(ar);
+                IPEndPoint localIpEndPoint = handler.LocalEndPoint as IPEndPoint;
+                Console.WriteLine("Client connected: {0}", handler.RemoteEndPoint.ToString());
 
-            // Create the state object.
-            StateObject state = new StateObject();
-            state.workSocket = handler;
-            if(!Clients.ContainsKey(localIpEndPoint.Address.ToString())) Clients.Add(localIpEndPoint.Address.ToString(), handler);
-            handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
+                // Create the state object.
+                StateObject state = new StateObject();
+                state.workSocket = handler;
+                if (!Clients.ContainsKey(localIpEndPoint.Address.ToString())) Clients.Add(localIpEndPoint.Address.ToString(), handler);
+                handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
+            }
+            catch
+            {
+
+            }
         }
 
         public void ReadCallback(IAsyncResult ar)
         {
-            String content = String.Empty;
-            StateObject state = (StateObject)ar.AsyncState;
-            Socket handler = state.workSocket;
+            String content = null;
+            StateObject state = null;
+            Socket handler = null;
             int bytesRead = 0;
             try
             {
+                content = String.Empty;
+                state = (StateObject)ar.AsyncState;
+                handler = state.workSocket;
+                bytesRead = 0;
+
                 bytesRead = handler.EndReceive(ar);
                 if (bytesRead > 0)
                 {
@@ -146,18 +186,29 @@ namespace SocketCommunicate
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Disconected to {0}", handler.RemoteEndPoint.ToString());
-                IPEndPoint localIpEndPoint = handler.LocalEndPoint as IPEndPoint;
-                if (Clients.ContainsKey(localIpEndPoint.ToString())) Clients.Remove(localIpEndPoint.Address.ToString());
-                handler.Shutdown(SocketShutdown.Both);
-                handler.Close();
+                if (handler != null)
+                {
+                    try
+                    {
+                        handler.Shutdown(SocketShutdown.Both);
+                        handler.Close();
+                    }
+                    catch { }
+                }
                 return;
             }
         }
 
         public void Send(Socket handler, byte[] data)
         {            
-            handler.BeginSend(data, 0, data.Length, 0, new AsyncCallback(SendCallback), handler);
+            try
+            {
+                handler.BeginSend(data, 0, data.Length, 0, new AsyncCallback(SendCallback), handler);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         private void SendCallback(IAsyncResult ar)

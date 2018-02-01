@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookMeal", "BookMeal\BookMe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketCommunicate", "SocketCommunicate\SocketCommunicate.csproj", "{14FFF27E-2610-4962-BECD-7A68CF51BE8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPrintServer", "TestPrintServer\TestPrintServer.csproj", "{4E38B89D-BE0D-47D9-A40E-F016F3824E69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{14FFF27E-2610-4962-BECD-7A68CF51BE8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14FFF27E-2610-4962-BECD-7A68CF51BE8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14FFF27E-2610-4962-BECD-7A68CF51BE8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E38B89D-BE0D-47D9-A40E-F016F3824E69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E38B89D-BE0D-47D9-A40E-F016F3824E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E38B89D-BE0D-47D9-A40E-F016F3824E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E38B89D-BE0D-47D9-A40E-F016F3824E69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

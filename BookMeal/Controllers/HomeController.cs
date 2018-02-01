@@ -1013,7 +1013,12 @@ namespace BookMeal.Controllers
 
                         context.SaveChanges();
                         dbContextTransaction.Commit();
-                        if(itemHoaDon.KEY_COMB_SET == null) Session["COMBO_MON_SELECTED_" + tableid.ToString()] = new List<BILL_MEAL>();
+
+                        Session["DA_PHA_CHE_COBO_" + tableid.ToString()] = false;
+                        Session[string.Format("KEY_HOA_DON_{0}", tableid.ToString())] = null;
+                        Session["MON_SELECTED_" + tableid.ToString()] = new List<BILL_MEAL>();
+                        if (itemHoaDon.KEY_COMB_SET == null) Session["COMBO_MON_SELECTED_" + tableid.ToString()] = new List<BILL_MEAL>();
+
                         TempData["SuccessMsg"] = "Lưu thông tin đặt bàn thành công !";
                         return RedirectToAction("Update", Request.QueryString.ToRouteValues(new { billid = itemHoaDon.KEY_HOA_DON, isopentable = "", tableid = "" }));    
                     }
@@ -1080,10 +1085,17 @@ namespace BookMeal.Controllers
                     if (client.StartClient(HostPrint, int.Parse(PortHostPrint)))
                     {
                         //Update pha che & bep & xuat kho
-                        client.SendData(_entHoaDon.KEY_HOA_DON.ToString());
-                        client.Close();
-                        TempData["SuccessMsg"] = "Đã đưa vào pha chế thành công !";
-                        return RedirectToAction("Index");
+                        if (client.SendData(_entHoaDon.KEY_HOA_DON.ToString()))
+                        {
+                            //client.Close();
+                            TempData["SuccessMsg"] = "Đã đưa vào pha chế thành công !";
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            TempData["ErrorMsg"] = "Đưa vào pha chế không thành công ! Vui lòng thử lại sau.";
+                            return Redirect("/home/update?billid=" + _entHoaDon.KEY_HOA_DON.ToString());
+                        }
                     }
                     else
                     {
