@@ -22,18 +22,20 @@ namespace TestPrintServer
 
         public bool ActionProcessingData(string KeyHoaDon)
         {
-            Console.WriteLine(KeyHoaDon);
+            AppendTextbox(KeyHoaDon + "\r\n");
             return true;
         }
 
-        public void AppendTextBox(string value)
+        private void AppendTextbox(string value)
         {
-            if (InvokeRequired)
+            if (this.textBox1.InvokeRequired)
             {
-                this.Invoke(new Action<string>(AppendTextBox), new object[] { value });
-                return;
+                this.textBox1.BeginInvoke((MethodInvoker)delegate () { this.textBox1.Text += value; });
             }
-            textBox1.Text += value;
+            else
+            {
+                this.textBox1.Text += value;
+            }
         }
     }
 }
