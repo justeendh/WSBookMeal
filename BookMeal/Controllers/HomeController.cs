@@ -1093,6 +1093,7 @@ namespace BookMeal.Controllers
                         }
                         else
                         {
+                            //client.Close();
                             TempData["ErrorMsg"] = "Đưa vào pha chế không thành công ! Vui lòng thử lại sau.";
                             return Redirect("/home/update?billid=" + _entHoaDon.KEY_HOA_DON.ToString());
                         }
